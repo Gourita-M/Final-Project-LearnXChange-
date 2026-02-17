@@ -1,0 +1,119 @@
+@startuml
+
+class User {
+  +id: int
+  +name: string
+  +email: string
+  +password: string
+  +bio: text
+  +xp_points: int
+  +level: int
+  +role: enum
+  +created_at: datetime
+}
+
+class Admin
+Admin --|> User
+
+class Skill {
+  +id: int
+  +name: string
+  +category: string
+  +description: text
+}
+
+class UserSkill {
+  +user_id: int
+  +skill_id: int
+  +level: enum
+}
+
+class Badge {
+  +id: int
+  +name: string
+  +xp_required: int
+}
+
+class UserBadge {
+  +user_id: int
+  +badge_id: int
+  +earned_at: datetime
+}
+
+class LearningRequest {
+  +id: int
+  +user_id: int
+  +skill_id: int
+  +description: text
+  +session_type: enum
+  +status: enum
+  +created_at: datetime
+}
+
+class Session {
+  +id: int
+  +teacher_id: int
+  +learner_id: int
+  +skill_id: int
+  +type: enum
+  +status: enum
+  +scheduled_at: datetime
+}
+
+class Message {
+  +id: int
+  +session_id: int
+  +sender_id: int
+  +content: text
+  +timestamp: datetime
+}
+
+class Review {
+  +id: int
+  +session_id: int
+  +rating: int
+  +comment: text
+}
+
+class Certificate {
+  +id: int
+  +user_id: int
+  +status: enum
+  +approved_by: int
+}
+
+class Report {
+  +id: int
+  +reported_user_id : int
+  +reason: text
+  +status: enum
+}
+
+' ===== Relationships =====
+
+User "1" -- "*" LearningRequest : creates
+User "1" -- "*" Session : teaches
+User "1" -- "*" Session : learns
+User "1" -- "*" Message : sends
+User "1" -- "*" Review : writes
+User "1" -- "*" Certificate : owns
+
+' Pivot tables
+User "1" -- "*" UserSkill
+Skill "1" -- "*" UserSkill
+
+User "1" -- "*" UserBadge
+Badge "1" -- "*" UserBadge
+
+' Other relations
+LearningRequest "*" -- "1" Skill
+Session "*" -- "1" Skill
+Session "*" -- "0..1" LearningRequest
+Session "1" -- "*" Message
+Session "1" -- "*" Review
+
+Report "*" -- "1" User : reported
+Admin -- Report : handles
+Admin -- Certificate : approves
+
+@enduml
