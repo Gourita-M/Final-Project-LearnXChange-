@@ -1,119 +1,268 @@
-@startuml
+@startuml SkillExchange_Class
 
-class User {
-  +id: int
-  +name: string
-  +email: string
-  +password: string
-  +bio: text
-  +xp_points: int
-  +level: int
-  +role: enum
-  +created_at: datetime
+!define RECTANGLE class
+
+skinparam backgroundColor #FEFEFE
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor #E8F5E9
+    ArrowColor #388E3C
+    BorderColor #2E7D32
 }
 
-class Admin
-Admin --|> User
+title Skill Exchange Platform - Class Diagram
+
+' ==================== ENUMS ====================
+enum UserRole {
+    LEARNER
+    TEACHER
+    ADMIN
+}
+
+enum SessionType {
+    CHAT
+    VIDEO
+}
+
+enum SessionStatus {
+    PENDING
+    ACCEPTED
+    REJECTED
+    IN_PROGRESS
+    COMPLETED
+    CANCELLED
+}
+
+enum SkillLevel {
+    BEGINNER
+    INTERMEDIATE
+    ADVANCED
+}
+
+enum CertificateStatus {
+    PENDING
+    APPROVED
+    REJECTED
+}
+
+' ==================== CLASSES ====================
+
+class User {
+    - userId: UUID
+    - email: String
+    - passwordHash: String
+    - firstName: String
+    - lastName: String
+    - bio: String
+    - avatarUrl: String
+    - totalXP: Integer
+    - currentLevel: Integer
+    - createdAt: DateTime
+    - lastLogin: DateTime
+    - isActive: Boolean
+    --
+    + register(): Boolean
+    + login(): AuthToken
+    + updateProfile(): Boolean
+    + addSkill(): UserSkill
+    + requestLearning(): LearningRequest
+    + acceptRequest(): Boolean
+    + joinSession(): Session
+    + sendMessage(): Message
+    + giveReview(): Review
+    + earnXP(): void
+    + requestCertificate(): Certificate
+}
 
 class Skill {
-  +id: int
-  +name: string
-  +category: string
-  +description: text
+    - skillId: UUID
+    - name: String
+    - category: String
+    - description: String
+    - iconUrl: String
+    - isActive: Boolean
+    --
+    + create(): Boolean
+    + update(): Boolean
+    + delete(): Boolean
 }
 
 class UserSkill {
-  +user_id: int
-  +skill_id: int
-  +level: enum
-}
-
-class Badge {
-  +id: int
-  +name: string
-  +xp_required: int
-}
-
-class UserBadge {
-  +user_id: int
-  +badge_id: int
-  +earned_at: datetime
+    - userSkillId: UUID
+    - userId: UUID
+    - skillId: UUID
+    - level: SkillLevel
+    - yearsExperience: Integer
+    - isTeaching: Boolean
+    - isLearning: Boolean
+    --
+    + updateLevel(): Boolean
 }
 
 class LearningRequest {
-  +id: int
-  +user_id: int
-  +skill_id: int
-  +description: text
-  +session_type: enum
-  +status: enum
-  +created_at: datetime
+    - requestId: UUID
+    - learnerId: UUID
+    - skillId: UUID
+    - description: String
+    - goalDescription: String
+    - preferredSessionType: SessionType
+    - status: SessionStatus
+    - createdAt: DateTime
+    - teacherId: UUID
+    --
+    + create(): Boolean
+    + cancel(): Boolean
+    + assignTeacher(): Boolean
 }
 
 class Session {
-  +id: int
-  +teacher_id: int
-  +learner_id: int
-  +skill_id: int
-  +type: enum
-  +status: enum
-  +scheduled_at: datetime
+    - sessionId: UUID
+    - requestId: UUID
+    - learnerId: UUID
+    - teacherId: UUID
+    - sessionType: SessionType
+    - status: SessionStatus
+    - startTime: DateTime
+    - endTime: DateTime
+    - duration: Integer
+    - meetingLink: String
+    --
+    + start(): Boolean
+    + end(): Boolean
+    + complete(): Boolean
 }
 
 class Message {
-  +id: int
-  +session_id: int
-  +sender_id: int
-  +content: text
-  +timestamp: datetime
+    - messageId: UUID
+    - sessionId: UUID
+    - senderId: UUID
+    - content: String
+    - sentAt: DateTime
+    - isRead: Boolean
+    --
+    + send(): Boolean
+    + edit(): Boolean
+    + delete(): Boolean
 }
 
 class Review {
-  +id: int
-  +session_id: int
-  +rating: int
-  +comment: text
+    - reviewId: UUID
+    - sessionId: UUID
+    - reviewerId: UUID
+    - revieweeId: UUID
+    - rating: Integer
+    - comment: String
+    - createdAt: DateTime
+    --
+    + submit(): Boolean
+    + update(): Boolean
+}
+
+class Badge {
+    - badgeId: UUID
+    - name: String
+    - description: String
+    - iconUrl: String
+    - requiredXP: Integer
+    - criteria: String
+    --
+    + award(): UserBadge
+}
+
+class UserBadge {
+    - userBadgeId: UUID
+    - userId: UUID
+    - badgeId: UUID
+    - earnedAt: DateTime
 }
 
 class Certificate {
-  +id: int
-  +user_id: int
-  +status: enum
-  +approved_by: int
+    - certificateId: UUID
+    - userId: UUID
+    - skillId: UUID
+    - status: CertificateStatus
+    - requestDate: DateTime
+    - approvalDate: DateTime
+    - approvedBy: UUID
+    - certificateUrl: String
+    --
+    + request(): Boolean
+    + approve(): Boolean
+    + reject(): Boolean
+    + generate(): String
 }
 
 class Report {
-  +id: int
-  +reported_user_id : int
-  +reason: text
-  +status: enum
+    - reportId: UUID
+    - reporterId: UUID
+    - reportedUserId: UUID
+    - reason: String
+    - description: String
+    - status: String
+    - createdAt: DateTime
+    - resolvedBy: UUID
+    - resolution: String
+    --
+    + submit(): Boolean
+    + resolve(): Boolean
 }
 
-' ===== Relationships =====
+class PlatformStatistics {
+    - statsId: UUID
+    - date: Date
+    - totalUsers: Integer
+    - activeUsers: Integer
+    - totalSessions: Integer
+    - completedSessions: Integer
+    - newCertificates: Integer
+    - averageRating: Float
+    --
+    + generate(): Boolean
+    + export(): String
+}
 
-User "1" -- "*" LearningRequest : creates
-User "1" -- "*" Session : teaches
-User "1" -- "*" Session : learns
-User "1" -- "*" Message : sends
-User "1" -- "*" Review : writes
-User "1" -- "*" Certificate : owns
+' ==================== RELATIONSHIPS ====================
 
-' Pivot tables
-User "1" -- "*" UserSkill
-Skill "1" -- "*" UserSkill
+User "1" -- "0..*" UserSkill : has >
+User "1" -- "0..*" LearningRequest : creates >
+User "1" -- "0..*" Session : participates >
+User "1" -- "0..*" Message : sends >
+User "1" -- "0..*" Review : writes >
+User "1" -- "0..*" UserBadge : earns >
+User "1" -- "0..*" Certificate : requests >
 
-User "1" -- "*" UserBadge
-Badge "1" -- "*" UserBadge
+Skill "1" -- "0..*" UserSkill : categorized in >
+Skill "1" -- "0..*" LearningRequest : requested >
+Skill "1" -- "0..*" Certificate : certifies >
 
-' Other relations
-LearningRequest "*" -- "1" Skill
-Session "*" -- "1" Skill
-Session "*" -- "0..1" LearningRequest
-Session "1" -- "*" Message
-Session "1" -- "*" Review
+LearningRequest "1" -- "0..1" Session : generates >
+Session "1" -- "0..*" Message : contains >
+Session "1" -- "0..1" Review : receives >
 
-Report "*" -- "1" User : reported
-Admin -- Report : handles
-Admin -- Certificate : approves
+Badge "1" -- "0..*" UserBadge : awarded as >
+
+User "1" -- "0..*" Report : submits >
+User "1" -- "0..*" Report : reported in >
+
+' Admin relationships (Admin is a User)
+User "1" -- "0..*" Certificate : approves >
+User "1" -- "0..*" Report : resolves >
+User "1" -- "0..*" PlatformStatistics : views >
+
+note right of User
+  Single User class handles 
+  both Learner and Teacher roles
+  through context-specific methods
+end note
+
+note bottom of LearningRequest
+  Teacher assignment happens when
+  request is accepted
+end note
+
+note bottom of Session
+  Can be extended to ChatSession
+  or VideoSession via SessionType
+end note
 
 @enduml

@@ -1,0 +1,271 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram name="Page-1" id="3DLMpvcNH73wW1w5917E">
+    <mxGraphModel dx="2260" dy="1594" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-1" value="User" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" width="210" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-2" value="&lt;div&gt;&amp;nbsp;+login() :&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-1">
+          <mxGeometry y="220" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-3" value="&amp;nbsp;#userid : PK&lt;div&gt;&amp;nbsp;#email : string&lt;/div&gt;&lt;div&gt;&amp;nbsp;#password : string&lt;/div&gt;&lt;div&gt;&amp;nbsp;#firstname : string&lt;/div&gt;&lt;div&gt;&amp;nbsp;#lastname : string&lt;/div&gt;&lt;div&gt;&amp;nbsp;#profilepic : string&lt;/div&gt;&lt;div&gt;&amp;nbsp;#xp : integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;#currentlevel : integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-1">
+          <mxGeometry y="20" width="210" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-4" value="Learner" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="360" width="210" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-5" value="&amp;nbsp;+ register() : Boolean&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;+ updateProfile() : Boolean&lt;/span&gt;&lt;div&gt;&amp;nbsp;+ requestLearning&lt;/div&gt;&lt;/div&gt;&lt;div&gt;+ sendMessage(): Message&lt;/div&gt;&lt;div&gt;+ giveReview(): Review&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-4">
+          <mxGeometry y="80" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-6" value="&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-4">
+          <mxGeometry y="20" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-7" target="KRAXoLgbWtzf6NmVquMn-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-52" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-51">
+          <mxGeometry x="0.8828" y="5" relative="1" as="geometry">
+            <mxPoint x="10" y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-53" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-51">
+          <mxGeometry x="-0.8736" relative="1" as="geometry">
+            <mxPoint x="11" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.019;exitY=0.633;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitPerimeter=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-8" target="KRAXoLgbWtzf6NmVquMn-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-66" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-65">
+          <mxGeometry x="-0.8159" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-67" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-65">
+          <mxGeometry x="0.7714" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-7" value="Teacher" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="360" width="210" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-8" value="&amp;nbsp;+ register() : Boolean&lt;div&gt;&amp;nbsp;+ addSkill() :&amp;nbsp;&lt;div&gt;&amp;nbsp;+ acceptRequest() : Boolean&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ sendMessage():&amp;nbsp;&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ earnXP(): void&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ requestCertificate():&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-7">
+          <mxGeometry y="80" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-9" value="&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-7">
+          <mxGeometry y="20" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-12" value="Admin" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="360" width="210" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-13" value="" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-12">
+          <mxGeometry y="80" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-14" value="&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-12">
+          <mxGeometry y="20" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-15" value="LearningRequest" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1137" width="210" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-16" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;+ create(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ cancel(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ assignTeacher(): Boolean&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-15">
+          <mxGeometry y="180" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-17" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;- requestId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- learnerId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- skillId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- description: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- goalDescription: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- preferredSessionType: SessionType&lt;/div&gt;&lt;div&gt;&amp;nbsp;- status: SessionStatus&lt;/div&gt;&lt;div&gt;&amp;nbsp;- createdAt: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- teacherId: UUID&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-15">
+          <mxGeometry y="20" width="210" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-18" value="TeacherSkill" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-440" y="1152" width="210" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-19" value="&lt;div&gt;+ updateLevel(): Boolean&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-18">
+          <mxGeometry y="150" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-20" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;- userSkillId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- userId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- skillId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- level: SkillLevel&lt;/div&gt;&lt;div&gt;&amp;nbsp;- yearsExperience: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- isTeaching: Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;- isLearning: Boolean&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-18">
+          <mxGeometry y="20" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-21" value="Skill" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="-30" y="1152" width="210" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-22" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;+ create(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ update(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ delete(): Boolean&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-21">
+          <mxGeometry y="150" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-23" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;- skillId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- name: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- category: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- description: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- iconUrl: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- isActive: Boolean&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-21">
+          <mxGeometry y="20" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-24" value="Session" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="920" width="210" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-25" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;+ start(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ end(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ complete(): Boolean&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-24">
+          <mxGeometry y="200" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-26" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;- sessionId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- requestId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- learnerId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- teacherId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- sessionType: SessionType&lt;/div&gt;&lt;div&gt;&amp;nbsp;- status: SessionStatus&lt;/div&gt;&lt;div&gt;&amp;nbsp;- startTime: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- endTime: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- duration: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- meetingLink: String&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-24">
+          <mxGeometry y="20" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-27" value="Message" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="640" width="210" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-28" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;+ send(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ edit(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ delete(): Boolean&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-27">
+          <mxGeometry y="150" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-29" value="&lt;div&gt;&amp;nbsp;- messageId: UUID&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;- sessionId: UUID&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;- senderId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- content: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- sentAt: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- isRead: Boolean&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-27">
+          <mxGeometry y="20" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-30" value="UserBadge" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="870" width="210" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-31" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-30">
+          <mxGeometry y="120" width="210" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-32" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;- userBadgeId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- userId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- badgeId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- earnedAt: DateTime&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-30">
+          <mxGeometry y="20" width="210" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-33" value="Review" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="920" width="210" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-34" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;+ submit(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ update(): Boolean&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-33">
+          <mxGeometry y="170" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-35" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;- reviewId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- sessionId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- reviewerId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- revieweeId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- rating: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- comment: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- createdAt: DateTime&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-33">
+          <mxGeometry y="20" width="210" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-36" value="Badge" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="640" width="210" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-38" value="&lt;div&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp; - badgeId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp; - name: String&lt;/div&gt;&lt;div&gt;&amp;nbsp; - description: String&lt;/div&gt;&lt;div&gt;&amp;nbsp; - iconUrl: String&lt;/div&gt;&lt;div&gt;&amp;nbsp; - requiredXP: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp; - criteria: String&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-36">
+          <mxGeometry y="20" width="210" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-37" value="&lt;div&gt;&amp;nbsp;+ award(): UserBadge&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="1920" y="780" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-41" value="Report" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="710" width="210" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-42" value="&lt;div&gt;&amp;nbsp;+ submit(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ resolve(): Boolean&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-41">
+          <mxGeometry y="190" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-43" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;- reportId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- reporterId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- reportedUserId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- reason: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- description: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- status: String&lt;/div&gt;&lt;div&gt;&amp;nbsp;- createdAt: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- resolvedBy: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- resolution: String&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-41">
+          <mxGeometry y="20" width="210" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-44" value="Certificate" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-280" y="600" width="210" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-46" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;- certificateId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- userId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- skillId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- status: CertificateStatus&lt;/div&gt;&lt;div&gt;&amp;nbsp;- requestDate: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- approvalDate: DateTime&lt;/div&gt;&lt;div&gt;&amp;nbsp;- approvedBy: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- certificateUrl: String&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-44">
+          <mxGeometry y="20" width="210" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-45" value="&lt;div&gt;&amp;nbsp;+ request(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ approve(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ reject(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp;+ generate(): String&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-44">
+          <mxGeometry y="190" width="210" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-47" value="PlatformStatistics" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="370" width="210" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-49" value="&lt;div&gt;&lt;div&gt;&amp;nbsp;- statsId: UUID&lt;/div&gt;&lt;div&gt;&amp;nbsp;- date: Date&lt;/div&gt;&lt;div&gt;&amp;nbsp;- totalUsers: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- activeUsers: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- totalSessions: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- completedSessions: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- newCertificates: Integer&lt;/div&gt;&lt;div&gt;&amp;nbsp;- averageRating: Float&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-47">
+          <mxGeometry y="20" width="210" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-48" value="&lt;div&gt;+ generate(): Boolean&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; + export(): String&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="KRAXoLgbWtzf6NmVquMn-47">
+          <mxGeometry y="170" width="210" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0.822;exitY=0.988;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-5" target="KRAXoLgbWtzf6NmVquMn-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="553" y="630" />
+              <mxPoint x="680" y="630" />
+              <mxPoint x="680" y="1060" />
+              <mxPoint x="485" y="1060" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-56" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-55">
+          <mxGeometry x="-0.8446" y="4" relative="1" as="geometry">
+            <mxPoint y="-46" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-57" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-55">
+          <mxGeometry x="0.8339" y="3" relative="1" as="geometry">
+            <mxPoint y="58" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-23" target="KRAXoLgbWtzf6NmVquMn-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-59" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-58">
+          <mxGeometry x="0.9137" y="-5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-60" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-58">
+          <mxGeometry x="-0.9311" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-20" target="KRAXoLgbWtzf6NmVquMn-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-62" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-61">
+          <mxGeometry x="-0.8547" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-63" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-61">
+          <mxGeometry x="0.8512" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-45" target="KRAXoLgbWtzf6NmVquMn-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-69" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-68">
+          <mxGeometry x="-0.8785" y="-4" relative="1" as="geometry">
+            <mxPoint y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-70" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-68">
+          <mxGeometry x="0.8951" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=block;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-3" target="KRAXoLgbWtzf6NmVquMn-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=block;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-3" target="KRAXoLgbWtzf6NmVquMn-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;startArrow=block;startFill=1;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-2" target="KRAXoLgbWtzf6NmVquMn-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=-0.005;entryY=0.44;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-8" target="KRAXoLgbWtzf6NmVquMn-43">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="277" y="640" />
+              <mxPoint x="380" y="640" />
+              <mxPoint x="380" y="805" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-79" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-77">
+          <mxGeometry x="-0.8956" relative="1" as="geometry">
+            <mxPoint x="2" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-80" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-77">
+          <mxGeometry x="0.8879" relative="1" as="geometry">
+            <mxPoint x="13" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="KRAXoLgbWtzf6NmVquMn-5" target="KRAXoLgbWtzf6NmVquMn-41">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-81" value="1..1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-78">
+          <mxGeometry x="-0.7957" relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KRAXoLgbWtzf6NmVquMn-82" value="0..*" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KRAXoLgbWtzf6NmVquMn-78">
+          <mxGeometry x="0.7919" y="3" relative="1" as="geometry">
+            <mxPoint y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
