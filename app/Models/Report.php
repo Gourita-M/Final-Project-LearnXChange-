@@ -9,4 +9,13 @@ class Report extends Model
 {
     /** @use HasFactory<\Database\Factories\ReportFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'reason',
+        'status',
+        'resolution',
+        'reporter_id',
+        'reported_id',
+        'resolved_by',
+    ];
 }

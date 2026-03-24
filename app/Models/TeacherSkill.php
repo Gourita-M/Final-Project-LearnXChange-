@@ -9,4 +9,13 @@ class TeacherSkills extends Model
 {
     /** @use HasFactory<\Database\Factories\TeacherSkillsFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'users_id',
+        'skills_id',
+        'level',
+        'years_experience',
+        'is_teaching',
+        'is_learning',
+    ];
 }

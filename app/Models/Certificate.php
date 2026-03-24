@@ -9,4 +9,14 @@ class Certificates extends Model
 {
     /** @use HasFactory<\Database\Factories\CertificatesFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'status',
+        'request_date',
+        'approval_date',
+        'certificate_url',
+        'users_id',
+        'skills_id',
+        'approved_by',
+    ];
 }

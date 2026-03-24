@@ -9,4 +9,10 @@ class UserBadges extends Model
 {
     /** @use HasFactory<\Database\Factories\UserBadgesFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'users_id',
+        'badges_id',
+        'earned_at',
+    ];
 }

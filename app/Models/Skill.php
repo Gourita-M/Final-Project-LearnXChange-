@@ -9,4 +9,12 @@ class Skill extends Model
 {
     /** @use HasFactory<\Database\Factories\SkillFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'category',
+        'description',
+        'icon_url',
+        'is_active',
+    ];
 }
