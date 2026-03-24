@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('learning_requests', function (Blueprint $table) {
             $table->id();
-            $table->uuid('learner_id');
-            $table->uuid('teacher_id')->nullable();
-            $table->uuid('skill_id');
             $table->text('description');
             $table->text('goal_description')->nullable();
             $table->string('preferred_session_type');
             $table->string('status')->default('pending');
             $table->timestamps();
-            $table->foreign('learner_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('teacher_id')->references('id')->on('users')->nullOnDelete();
-            $table->foreign('skill_id')->references('id')->on('skills')->cascadeOnDelete();
+            $table->foreignId('learner_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
+            $table->foreignId('teacher_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
+            $table->foreignId('skill_id')
+            ->constrained()
+            ->cascadeOnDelete();
         });
     }
 

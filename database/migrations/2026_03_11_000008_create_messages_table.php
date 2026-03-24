@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->uuid('session_id');
-            $table->uuid('sender_id');
             $table->text('content');
             $table->boolean('is_read')->default(false);
             $table->timestamp('sent_at')->useCurrent();
             $table->timestamps();
-            $table->foreign('session_id')->references('id')->on('sessions')->cascadeOnDelete();
-            $table->foreign('sender_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('connect_sessions_id')
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignId('sender_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
         });
     }
 

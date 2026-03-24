@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('connect_sessions', function (Blueprint $table) {
             $table->id();
-            $table->uuid('request_id');
-            $table->uuid('learner_id');
-            $table->uuid('teacher_id');
             $table->string('session_type');
             $table->string('status')->default('scheduled');
             $table->timestamp('start_time')->nullable();
@@ -23,9 +20,16 @@ return new class extends Migration
             $table->integer('duration')->nullable();
             $table->string('meeting_link')->nullable();
             $table->timestamps();
-            $table->foreign('request_id')->references('id')->on('learning_requests')->cascadeOnDelete();
-            $table->foreign('learner_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('teacher_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('learning_requests_id')
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignId('learner_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
+            $table->foreignId('teacher_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
+    
         });
     }
 
@@ -34,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('connect_sessions');
     }
 };

@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('certificates', function (Blueprint $table) {
             $table->id();
-            $table->uuid('user_id');
-            $table->uuid('skill_id');
             $table->string('status')->default('pending');
             $table->timestamp('request_date')->useCurrent();
             $table->timestamp('approval_date')->nullable();
-            $table->uuid('approved_by')->nullable();
             $table->string('certificate_url')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('skill_id')->references('id')->on('skills')->cascadeOnDelete();
-            $table->foreign('approved_by')->references('id')->on('users')->nullOnDelete();
+            $table->foreignId('users_id')
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignId('skills_id')
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignId('approved_by')
+            ->constrained('users')
+            ->cascadeOnDelete();
         });
     }
 

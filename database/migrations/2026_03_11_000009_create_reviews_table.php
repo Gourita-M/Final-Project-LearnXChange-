@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->uuid('session_id');
-            $table->uuid('reviewer_id');
-            $table->uuid('reviewee_id');
             $table->integer('rating');
             $table->text('comment')->nullable();
             $table->timestamps();
-            $table->foreign('session_id')->references('id')->on('sessions')->cascadeOnDelete();
-            $table->foreign('reviewer_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('reviewee_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('connect_sessions_id')
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignId('reviewer_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
+            $table->foreignId('reviewee_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
         });
     }
 

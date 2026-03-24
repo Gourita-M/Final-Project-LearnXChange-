@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('teacher_skills', function (Blueprint $table) {
             $table->id();
-            $table->uuid('user_id');
-            $table->uuid('skill_id');
+            $table->foreignId('users_id')
+            ->constrained()
+            ->cascadeOnDelete();
+            $table->foreignId('skills_id')
+            ->constrained()
+            ->cascadeOnDelete();
             $table->string('level');
             $table->integer('years_experience')->default(0);
             $table->boolean('is_teaching')->default(false);
             $table->boolean('is_learning')->default(false);
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('skill_id')->references('id')->on('skills')->cascadeOnDelete();
         });
     }
 

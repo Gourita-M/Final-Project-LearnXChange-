@@ -13,17 +13,23 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->uuid('reporter_id');
-            $table->uuid('reported_user_id');
             $table->string('reason');
             $table->string('status')->default('pending');
-            $table->timestamp('created_at')->useCurrent();
-            $table->uuid('resolved_by')->nullable();
             $table->text('resolution')->nullable();
-            $table->timestamps();
-            $table->foreign('reporter_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('reported_user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('resolved_by')->references('id')->on('users')->nullOnDelete();
+            $table->timestamps(); // includes created_at and updated_at
+
+            $table->foreignId('reporter_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+
+            $table->foreignId('reported_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+
+            $table->foreignId('resolved_by')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete();
         });
     }
 
