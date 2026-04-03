@@ -11,7 +11,7 @@ class StoreSkillRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreSkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            'categories_id' => 'required',
+            'description' => 'required',
+            'icon_url' => 'required',
+            'years' => 'required',
+            'level' => 'required',
         ];
     }
 }

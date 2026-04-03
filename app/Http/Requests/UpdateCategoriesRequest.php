@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Storeconnect_sessionsRequest extends FormRequest
+class UpdateCategoriesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,12 +22,7 @@ class Storeconnect_sessionsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'request_id' => 'required|integer',
-            'teacher_id' => 'required|integer',
-            'learner_id' => 'required|integer',
-            'session_type' => 'required|string|in:video,chat',
-            'start_time' => 'required|date',
-            'end_time' => 'required|date',
+            //
         ];
     }
 }
