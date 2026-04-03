@@ -4,47 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Storeconnect_sessionsRequest;
 use App\Http\Requests\Updateconnect_sessionsRequest;
-use App\Models\connect_sessions;
+use Illuminate\Http\Request;
+use App\Models\Connect_sessions;
+use DateTime;
+use App\Models\LearningRequest;
 
 class ConnectSessionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function acceptRequest(Storeconnect_sessionsRequest $request)
     {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Storeconnect_sessionsRequest $request)
-    {
-        //
-    }
+        $start = new DateTime($request['start_time']);
+        $end = new DateTime($request['end_time']);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(connect_sessions $connect_sessions)
-    {
-        //
-    }
+        $interval = $start->diff($end);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Updateconnect_sessionsRequest $request, connect_sessions $connect_sessions)
-    {
-        //
-    }
+        $hours = ($interval->days * 24) + $interval->h;
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(connect_sessions $connect_sessions)
-    {
-        //
+        connect_sessions::Create([
+            'session_type' => $request['session_type'],
+            'status' => 'active',
+            'start_time' => $request['start_time'],
+            'end_time' => $request['end_time'],
+            'duration' => $hours,
+            'meeting_link' => 'will be created soon',
+            'learning_requests_id' => $request['request_id'],
+            'learner_id' => $request['learner_id'],
+            'teacher_id' => $request['teacher_id'],
+        ]);
+
+        LearningRequest::Where('id', $request->request_id)
+                        ->update(['status' => 'Accepted']);
+
+        return Redirect('/teacher')->with('success','You Have Accepted Request ');
     }
 }
