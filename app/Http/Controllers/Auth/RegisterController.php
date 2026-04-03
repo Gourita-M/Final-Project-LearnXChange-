@@ -31,6 +31,7 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+            'badges_id' => 1,
         ]);
 
         return redirect()->route('login')->with('success', 'Account created! Please login.');
