@@ -110,79 +110,8 @@
 </head>
 
 <body class="bg-surface text-on-surface min-h-screen">
-
-    <aside
-        class="h-screen w-64 fixed left-0 top-0 z-50 bg-[#f7f9fb] dark:bg-[#191c1e] flex flex-col p-6 gap-2 border-r border-transparent">
-        <div class="absolute right-0 top-0 w-[1px] h-full bg-[#f2f4f6] dark:bg-[#2c3135]"></div>
-        <div class="flex items-center gap-3 mb-8 px-2">
-            <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
-            </div>
-            <div>
-                <h1 class="text-lg font-extrabold text-[#191c1e] dark:text-white leading-tight">Instructor Hub</h1>
-                <p class="text-xs font-medium text-primary">Expert Tier</p>
-            </div>
-        </div>
-        <div class="mt-auto flex flex-col gap-1 pt-6">
-            <button id="popupbtn"
-                class="bg-primary text-on-primary w-full py-3 rounded-lg font-headline font-bold text-sm mb-4 active:scale-95 transition-all">
-                + Add a Skill
-            </button>
-            <a class="text-slate-500 dark:text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-[#f2f4f6] dark:hover:bg-[#2c3135] rounded-lg transition-transform duration-200 hover:translate-x-1 cursor-pointer select-none"
-                href="#">
-                <span class="material-symbols-outlined">help_outline</span>
-                <span class="font-manrope font-medium text-sm">Help Center</span>
-            </a>
-            <form method="post" action="{{ Route('logout') }}">
-                @csrf
-                <button type="submit"
-                    class="text-slate-500 dark:text-slate-400 px-4 py-3 flex items-center gap-3 hover:bg-[#f2f4f6] dark:hover:bg-[#2c3135] rounded-lg transition-transform duration-200 hover:translate-x-1 cursor-pointer select-none">
-                    <span class="material-symbols-outlined">logout</span>
-                    <span class="font-manrope font-medium text-sm">Log Out</span>
-                </button>
-            </form>
-        </div>
-    </aside>
-
+    @include('layouts.navbar')
     <main class="ml-64 p-8 min-h-screen">
-
-        <header
-            class="fixed top-0 left-64 right-0 h-16 glass-effect z-40 flex justify-between items-center px-8 border-b border-transparent">
-            <div class="absolute bottom-0 left-0 h-[1px] w-full bg-[#f2f4f6] dark:bg-[#2c3135]"></div>
-            <div class="flex items-center gap-8">
-                <div class="relative">
-                    <span
-                        class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
-                    <input
-                        class="pl-10 pr-4 py-2 bg-surface-container-high border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/40 transition-all"
-                        placeholder="Search students or requests..." type="text" />
-                </div>
-                <nav class="hidden md:flex gap-6 items-center">
-                    <a class="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 dark:border-blue-400 pb-1 font-manrope text-sm antialiased"
-                        href="#">Dashboard</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors font-manrope text-sm antialiased"
-                        href="#">Schedule</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors font-manrope text-sm antialiased"
-                        href="#">Earnings</a>
-                </nav>
-            </div>
-            <div class="flex items-center gap-4">
-                <button
-                    class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95">
-                    <span class="material-symbols-outlined text-on-surface-variant">notifications</span>
-                </button>
-                <button
-                    class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95">
-                    <span class="material-symbols-outlined text-on-surface-variant">settings</span>
-                </button>
-                <div class="flex items-center gap-3 pl-4 border-l border-surface-container-high">
-                    <img alt="Instructor Profile" class="w-10 h-10 rounded-full object-cover"
-                        data-alt="professional portrait of a friendly male instructor with glasses in a modern bright office environment"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKVuK58toQHnq39AaKz_NbYtQC8ZcNqSdUM5BPouTP6qit72mt3WD6qB4YTWNvbIKf-w-eM-1Uib70lSH2P4istxlgY5Ty2OLMIgf9jiQNuF-JxwbGuxzsqG5RTq-GsWZ_3aMN9iH00-ffXPXud1zTh8DpeTiSXMgn6gTfLJKwdN7K49M96rrTUYHZy0XF2aXwelkWwTLHJkkL9XfNbpd7e3GVJeDWJanlFywXTNZGmAU_xr9Abr_CF46XSwY22oD_yIkKRIvqN-c" />
-                </div>
-            </div>
-        </header>
-        logout
         <div class="mt-20 space-y-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div
@@ -394,14 +323,9 @@
                     <section class="bg-surface-container-lowest rounded-3xl p-8">
                         <div class="flex justify-between items-center mb-6">
                             <h3 class="font-headline font-bold text-lg">Student Feedback</h3>
-                            <div class="flex items-center gap-1 text-primary">
-                                <span class="material-symbols-outlined text-sm"
-                                    style="font-variation-settings: 'FILL' 1;">star</span>
-                                <span class="text-sm font-bold">4.9</span>
-                            </div>
+                       
                         </div>
                         <div class="space-y-6">
-                            {{$reviews}}
                             @foreach($reviews as $review)
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center">
@@ -412,46 +336,16 @@
                                         <span class="text-xs font-bold">{{$review->firstname . $review->lastname}}</span>
                                     </div>
                                     <div class="flex text-primary">
+                                        @for($i = 0; $i< $review->rating; $i++)
                                         <span class="material-symbols-outlined text-[12px]"
                                             style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
+                                        @endfor
                                     </div>
                                 </div>
-                                <p class="text-xs italic text-on-surface-variant leading-relaxed">"The best mentor I've
-                                    ever had. Very clear explanations and patient with my questions!"</p>
+                                <p class="text-xs italic text-on-surface-variant leading-relaxed">"
+                                    {{$review->comment}}"</p>
                             </div>
                             @endforeach
-                            <div class="space-y-3 pt-4 border-t border-surface-container-high">
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center text-[10px] font-bold">
-                                            MW</div>
-                                        <span class="text-xs font-bold">Marcus W.</span>
-                                    </div>
-                                    <div class="flex text-primary">
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                        <span class="material-symbols-outlined text-[12px]"
-                                            style="font-variation-settings: 'FILL' 1;">star</span>
-                                    </div>
-                                </div>
-                                <p class="text-xs italic text-on-surface-variant leading-relaxed">"Practical advice
-                                    that I could apply immediately to my job. Highly recommend."</p>
-                            </div>
                         </div>
                     </section>
                 </div>
