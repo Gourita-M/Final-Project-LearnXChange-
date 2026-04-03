@@ -16,7 +16,6 @@ class LearningRequest extends Model
         'preferred_session_type',
         'status',
         'learner_id',
-        'teacher_id',
-        'skill_id',
+        'teacher_skills_id',
     ];
 }
