@@ -96,7 +96,7 @@
 </head>
 
 <body class="bg-surface font-body text-on-surface antialiased">
-    <!-- Top Navigation Bar -->
+
     <nav
         class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 w-full max-w-full bg-white/80 backdrop-blur-xl shadow-sm">
         <div class="flex items-center gap-8">
