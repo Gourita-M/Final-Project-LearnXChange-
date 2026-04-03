@@ -12,9 +12,9 @@ class Skill extends Model
 
     protected $fillable = [
         'name',
-        'category',
         'description',
         'icon_url',
         'is_active',
+        'categories_id',
     ];
 }

@@ -16,5 +16,11 @@ class Badges extends Model
         'icon_url',
         'required_xp',
         'criteria',
+        'users_id',
     ];
+
+    public function user()
+    {
+        
+    }
 }
