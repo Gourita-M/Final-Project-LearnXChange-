@@ -70,72 +70,7 @@
 </head>
 
 <body class="bg-background font-body text-on-background antialiased">
-    <!-- TopNavBar Shared Component -->
-    <nav
-        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none font-manrope antialiased">
-        <div class="flex justify-between items-center px-6 py-3 max-w-full mx-auto">
-            <div class="flex items-center gap-8">
-                <span class="text-xl font-bold text-blue-700 dark:text-blue-400 tracking-tight">LearnXChange</span>
-                <div class="hidden md:flex gap-6">
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
-                        href="#">My Courses</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
-                        href="#">Explore</a>
-                    <a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
-                        href="#">Teaching</a>
-                </div>
-            </div>
-            <div class="flex items-center gap-4">
-                <button
-                    class="p-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-full active:scale-95 duration-200">
-                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-                </button>
-                <button
-                    class="flex items-center gap-2 p-1 pr-3 text-blue-700 dark:text-blue-400 font-semibold border-b-2 border-blue-600 active:scale-95 duration-200">
-                    <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-                    <span class="text-sm">{{$user->firstname}}</span>
-                </button>
-            </div>
-        </div>
-        <div class="bg-slate-100 dark:bg-slate-800 h-[1px] opacity-20"></div>
-    </nav>
-    <div class="flex min-h-screen pt-16">
-        <!-- SideNavBar Shared Component -->
-        <aside
-            class="hidden md:flex flex-col gap-2 p-4 pt-8 h-[calc(100vh-64px)] w-64 bg-slate-50 dark:bg-slate-950 font-manrope text-sm border-r border-slate-200 dark:border-slate-800 fixed">
-            <div class="px-4 mb-6">
-                <h2 class="text-lg font-bold text-on-surface">Settings</h2>
-                <p class="text-xs text-on-surface-variant">Manage your account</p>
-            </div>
-            <nav class="flex flex-col gap-1">
-                <a
-                    class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 rounded-lg font-bold shadow-sm cursor-pointer active:opacity-80 transition-transform hover:translate-x-1">
-                    <span class="material-symbols-outlined" data-icon="person">person</span>
-                    <span>Personal Info</span>
-                </a>
-                <a
-                    class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 cursor-pointer active:opacity-80 transition-transform hover:translate-x-1">
-                    <span class="material-symbols-outlined" data-icon="lock">lock</span>
-                    <span>Security</span>
-                </a>
-                <a
-                    class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 cursor-pointer active:opacity-80 transition-transform hover:translate-x-1">
-                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-                    <span>Notifications</span>
-                </a>
-                <a
-                    class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 cursor-pointer active:opacity-80 transition-transform hover:translate-x-1">
-                    <span class="material-symbols-outlined" data-icon="payments">payments</span>
-                    <span>Payments</span>
-                </a>
-                <a
-                    class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/50 cursor-pointer active:opacity-80 transition-transform hover:translate-x-1">
-                    <span class="material-symbols-outlined" data-icon="school">school</span>
-                    <span>Teaching Profile</span>
-                </a>
-            </nav>
-        </aside>
-
+    @include('layouts.navbar')
         <main class="flex-1 md:ml-64 bg-background p-6 md:p-10 lg:p-12">
             <div class="max-w-4xl mx-auto space-y-8">
        
