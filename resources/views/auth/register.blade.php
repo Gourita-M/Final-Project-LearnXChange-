@@ -187,6 +187,28 @@
                                 class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">person</span>
                         </div>
                     </div>
+                            
+                    <div class="relative">
+                        <select name="role"
+                            class="w-full pl-11 pr-10 py-3.5 bg-surface-container-high border-none rounded-xl 
+                                focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest 
+                                transition-all duration-200 text-on-surface appearance-none">
+
+                            <option value="learner">Learner</option>
+                            <option value="teacher">Teacher</option>
+
+                        </select>
+
+                        <!-- Left Icon -->
+                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">
+                            school
+                        </span>
+
+                        <!-- Right Arrow -->
+                        <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px] pointer-events-none">
+                            expand_more
+                        </span>
+                    </div>
 
                     <div class="space-y-2">
                         <label class="block text-sm font-bold text-on-surface-variant ml-1" for="email">Email
@@ -209,7 +231,7 @@
                                 id="password" placeholder="••••••••" type="password" />
                             <span
                                 class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">lock</span>
-                            <button
+                            <button id="show"
                                 class="absolute right-3.5 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
                                 type="button">
                                 <span class="material-symbols-outlined text-[20px]">visibility</span>
@@ -218,15 +240,15 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="block text-sm font-bold text-on-surface-variant ml-1" for="password">Confirm
+                        <label class="block text-sm font-bold text-on-surface-variant ml-1" for="password_confirmation">Confirm
                             Password</label>
                         <div class="relative">
                             <input name="password_confirmation"
                                 class="w-full pl-11 pr-12 py-3.5 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all duration-200 text-on-surface placeholder:text-outline/60"
-                                id="password" placeholder="••••••••" type="password" />
+                                id="password_confirmation" placeholder="••••••••" type="password" />
                             <span
                                 class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">lock</span>
-                            <button
+                            <button id="show_confirm"
                                 class="absolute right-3.5 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors"
                                 type="button">
                                 <span class="material-symbols-outlined text-[20px]">visibility</span>
@@ -238,7 +260,7 @@
                         <div class="flex items-center h-5">
                             <input
                                 class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface-container-high"
-                                id="terms" type="checkbox" />
+                                id="terms" type="checkbox" required/>
                         </div>
                         <label class="text-sm text-on-surface-variant leading-tight" for="terms">
                             I agree to the <a
@@ -296,5 +318,31 @@
         </div>
     </footer>
 </body>
+<script>  
+
+const showbtn = document.getElementById('show');
+const passinout = document.getElementById('password');
+
+showbtn.addEventListener('click', () => {
+  if (passinout.type === 'password') {
+    passinout.type = 'text';
+  } else {
+    passinout.type = 'password';
+  }
+});
+
+const showbtnconfirm = document.getElementById('show_confirm');
+const passinoutconfirm = document.getElementById('password_confirmation');
+
+showbtnconfirm.addEventListener('click', () => {
+  if (passinoutconfirm.type === 'password') {
+    passinoutconfirm.type = 'text';
+  } else {
+    passinoutconfirm.type = 'password';
+  }
+});
+
+
+</script>
 
 </html>
