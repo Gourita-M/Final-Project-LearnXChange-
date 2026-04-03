@@ -21,10 +21,7 @@ return new class extends Migration
             $table->foreignId('learner_id')
             ->constrained('users')
             ->cascadeOnDelete();
-            $table->foreignId('teacher_id')
-            ->constrained('users')
-            ->cascadeOnDelete();
-            $table->foreignId('skill_id')
+            $table->foreignId('teacher_skills_id')
             ->constrained()
             ->cascadeOnDelete();
         });

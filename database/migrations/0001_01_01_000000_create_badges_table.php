@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teacher_skills', function (Blueprint $table) {
+        Schema::create('badges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')
-            ->constrained()
-            ->cascadeOnDelete();
-            $table->foreignId('skills_id')
-            ->constrained()
-            ->cascadeOnDelete();
-            $table->string('level');
-            $table->integer('years_experience')->default(0);
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('icon_url')->nullable();
+            $table->integer('required_xp');
+            $table->text('criteria')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teacher_skills');
+        Schema::dropIfExists('badges');
     }
 };
