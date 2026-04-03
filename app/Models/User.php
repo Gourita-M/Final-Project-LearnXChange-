@@ -26,6 +26,7 @@ class User extends Authenticatable
         'xp',
         'current_level',
         'role',
+        'badges_id'
     ];
 
     /**
