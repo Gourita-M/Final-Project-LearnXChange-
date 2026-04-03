@@ -4,47 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreLearningRequestRequest;
 use App\Http\Requests\UpdateLearningRequestRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\LearningRequest;
+use Illuminate\Http\Request;
+
 
 class LearningRequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function create(StoreLearningRequestRequest $request)
     {
-        //
+        
+        LearningRequest::Create([
+            'description' => $request['description'],
+            'goal_description' => $request['goal_description'],
+            'preferred_session_type' => $request['preferred_session_type'],
+            'learner_id' => auth::user()->id,
+            'teacher_skills_id' => $request['skill_id'],
+        ]);
+
+        return Redirect('/skills')->with('success','Your Request is Sent Successfully');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreLearningRequestRequest $request)
+    public function declineRequest(Request $request)
     {
-        //
-    }
+        
+        $data = $request->validate([ 'request_id' => 'integer|required' ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(LearningRequest $learningRequest)
-    {
-        //
-    }
+        LearningRequest::Where('id', $data['request_id'])
+                            ->Update(['status' => 'Declined']);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateLearningRequestRequest $request, LearningRequest $learningRequest)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(LearningRequest $learningRequest)
-    {
-        //
+        return Redirect('/teacher')->with('success','You Have Declined Request ');
     }
 }
