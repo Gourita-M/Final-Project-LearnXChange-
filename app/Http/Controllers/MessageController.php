@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Message;
+use DateTime;
 
 class MessageController extends Controller
 {
@@ -21,7 +22,14 @@ class MessageController extends Controller
      */
     public function store(StoreMessageRequest $request)
     {
-        //
+        Message::Create([
+            'content' => $request['content'],
+            'is_read' => False,
+            'sent_at' => New DateTime(), //try to check it later
+            'connect_sessions_id' => $request['connect_sessions_id'],
+            'sender_id' => $request['sender_id'],
+        ]);
+        
     }
 
     /**
