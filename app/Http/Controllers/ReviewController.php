@@ -21,7 +21,13 @@ class ReviewController extends Controller
      */
     public function store(StoreReviewRequest $request)
     {
-        //
+        Review::Create([
+        'rating' => $request['rating'],
+        'comment' => $request['comment'],
+        'connect_sessions_id' => $request['connect_sessions_id'],
+        'reviewer_id' => $request['reviewer_id'],
+        'reviewee_id' => $request['reviewee_id'],
+        ]);
     }
 
     /**
