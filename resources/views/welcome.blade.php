@@ -121,7 +121,7 @@
         </div>
     </nav>
     <main class="pt-20">
-        <!-- Hero Section -->
+   
         <section class="relative min-h-[921px] flex items-center px-8 lg:px-24 overflow-hidden">
             <div class="grid lg:grid-cols-2 gap-16 items-center z-10 w-full">
                 <div class="max-w-2xl">
@@ -213,13 +213,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Abstract Background Element -->
+       
             <div class="absolute -right-20 -top-20 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full -z-10">
             </div>
             <div class="absolute -left-20 -bottom-20 w-[600px] h-[600px] bg-tertiary/5 blur-[120px] rounded-full -z-10">
             </div>
         </section>
-        <!-- Learning Experience Section -->
+     
         <section class="py-24 bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -229,7 +229,7 @@
                             <img alt="Students collaborating on laptops" class="w-full h-full object-cover aspect-[4/5]"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrkUsVMdjweTjQ_FzTC7cSr7nJOpBex3hy68DdYWopzLp_RVj7v_hnq_i4f_WDbaKXFuhdfKGeVc8uDwV-WQu9xEBauaGZrQvjvx6Hy2AyCaqlV9lhiJ3E6jGkndAYd9HTOjapg-xe5BtlKafeK2LycEJoe9Llq7JQLhYyvH8jCNgxXy6GXH9yS_6SeBMSxxSm-48uj75ARsdbPJrdGJCW9X23F47e_OtA1gsi3-ZcHAh459LVxwm_lZdLh-EMcJzMTxhRD4J2zpo" />
                         </div>
-                        <!-- Decor -->
+            
                         <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-primary/10 rounded-full blur-3xl -z-10">
                         </div>
                         <div class="absolute top-10 -right-10 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl -z-10">
@@ -284,7 +284,7 @@
                 </div>
             </div>
         </section>
-        <!-- Empowering Teachers Section -->
+   
         <section class="py-24 bg-surface-container-low overflow-hidden">
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -342,7 +342,7 @@
                                 class="w-full h-full object-cover aspect-[4/5]"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBakI7KZCo31dVR6c6CIuCWcpU6WVeCW4lTUK09SvAullYeqKkqjyLPj33izyljFXYTyNJOCgpfQ2RtOhcVhQULGTGVoiG9uirO3MW0TarG2M1EvrtA3GQ1WpOobRBO8zuwEsf-ZCltlEnvZqCsL6n4-FFNKze_NYjJCv-tAAZLpsj9cQiLhQwMwvyCOdkGbSl17RUH6GXfqKkgKrS2V03bLoZexCAg2OtjhH2ZplPcYCRRorDuy3SxUe9kttXHeEd_jHZ2RIjOJ4k" />
                         </div>
-                        <!-- Decor -->
+      
                         <div class="absolute -top-10 -left-10 w-40 h-40 bg-tertiary/10 rounded-full blur-3xl -z-10">
                         </div>
                         <div class="absolute -bottom-10 -right-10 w-56 h-56 bg-primary/5 rounded-full blur-3xl -z-10">
@@ -351,7 +351,7 @@
                 </div>
             </div>
         </section>
-        <!-- Value Propositions -->
+
         <section class="py-24 px-8">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-20">
@@ -359,7 +359,7 @@
                     <div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Card 1 -->
+
                     <div
                         class="group p-8 bg-surface-container-low rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300">
                         <div
@@ -374,7 +374,7 @@
                             Explore library <span class="material-symbols-outlined text-sm">arrow_forward</span>
                         </a>
                     </div>
-                    <!-- Card 2 -->
+
                     <div
                         class="group p-8 bg-surface-container-low rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300">
                         <div
@@ -389,7 +389,7 @@
                             Join the tribe <span class="material-symbols-outlined text-sm">arrow_forward</span>
                         </a>
                     </div>
-                    <!-- Card 3 -->
+
                     <div
                         class="group p-8 bg-surface-container-low rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300">
                         <div
@@ -407,7 +407,7 @@
                 </div>
             </div>
         </section>
-        <!-- CTA Section -->
+
         <section class="py-20 px-8">
             <div
                 class="max-w-6xl mx-auto rounded-[2rem] bg-gradient-to-br from-primary to-primary-container p-12 lg:p-20 text-center text-on-primary relative overflow-hidden">
@@ -427,7 +427,7 @@
                         </button>
                     </div>
                 </div>
-                <!-- Background Decoration -->
+
                 <div
                     class="absolute -right-20 -bottom-20 w-[400px] h-[400px] bg-tertiary-fixed/20 blur-[80px] rounded-full">
                 </div>
@@ -435,7 +435,6 @@
             </div>
         </section>
     </main>
-    <!-- Simple Footer -->
     <footer class="py-12 bg-white border-t border-surface-container">
         <div class="max-w-6xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex flex-col items-center md:items-start">

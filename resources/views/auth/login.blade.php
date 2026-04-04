@@ -174,7 +174,7 @@
                                 <input name="password"
                                     class="w-full pl-11 pr-12 py-3 bg-surface-container-low border-none rounded-lg text-on-surface focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all placeholder:text-outline/60"
                                     id="password" placeholder="••••••••" type="password" />
-                                <button
+                                <button id="showpassword"
                                     class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors"
                                     type="button">
                                     <span class="material-symbols-outlined text-lg">visibility</span>
@@ -234,12 +234,10 @@
            opacity-0 translate-y-[-10px] 
            transition-all duration-500">
 
-    <!-- Icon -->
     <span class="material-symbols-outlined text-primary text-[22px]">
         check_circle
     </span>
 
-    <!-- Message -->
     <p class="text-sm font-semibold text-on-surface">
         {{ session('success') }}
     </p>
@@ -248,11 +246,9 @@
  window.addEventListener('DOMContentLoaded', () => {
       const popup = document.getElementById('success-popup');
 
-      // Show the popup
       popup.classList.remove('opacity-0');
       popup.classList.add('opacity-100');
 
-      // Hide after 10 seconds
       setTimeout(() => {
         popup.classList.remove('opacity-100');
         popup.classList.add('opacity-0');
@@ -261,7 +257,18 @@
 </script>
 @endif
 
+<script>
+    const showpassword = document.getElementById('showpassword');
+    const password = document.getElementById('password');
 
+    showpassword.addEventListener('click', ()=> {
+        if(password.type === 'password'){
+        password.type = 'text';
+        }else{
+            password.type = 'password';
+        }
+    })
+</script>
 </body>
 
 </html>

@@ -509,7 +509,7 @@
             </p>
         </div>
 
-        <!-- Form -->
+ 
         <form id="declineForm" method="POST" action="{{Route('decline.request')}}">
             @csrf
             <input type="hidden" name="request_id" id="decline_request_id" />

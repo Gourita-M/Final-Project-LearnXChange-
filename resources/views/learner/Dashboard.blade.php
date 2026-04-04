@@ -190,7 +190,7 @@
                                 Join Room
                             </button>
                         </div>
-                        <!-- Session Card 2 -->
+                
                         <div
                             class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
                             <div class="flex justify-between items-start mb-6">
@@ -218,7 +218,7 @@
                                 View Details
                             </button>
                         </div>
-                        <!-- Session Card 3 -->
+           
                         <div
                             class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
                             <div class="flex justify-between items-start mb-6">
@@ -248,7 +248,7 @@
                         </div>
                     </div>
                 </section>
-                <!-- Recommended Skills (Editorial Style) -->
+       
                 <section class="lg:col-span-12">
                     <div class="flex items-center justify-between mb-8">
                         <div>
@@ -323,12 +323,11 @@
             </div>
         </div>
     </main>
-    <!-- Modal Mockup (Requested Item) -->
-    <!-- Hidden by default in a real app, shown here for the UI demonstration -->
+  
     <div class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none opacity-0">
-        <!-- Overlay -->
+      
         <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
-        <!-- Modal Card -->
+
         <div class="relative bg-white w-full max-w-lg rounded-[2rem] p-10 shadow-2xl pointer-events-auto">
             <h2 class="text-3xl font-extrabold mb-2 tracking-tight">Request Learning</h2>
             <p class="text-on-surface-variant mb-8">Tell us what you want to learn and we'll find the perfect

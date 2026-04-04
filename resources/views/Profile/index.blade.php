@@ -143,7 +143,7 @@
                                 </div>
                             </div>
                         </section>
-                        <!-- Account Settings -->
+           
                         <section class="bg-surface p-6 rounded-xl shadow-sm border border-slate-200 space-y-6">
                             <div class="flex items-center gap-2 mb-2">
                                 <span class="material-symbols-outlined text-primary"
@@ -190,9 +190,9 @@
                             </div>
                         </section>
                     </div>
-                    <!-- Side Widgets (Skills & Stats) -->
+       
                     <div class="space-y-8">
-                        <!-- Skills I'm Learning -->
+           
                         <div class="bg-surface p-6 rounded-xl shadow-sm border border-slate-200 space-y-4">
                             <div class="flex items-center justify-between">
                                 <h4 class="font-bold font-headline text-on-surface text-sm uppercase tracking-wide">
@@ -225,7 +225,7 @@
                                 </span>
                             </div>
                         </div>
-                        <!-- Skills I'm Teaching -->
+           
                         <div
                             class="bg-surface p-6 rounded-xl shadow-sm border-t-4 border-t-cyan-500 border-x border-b border-slate-200 space-y-4">
                             <div class="flex items-center justify-between">
@@ -252,7 +252,7 @@
                                 </span>
                             </div>
                         </div>
-                        <!-- Stats Widget -->
+            
                         <div
                             class="bg-primary text-on-primary p-6 rounded-xl shadow-lg relative overflow-hidden group">
                             <div
@@ -280,7 +280,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Footer Actions -->
                 <div
                     class="flex flex-col sm:flex-row items-center justify-end gap-4 pt-10 pb-20 border-t border-slate-200">
                     <button
@@ -296,7 +295,6 @@
             </div>
         </main>
     </div>
-    <!-- Mobile Bottom Navigation -->
     <div
         class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-xl flex justify-around items-center py-3 px-6 z-50 border-t border-slate-200">
         <button class="flex flex-col items-center gap-1 text-slate-400">

@@ -392,12 +392,10 @@
            opacity-0 translate-y-[-10px] 
            transition-all duration-500">
 
-    <!-- Icon -->
     <span class="material-symbols-outlined text-primary text-[22px]">
         check_circle
     </span>
 
-    <!-- Message -->
     <p class="text-sm font-semibold text-on-surface">
         {{ session('success') }}
     </p>

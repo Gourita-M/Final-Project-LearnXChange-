@@ -103,7 +103,7 @@
 </head>
 
 <body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col">
-  
+
     <nav
         class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-center items-center h-16 px-6 w-full">
         <div class="max-w-7xl w-full flex justify-between items-center">
@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="relative z-10 w-full max-w-[480px]">
-    
+
             <div
                 class="glass-card bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 shadow-[0_32px_64px_-12px_rgba(0,74,198,0.08)]">
 
@@ -187,7 +187,7 @@
                                 class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">person</span>
                         </div>
                     </div>
-                            
+
                     <div class="relative">
                         <select name="role"
                             class="w-full pl-11 pr-10 py-3.5 bg-surface-container-high border-none rounded-xl 
@@ -199,13 +199,14 @@
 
                         </select>
 
-                        <!-- Left Icon -->
-                        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">
+
+                        <span
+                            class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">
                             school
                         </span>
 
-                        <!-- Right Arrow -->
-                        <span class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px] pointer-events-none">
+                        <span
+                            class="material-symbols-outlined absolute right-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px] pointer-events-none">
                             expand_more
                         </span>
                     </div>
@@ -221,7 +222,7 @@
                                 class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline/60 text-[20px]">mail</span>
                         </div>
                     </div>
-     
+
                     <div class="space-y-2">
                         <label class="block text-sm font-bold text-on-surface-variant ml-1"
                             for="password">Password</label>
@@ -240,7 +241,8 @@
                     </div>
 
                     <div class="space-y-2">
-                        <label class="block text-sm font-bold text-on-surface-variant ml-1" for="password_confirmation">Confirm
+                        <label class="block text-sm font-bold text-on-surface-variant ml-1"
+                            for="password_confirmation">Confirm
                             Password</label>
                         <div class="relative">
                             <input name="password_confirmation"
@@ -255,12 +257,12 @@
                             </button>
                         </div>
                     </div>
-          
+
                     <div class="flex items-start gap-3 pt-2">
                         <div class="flex items-center h-5">
                             <input
                                 class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20 bg-surface-container-high"
-                                id="terms" type="checkbox" required/>
+                                id="terms" type="checkbox" required />
                         </div>
                         <label class="text-sm text-on-surface-variant leading-tight" for="terms">
                             I agree to the <a
@@ -270,14 +272,14 @@
                                 href="#">Privacy Policy</a>.
                         </label>
                     </div>
-           
+
                     <button
                         class="w-full mt-6 py-4 px-6 bg-primary hover:bg-primary-container text-on-primary font-bold rounded-xl shadow-[0_8px_24px_-4px_rgba(0,74,198,0.3)] hover:shadow-[0_12px_28px_-4px_rgba(0,74,198,0.4)] transition-all duration-300 scale-100 active:scale-[0.98]"
                         type="submit">
                         Create Account
                     </button>
                 </form>
-                <!-- Footer Link -->
+
                 <div class="mt-8 text-center">
                     <p class="text-on-surface-variant font-medium">
                         Already have an account?
@@ -286,7 +288,7 @@
                     </p>
                 </div>
             </div>
-   
+
             <div class="mt-8 flex justify-center gap-8 opacity-60">
                 <div class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-primary text-[18px]"
@@ -301,7 +303,7 @@
             </div>
         </div>
     </main>
-  
+
     <footer
         class="w-full py-8 bg-surface dark:bg-slate-950 flex flex-col md:flex-row justify-between items-center px-8 max-w-7xl mx-auto gap-4">
         <div class="flex items-center gap-6">
@@ -318,31 +320,28 @@
         </div>
     </footer>
 </body>
-<script>  
+<script>
+    const showbtn = document.getElementById('show');
+    const passinout = document.getElementById('password');
 
-const showbtn = document.getElementById('show');
-const passinout = document.getElementById('password');
+    showbtn.addEventListener('click', () => {
+        if (passinout.type === 'password') {
+            passinout.type = 'text';
+        } else {
+            passinout.type = 'password';
+        }
+    });
 
-showbtn.addEventListener('click', () => {
-  if (passinout.type === 'password') {
-    passinout.type = 'text';
-  } else {
-    passinout.type = 'password';
-  }
-});
+    const showbtnconfirm = document.getElementById('show_confirm');
+    const passinoutconfirm = document.getElementById('password_confirmation');
 
-const showbtnconfirm = document.getElementById('show_confirm');
-const passinoutconfirm = document.getElementById('password_confirmation');
-
-showbtnconfirm.addEventListener('click', () => {
-  if (passinoutconfirm.type === 'password') {
-    passinoutconfirm.type = 'text';
-  } else {
-    passinoutconfirm.type = 'password';
-  }
-});
-
-
+    showbtnconfirm.addEventListener('click', () => {
+        if (passinoutconfirm.type === 'password') {
+            passinoutconfirm.type = 'text';
+        } else {
+            passinoutconfirm.type = 'password';
+        }
+    });
 </script>
 
 </html>
