@@ -24,27 +24,4 @@ class UserBadgesController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(UserBadges $userBadges)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserBadgesRequest $request, UserBadges $userBadges)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(UserBadges $userBadges)
-    {
-        //
-    }
 }
