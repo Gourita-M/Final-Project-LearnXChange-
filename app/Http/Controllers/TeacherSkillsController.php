@@ -24,27 +24,4 @@ class TeacherSkillsController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TeacherSkills $teacherSkills)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateTeacherSkillsRequest $request, TeacherSkills $teacherSkills)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TeacherSkills $teacherSkills)
-    {
-        //
-    }
 }
