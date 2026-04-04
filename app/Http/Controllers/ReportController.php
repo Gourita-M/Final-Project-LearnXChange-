@@ -21,7 +21,14 @@ class ReportController extends Controller
      */
     public function store(StoreReportRequest $request)
     {
-        //
+        Report::Create([
+            'reason' => $request['reason'],
+            'status' => 'Active',
+            'resolution' => $request['resolution'],
+            'reporter_id' => $request['reporter_id'],
+            'reported_id' => $request['reported_id'],
+            'resolved_by' => $request['resolved_by'],
+        ]);
     }
 
     /**
