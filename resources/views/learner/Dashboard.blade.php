@@ -118,6 +118,7 @@
                                     style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
                             </div>
                             <div>
+                                
                                 <h2 class="text-2xl font-bold">Progress Overview</h2>
                                 <span
                                     class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Intermediate
@@ -125,13 +126,13 @@
                             </div>
                         </div>
                         <div class="text-right">
-                            <span class="text-4xl font-extrabold text-primary">12,450</span>
+                            <span class="text-4xl font-extrabold text-primary">{{$learner->xp}}</span>
                             <span class="text-on-surface-variant font-medium ml-1">XP Total</span>
                         </div>
                     </div>
                     <div class="space-y-6">
                         <div class="flex justify-between items-end mb-2">
-                            <span class="text-sm font-semibold text-on-surface-variant">Level 14</span>
+                            <span class="text-sm font-semibold text-on-surface-variant">Level {{$learner->current_level}}</span>
                             <span class="text-sm font-semibold text-primary">850 XP to Level 15</span>
                         </div>
                         <div class="h-4 bg-primary-fixed rounded-full overflow-hidden">
@@ -142,11 +143,11 @@
                         <div class="grid grid-cols-3 gap-4 pt-6">
                             <div class="bg-surface-container-low p-4 rounded-2xl text-center">
                                 <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Sessions</p>
-                                <p class="text-xl font-bold">24</p>
+                                <p class="text-xl font-bold">{{$totalsessions}}</p>
                             </div>
                             <div class="bg-surface-container-low p-4 rounded-2xl text-center">
                                 <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Hours</p>
-                                <p class="text-xl font-bold">48.5</p>
+                                <p class="text-xl font-bold">{{$totalHours}}</p>
                             </div>
                             <div class="bg-surface-container-low p-4 rounded-2xl text-center">
                                 <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Rank</p>
@@ -162,6 +163,7 @@
                             Calendar</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                    @foreach($ActiveSessions as $ActiveSession)
                         <div
                             class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
                             <div class="flex justify-between items-start mb-6">
@@ -170,19 +172,19 @@
                                     data-alt="Close up of a professional woman with glasses and dark hair, smiling confidently against a soft blurred background"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeLD5Kc5awsOkq0sUEuK_4cJmCfHQfOHdTZyE32s_i3oRZV_PQSa9J-u_kg6a248lyaDrSwJ7VWeLO7nN8K1gDngzWgIZdzbP6mSkPKQpMlK0uZ6pkKRngdb6yCYMzsorXfpqAWYoEkL3IV-grE2Q2K9Ui0tpo_XXk351BtA_GR15SzbYPrb9szrIWibyMC0lW4OOYqeKa2lSaGADxFwqukfMzIy3uWxeKmfKApZ8idi2BtLRlddIYCT9hOVxvfRU9vCvitaKFPZg" />
                                 <span
-                                    class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">In
-                                    2 Hours</span>
+                                    class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
+                                    {{$ActiveSession->start_time}}</span>
                             </div>
-                            <h3 class="text-lg font-bold mb-1">Advanced UI Systems</h3>
-                            <p class="text-on-surface-variant text-sm mb-6">with Sarah Mitchell</p>
+                            <h3 class="text-lg font-bold mb-1">{{$ActiveSession->name}}</h3>
+                            <p class="text-on-surface-variant text-sm mb-6">with {{$ActiveSession->firstname}} {{$ActiveSession->lastname}}</p>
                             <div class="flex items-center gap-4 py-4 border-t border-outline-variant/10">
                                 <div class="flex items-center gap-2 text-on-surface-variant">
                                     <span class="material-symbols-outlined text-sm">schedule</span>
-                                    <span class="text-xs font-medium">60 mins</span>
+                                    <span class="text-xs font-medium">{{$ActiveSession->duration}} Hours</span>
                                 </div>
                                 <div class="flex items-center gap-2 text-on-surface-variant">
                                     <span class="material-symbols-outlined text-sm">videocam</span>
-                                    <span class="text-xs font-medium">Google Meet</span>
+                                    <span class="text-xs font-medium">{{$ActiveSession->session_type}}</span>
                                 </div>
                             </div>
                             <button
@@ -190,62 +192,8 @@
                                 Join Room
                             </button>
                         </div>
-                
-                        <div
-                            class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
-                            <div class="flex justify-between items-start mb-6">
-                                <img alt="Instructor David"
-                                    class="w-14 h-14 rounded-2xl object-cover ring-4 ring-surface-container-low"
-                                    data-alt="Friendly middle aged man with short hair and professional casual attire, smiling warmly for a profile photo"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaCEO5GnsYnKNByZ2qnTkrrQNED-aerm6e5LkLvcPfbx8XS2Tu3x9HXMBCiYs5pFzQdSNMAAiOj6KZWZvI1b4eXG9pAJf9VU4L_F-WUMdHF8hOwkp3EN4kELTcEk7EpTKB_TvOGXhZVeCXq-xXM8S_WOGqRaJtTPaCnR3k_--mB8VVG25NHjnODAeKC4wekmCOruJSM62HG00iVbcNPrON9pZH2OM0XbKP8is1eluHOH7HeJ-WhZuV92cEeZTB4yoP_y8jCyAwkkM" />
-                                <span
-                                    class="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">Tomorrow</span>
-                            </div>
-                            <h3 class="text-lg font-bold mb-1">Growth Marketing 101</h3>
-                            <p class="text-on-surface-variant text-sm mb-6">with David Chen</p>
-                            <div class="flex items-center gap-4 py-4 border-t border-outline-variant/10">
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-sm">schedule</span>
-                                    <span class="text-xs font-medium">45 mins</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-sm">videocam</span>
-                                    <span class="text-xs font-medium">Zoom</span>
-                                </div>
-                            </div>
-                            <button
-                                class="w-full mt-4 py-3 bg-surface-container-high text-on-surface font-bold rounded-xl group-hover:bg-primary group-hover:text-on-primary transition-all">
-                                View Details
-                            </button>
-                        </div>
-           
-                        <div
-                            class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
-                            <div class="flex justify-between items-start mb-6">
-                                <img alt="Instructor Marcus"
-                                    class="w-14 h-14 rounded-2xl object-cover ring-4 ring-surface-container-low"
-                                    data-alt="Young professional man with dark hair and thoughtful expression, standing in front of a modern minimalist background"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsjUXpM86wKPpooAWcDz_C6tWiD_8Z92HwOISqqHRAovVdnBko3h4ryubp7k4L3UI3xRikkX1KKVHyhcwq1DvtbOmYUVPkNqT_GPabFsREFykPNkJJMyBW9KcQeDu3mMZFroGKOGQC3OMHVHJ3uUrDmllmSW6j8HrF2cCyD6z75ZUHYyWQBgZx1bPkIOUuDCGA4vo8zcFSzgwbJy1Cdq83vDI5NXk50C61njkMqtRj71-taw8YKmKvdqdJIMWJB125KD-45eTRh4k" />
-                                <span
-                                    class="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">Friday</span>
-                            </div>
-                            <h3 class="text-lg font-bold mb-1">Product Leadership</h3>
-                            <p class="text-on-surface-variant text-sm mb-6">with Marcus Aurelius</p>
-                            <div class="flex items-center gap-4 py-4 border-t border-outline-variant/10">
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-sm">schedule</span>
-                                    <span class="text-xs font-medium">90 mins</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-on-surface-variant">
-                                    <span class="material-symbols-outlined text-sm">videocam</span>
-                                    <span class="text-xs font-medium">Luminary Live</span>
-                                </div>
-                            </div>
-                            <button
-                                class="w-full mt-4 py-3 bg-surface-container-high text-on-surface font-bold rounded-xl group-hover:bg-primary group-hover:text-on-primary transition-all">
-                                View Details
-                            </button>
-                        </div>
+                    @endforeach
+                        
                     </div>
                 </section>
        
