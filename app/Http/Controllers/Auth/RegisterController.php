@@ -25,7 +25,7 @@ class RegisterController extends Controller
             'role' => 'required',
         ]);
 
-        User::create([
+        $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
@@ -33,6 +33,8 @@ class RegisterController extends Controller
             'role' => $request->role,
             'badges_id' => 1,
         ]);
+
+        $user->assignRole($request->role);
 
         return redirect()->route('login')->with('success', 'Account created! Please login.');
     }

@@ -22,10 +22,21 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
 
-        return back()->withErrors([
+            $user = Auth::user();
+
+            if ($user->hasRole('teacher')) {
+            return redirect('/teacher');
+            }
+
+            if ($user->hasRole('learner')) {
+                return redirect('/learner');
+            }
+
+            return redirect('/');
+            }
+
+            return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }

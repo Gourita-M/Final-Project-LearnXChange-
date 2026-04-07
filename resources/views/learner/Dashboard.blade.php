@@ -187,10 +187,10 @@
                                     <span class="text-xs font-medium">{{$ActiveSession->session_type}}</span>
                                 </div>
                             </div>
-                            <button
-                                class="w-full mt-4 py-3 bg-surface-container-high text-on-surface font-bold rounded-xl group-hover:bg-primary group-hover:text-on-primary transition-all">
+                            <a href="messages"
+                            class="block w-full mt-4 py-3 text-center bg-surface-container-high text-on-surface font-bold rounded-xl hover:bg-primary hover:text-on-primary transition-all">
                                 Join Room
-                            </button>
+                            </a>
                         </div>
                     @endforeach
                         
@@ -272,37 +272,6 @@
         </div>
     </main>
   
-    <div class="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none opacity-0">
-      
-        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
-
-        <div class="relative bg-white w-full max-w-lg rounded-[2rem] p-10 shadow-2xl pointer-events-auto">
-            <h2 class="text-3xl font-extrabold mb-2 tracking-tight">Request Learning</h2>
-            <p class="text-on-surface-variant mb-8">Tell us what you want to learn and we'll find the perfect
-                instructor.</p>
-            <form class="space-y-6">
-                <div class="space-y-2">
-                    <label class="text-sm font-bold ml-1">Topic or Skill</label>
-                    <input
-                        class="w-full bg-surface-container-low border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/40"
-                        placeholder="e.g. Advanced TypeScript" type="text" />
-                </div>
-                <div class="space-y-2">
-                    <label class="text-sm font-bold ml-1">Why do you want to learn this?</label>
-                    <textarea class="w-full bg-surface-container-low border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/40"
-                        placeholder="Describe your goals..." rows="3"></textarea>
-                </div>
-                <div class="flex gap-4 pt-4">
-                    <button
-                        class="flex-1 py-4 bg-surface-container-high text-on-surface font-bold rounded-2xl hover:bg-surface-container-highest transition-colors"
-                        type="button">Cancel</button>
-                    <button
-                        class="flex-1 py-4 bg-primary text-on-primary font-bold rounded-2xl shadow-lg shadow-primary/20 hover:bg-primary-container transition-colors"
-                        type="submit">Submit Request</button>
-                </div>
-            </form>
-        </div>
-    </div>
 </body>
 
 </html>
