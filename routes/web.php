@@ -41,4 +41,8 @@ Route::post('/connect-session', [ConnectSessionsController::class, 'acceptReques
 
 Route::post('/decline-request', [LearningRequestController::class, 'declineRequest'])->name('decline.request');
 
-Route::get('/messages', [MessageController::class, 'index'])->middleware('auth');
+Route::get('/messages/{id}', [MessageController::class, 'index'])->middleware('auth');
+
+Route::post('/remove.skill', [SkillController::class, 'removeSkill'])->name('remove.skill')->middleware('auth');
+
+Route::post('/edit.info', [ProfileController::class, 'editInfo'])->name('edit.info')->middleware('auth');
