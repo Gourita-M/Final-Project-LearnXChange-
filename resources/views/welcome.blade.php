@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Luminary | Learn anything, Teach everyone</title>
+    <title>LearnXChange | Learn anything, Teach everyone</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -97,31 +97,9 @@
 
 <body class="bg-surface font-body text-on-surface antialiased">
 
-    <nav
-        class="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-20 w-full max-w-full bg-white/80 backdrop-blur-xl shadow-sm">
-        <div class="flex items-center gap-8">
-            <span class="text-2xl font-extrabold tracking-tighter text-blue-700">Luminary</span>
-            <div class="hidden md:flex gap-6 items-center">
-                <a class="font-headline text-sm font-bold tracking-tight text-blue-600 border-b-2 border-blue-600 pb-1"
-                    href="#">Home</a>
-                <a class="font-headline text-sm font-medium tracking-tight text-slate-600 hover:text-blue-500 transition-colors"
-                    href="#">Marketplace</a>
-                <a class="font-headline text-sm font-medium tracking-tight text-slate-600 hover:text-blue-500 transition-colors"
-                    href="#">Dashboard</a>
-            </div>
-        </div>
-        <div class="flex items-center gap-4">
-            <button class="p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-all active:scale-95">
-                <span class="material-symbols-outlined">notifications</span>
-            </button>
-            <a href="login"
-                class="px-6 py-2.5 bg-primary text-on-primary font-semibold rounded-lg hover:bg-primary-container transition-all active:scale-95 shadow-sm">
-                Sign In
-            </a>
-        </div>
-    </nav>
+    @include('layouts.navbar')
     <main class="pt-20">
-   
+
         <section class="relative min-h-[921px] flex items-center px-8 lg:px-24 overflow-hidden">
             <div class="grid lg:grid-cols-2 gap-16 items-center z-10 w-full">
                 <div class="max-w-2xl">
@@ -213,13 +191,13 @@
                     </div>
                 </div>
             </div>
-       
+
             <div class="absolute -right-20 -top-20 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full -z-10">
             </div>
             <div class="absolute -left-20 -bottom-20 w-[600px] h-[600px] bg-tertiary/5 blur-[120px] rounded-full -z-10">
             </div>
         </section>
-     
+
         <section class="py-24 bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -229,7 +207,7 @@
                             <img alt="Students collaborating on laptops" class="w-full h-full object-cover aspect-[4/5]"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrkUsVMdjweTjQ_FzTC7cSr7nJOpBex3hy68DdYWopzLp_RVj7v_hnq_i4f_WDbaKXFuhdfKGeVc8uDwV-WQu9xEBauaGZrQvjvx6Hy2AyCaqlV9lhiJ3E6jGkndAYd9HTOjapg-xe5BtlKafeK2LycEJoe9Llq7JQLhYyvH8jCNgxXy6GXH9yS_6SeBMSxxSm-48uj75ARsdbPJrdGJCW9X23F47e_OtA1gsi3-ZcHAh459LVxwm_lZdLh-EMcJzMTxhRD4J2zpo" />
                         </div>
-            
+
                         <div class="absolute -bottom-6 -left-6 w-48 h-48 bg-primary/10 rounded-full blur-3xl -z-10">
                         </div>
                         <div class="absolute top-10 -right-10 w-32 h-32 bg-tertiary/10 rounded-full blur-2xl -z-10">
@@ -284,7 +262,7 @@
                 </div>
             </div>
         </section>
-   
+
         <section class="py-24 bg-surface-container-low overflow-hidden">
             <div class="max-w-7xl mx-auto px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -342,7 +320,7 @@
                                 class="w-full h-full object-cover aspect-[4/5]"
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBakI7KZCo31dVR6c6CIuCWcpU6WVeCW4lTUK09SvAullYeqKkqjyLPj33izyljFXYTyNJOCgpfQ2RtOhcVhQULGTGVoiG9uirO3MW0TarG2M1EvrtA3GQ1WpOobRBO8zuwEsf-ZCltlEnvZqCsL6n4-FFNKze_NYjJCv-tAAZLpsj9cQiLhQwMwvyCOdkGbSl17RUH6GXfqKkgKrS2V03bLoZexCAg2OtjhH2ZplPcYCRRorDuy3SxUe9kttXHeEd_jHZ2RIjOJ4k" />
                         </div>
-      
+
                         <div class="absolute -top-10 -left-10 w-40 h-40 bg-tertiary/10 rounded-full blur-3xl -z-10">
                         </div>
                         <div class="absolute -bottom-10 -right-10 w-56 h-56 bg-primary/5 rounded-full blur-3xl -z-10">

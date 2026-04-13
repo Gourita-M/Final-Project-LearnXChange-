@@ -4,9 +4,12 @@
 
 <head>
     <meta charset="utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Luminary Live Session</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.15.0/dist/echo.iife.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
         rel="stylesheet" />
@@ -102,7 +105,7 @@
 </head>
 
 <body class="bg-surface text-on-surface antialiased overflow-hidden">
-    
+
     <nav
         class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-8 h-20">
         <div class="flex items-center gap-8">
@@ -128,9 +131,9 @@
         </div>
     </nav>
     <main class="pt-20 h-screen flex">
-       
+
         <div class="flex-1 flex flex-col p-6 gap-6 bg-surface-container-low border-r border-outline-variant/10">
-           
+
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-2xl font-extrabold tracking-tight text-on-surface">Advanced UI Architecture</h1>
@@ -148,91 +151,57 @@
                     </button>
                 </div>
             </div>
-         
+
             <div
                 class="flex-1 bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant/10 flex flex-col overflow-hidden">
+
+                <!-- HEADER -->
                 <div class="p-4 border-b border-outline-variant/10 flex justify-between items-center">
                     <h2 class="font-headline font-bold text-lg text-on-surface">Session Chat</h2>
                     <div class="flex gap-2">
                         <span
-                            class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Live</span>
+                            class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                            Live
+                        </span>
                     </div>
                 </div>
-                <div class="flex-1 overflow-y-auto p-6 space-y-6">
-                
-                    <div class="text-center">
-                        <span
-                            class="text-[11px] font-medium text-on-surface-variant bg-surface-container-high px-3 py-1 rounded-full">Session
-                            started at 10:00 AM</span>
-                    </div>
-                
-                    <div class="flex gap-3">
-                        <img alt="Sarah J. avatar" class="w-10 h-10 rounded-full"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1XqqC5loizzJ3uY22atLgXSzJwzA_sMAySNFGWOz_2KnnhUHrlcqtRhGzpwjtqXuA6-jH2ddGntU64lPN7uHgX8pJmMLY8njU6xl_9v9Ab3mYskmM-S3G6Gv8YWz43RtGpH0Buu02MHxdspNQVtI37lv_gJUpCB9r62_zbWxDrxAprL7vAX_7tbr9gWME_-wSz_BOWW6op5mxaVjq8k7NYktJnVuUFeaFQqU3w0eP4-6sZ8fPB8DrVuK7HHHSuG_T3WFKHkXIPgY" />
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold text-on-surface">Sarah J.</span>
-                                <span class="text-[10px] text-on-surface-variant">10:05 AM</span>
-                            </div>
-                            <div
-                                class="bg-surface-container-low p-4 rounded-lg rounded-tl-none text-sm text-on-surface leading-relaxed max-w-xl">
-                                Hi! Let's start by looking at the component hierarchy you sent over. Did you have any
-                                specific questions about the state management?
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="flex flex-row-reverse gap-3">
-                        <div class="space-y-1 text-right">
-                            <div class="flex flex-row-reverse items-center gap-2">
-                                <span class="text-xs font-bold text-on-surface">You</span>
-                                <span class="text-[10px] text-on-surface-variant">10:07 AM</span>
-                            </div>
-                            <div
-                                class="bg-primary text-on-primary p-4 rounded-lg rounded-tr-none text-sm leading-relaxed text-left max-w-xl">
-                                I'm mostly struggling with how the props are drilling down into the leaf components.
-                            </div>
-                        </div>
-                    </div>
-                 
-                    <div class="flex gap-3">
-                        <img alt="Sarah J. avatar" class="w-10 h-10 rounded-full"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1XqqC5loizzJ3uY22atLgXSzJwzA_sMAySNFGWOz_2KnnhUHrlcqtRhGzpwjtqXuA6-jH2ddGntU64lPN7uHgX8pJmMLY8njU6xl_9v9Ab3mYskmM-S3G6Gv8YWz43RtGpH0Buu02MHxdspNQVtI37lv_gJUpCB9r62_zbWxDrxAprL7vAX_7tbr9gWME_-wSz_BOWW6op5mxaVjq8k7NYktJnVuUFeaFQqU3w0eP4-6sZ8fPB8DrVuK7HHHSuG_T3WFKHkXIPgY" />
-                        <div class="space-y-1">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold text-on-surface">Sarah J.</span>
-                                <span class="text-[10px] text-on-surface-variant">10:08 AM</span>
-                            </div>
-                            <div
-                                class="bg-surface-container-low p-4 rounded-lg rounded-tl-none text-sm text-on-surface leading-relaxed max-w-xl">
-                                That's a classic bottleneck! We'll explore the Context API approach today. I've just
-                                shared a link to the docs in the resources tab.
-                            </div>
-                        </div>
-                    </div>
+
+                <!-- MESSAGES -->
+                <div id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-6">
+
+
                 </div>
-          
+
+                <!-- INPUT -->
                 <div class="p-6 bg-white border-t border-outline-variant/10">
+
                     <div class="relative flex items-center">
-                        <input
+
+                        <input id="messageInput"
                             class="w-full bg-surface-container-low border-none rounded-lg py-4 pl-4 pr-24 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-on-surface-variant"
                             placeholder="Type your message..." type="text" />
+
                         <div class="absolute right-2 flex gap-1">
+
                             <button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
                                 <span class="material-symbols-outlined">sentiment_satisfied</span>
                             </button>
-                            <button
+
+                            <button id="sendBtn"
                                 class="p-2 bg-primary text-on-primary rounded-lg shadow-sm hover:opacity-90 transition-all">
                                 <span class="material-symbols-outlined text-sm">send</span>
                             </button>
+
                         </div>
                     </div>
+
                 </div>
+
             </div>
         </div>
-      
+
         <aside class="w-96 bg-surface flex flex-col">
-         
+
             <div class="p-6 border-b border-outline-variant/10">
                 <div class="flex gap-2">
                     <button
@@ -241,7 +210,7 @@
                         class="flex-1 py-2 text-xs font-bold text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">Participants</button>
                 </div>
             </div>
-         
+
             <div class="flex-1 overflow-y-auto p-6 space-y-6">
                 <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Shared Resources</h3>
                 <div class="space-y-3">
@@ -303,7 +272,7 @@
                     </div>
                 </div>
             </div>
-           
+
             <div class="p-6 bg-surface-container-low border-t border-outline-variant/10">
                 <button
                     class="w-full flex items-center justify-center gap-2 py-3 bg-surface-container-lowest text-primary font-bold rounded-lg border border-primary/20 hover:bg-primary/5 transition-colors">
@@ -313,6 +282,155 @@
             </div>
         </aside>
     </main>
+    <input id="sessionid" type="hidden" value="{{ $sessionid }}">
+    <script>
+        const sessionid = document.getElementById('sessionid').value;
+
+        //     document.getElementById('sendBtn').onclick = () => {
+        //     const message = document.getElementById('messageInput').value;
+
+        //     fetch('/api/send-message', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        //         },
+        //         body: JSON.stringify({
+        //             "content": message,
+        //             "connect_sessions_id": sessionid,
+        //             "sender_id": 3
+        //         })
+        //     });
+
+        //     document.getElementById('messageInput').value = '';
+        // };
+
+        let lastMessageId = 0;
+        const chatBox = document.getElementById("chat-box");
+
+        // -----------------------------
+        // INITIAL LOAD
+        // -----------------------------
+        async function loadMessages() {
+            const res = await fetch(`/api/sessions/${sessionid}/messages`);
+            const data = await res.json();
+
+            chatBox.innerHTML = "";
+
+            data.messages.forEach(message => {
+                renderMessage(message);
+                lastMessageId = Math.max(lastMessageId, message.id);
+            });
+
+            scrollToBottom();
+        }
+
+        // -----------------------------
+        // POLLING (ONLY NEW MESSAGES)
+        // -----------------------------
+        async function refreshMessages() {
+            const res = await fetch(`/api/sessions/${sessionid}/messages`);
+            const data = await res.json();
+
+            let hasNew = false;
+
+            data.messages.forEach(message => {
+                if (message.id > lastMessageId) {
+                    renderMessage(message);
+                    lastMessageId = message.id;
+                    hasNew = true;
+                }
+            });
+
+            if (hasNew) {
+                scrollToBottom();
+            }
+        }
+
+        // -----------------------------
+        // RENDER MESSAGE
+        // -----------------------------
+        function renderMessage(message) {
+            const isMine = message.sender_id === {{ auth()->id() }};
+
+            const div = document.createElement("div");
+
+            div.className = isMine ?
+                "flex flex-row-reverse gap-3" :
+                "flex gap-3";
+
+            div.innerHTML = `
+        <div class="space-y-1 ${isMine ? 'text-right' : ''}">
+            <div class="flex ${isMine ? 'flex-row-reverse' : ''} items-center gap-2">
+                <span class="text-xs font-bold">
+                    ${isMine ? 'You' : (message.sender?.name ?? 'User')}
+                </span>
+            </div>
+
+            <div class="${isMine 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-gray-200 text-black'
+            } p-4 rounded-lg max-w-xl">
+                ${message.content}
+            </div>
+        </div>
+    `;
+
+            chatBox.appendChild(div);
+        }
+
+        // -----------------------------
+        // SCROLL
+        // -----------------------------
+        function scrollToBottom() {
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // -----------------------------
+        // SEND MESSAGE
+        // -----------------------------
+        async function sendMessage() {
+
+            const senderid = {{ auth()->id() }};
+            const input = document.querySelector("input[type=text]");
+            const message = input.value;
+
+            console.log(senderid)
+
+            if (!message.trim()) return;
+
+            fetch('/api/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({
+                    "content": message,
+                    "connect_sessions_id": sessionid,
+                    "sender_id": senderid
+                })
+            });
+
+            input.value = "";
+
+            // DO NOT reload everything → just fetch updates
+            refreshMessages();
+        }
+
+        // -----------------------------
+        // EVENTS
+        // -----------------------------
+        document.querySelector("button.bg-primary").addEventListener("click", sendMessage);
+
+        document.querySelector("input").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+
+        loadMessages();
+
+        setInterval(refreshMessages, 1000);
+    </script>
 </body>
 
 </html>

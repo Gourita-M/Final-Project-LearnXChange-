@@ -104,11 +104,11 @@
 <body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col">
 
     <main class="flex-grow flex items-center justify-center px-6 py-12 relative overflow-hidden">
-  
+
         <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
         <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[40%] rounded-full bg-tertiary/5 blur-[120px]"></div>
         <div class="w-full max-w-[440px] z-10">
-   
+
             <div class="flex flex-col items-center mb-10 text-center">
                 <div class="mb-4 text-blue-700 dark:text-blue-500">
                     <span class="material-symbols-outlined text-5xl"
@@ -125,7 +125,7 @@
                         <h2 class="font-headline text-xl font-bold text-on-surface">Welcome back</h2>
                         <p class="text-sm text-on-surface-variant mt-1">Please enter your details to sign in.</p>
                     </div>
-    
+
                     <div class="grid grid-cols-2 gap-3">
                         <button
                             class="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors text-sm font-semibold text-on-surface">
@@ -148,7 +148,7 @@
                             class="absolute bg-surface-container-lowest px-4 text-xs font-medium text-outline uppercase tracking-widest">Or
                             email</span>
                     </div>
-  
+
                     <form class="space-y-4" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="space-y-1.5">
@@ -224,9 +224,9 @@
         </div>
     </footer>
 
-@if(session('success'))
-<div id="success-popup"
-    class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
+    @if (session('success'))
+        <div id="success-popup"
+            class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
            glass-card bg-surface-container-lowest 
            px-6 py-4 rounded-2xl 
            shadow-[0_16px_40px_-8px_rgba(0,74,198,0.2)] 
@@ -234,41 +234,41 @@
            opacity-0 translate-y-[-10px] 
            transition-all duration-500">
 
-    <span class="material-symbols-outlined text-primary text-[22px]">
-        check_circle
-    </span>
+            <span class="material-symbols-outlined text-primary text-[22px]">
+                check_circle
+            </span>
 
-    <p class="text-sm font-semibold text-on-surface">
-        {{ session('success') }}
-    </p>
-</div>
-<script>
- window.addEventListener('DOMContentLoaded', () => {
-      const popup = document.getElementById('success-popup');
+            <p class="text-sm font-semibold text-on-surface">
+                {{ session('success') }}
+            </p>
+        </div>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                const popup = document.getElementById('success-popup');
 
-      popup.classList.remove('opacity-0');
-      popup.classList.add('opacity-100');
+                popup.classList.remove('opacity-0');
+                popup.classList.add('opacity-100');
 
-      setTimeout(() => {
-        popup.classList.remove('opacity-100');
-        popup.classList.add('opacity-0');
-      }, 10000);
-    });
-</script>
-@endif
+                setTimeout(() => {
+                    popup.classList.remove('opacity-100');
+                    popup.classList.add('opacity-0');
+                }, 10000);
+            });
+        </script>
+    @endif
 
-<script>
-    const showpassword = document.getElementById('showpassword');
-    const password = document.getElementById('password');
+    <script>
+        const showpassword = document.getElementById('showpassword');
+        const password = document.getElementById('password');
 
-    showpassword.addEventListener('click', ()=> {
-        if(password.type === 'password'){
-        password.type = 'text';
-        }else{
-            password.type = 'password';
-        }
-    })
-</script>
+        showpassword.addEventListener('click', () => {
+            if (password.type === 'password') {
+                password.type = 'text';
+            } else {
+                password.type = 'password';
+            }
+        })
+    </script>
 </body>
 
 </html>

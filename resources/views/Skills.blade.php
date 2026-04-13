@@ -98,45 +98,8 @@
 </head>
 
 <body class="bg-surface font-body text-on-surface antialiased">
-  
-    <nav
-        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none flex justify-between items-center px-8 h-20 w-full max-w-full">
-        <div class="flex items-center gap-12">
-            <span
-                class="text-2xl font-extrabold tracking-tighter text-blue-700 dark:text-blue-500 font-headline">Luminary</span>
-            <div class="hidden md:flex items-center gap-8 font-manrope text-sm font-medium tracking-tight">
-                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
-                    href="#">Home</a>
-                <a class="text-blue-600 dark:text-blue-400 font-bold border-b-2 border-blue-600 dark:border-blue-400 pb-1"
-                    href="#">Marketplace</a>
-                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
-                    href="#">Dashboard</a>
-                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors"
-                    href="#">Profile</a>
-            </div>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="relative hidden lg:block group">
-                <span
-                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
-                <input
-                    class="pl-10 pr-4 py-2 bg-surface-container-high border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all w-64"
-                    placeholder="Search instructors..." type="text" />
-            </div>
-            <div class="flex items-center gap-3">
-                <button
-                    class="p-2 text-on-surface-variant hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all duration-200 rounded-full scale-95 active:opacity-80">
-                    <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-                </button>
-                <button
-                    class="p-2 text-on-surface-variant hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all duration-200 rounded-full scale-95 active:opacity-80">
-                    <span class="material-symbols-outlined" data-icon="settings">settings</span>
-                </button>
-                <img alt="User profile avatar" class="w-10 h-10 rounded-full border-2 border-primary-fixed ml-2"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk5kf5BoLe6Yjqefyj4uJ2ZW3ULb8_3Tv4hTaxxHR7euX0IoENcrBK4nzHWLunZ-HuUCwbEx9H2p01gCZr21hP9vKfLgYGDtYAd9Zybk17bHjJacUKhLpvjwmDdtWck6EH1HkAdFMTMOgUBroK_ruqTQ4Cj1VXrAXRaAsWLB9OmH6E6XoxnyxhyKk4JNsKGTDx__kO9PT-y5DJQvH1b3B2V3qyGe9kX-OWwn_smqf8RL3-mK1Z2u0ayyNgNQKfRrZsCAxlpqSLrxM" />
-            </div>
-        </div>
-    </nav>
+
+    @include('layouts.navbar')
 
     <main class="pt-28 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
 
@@ -150,7 +113,7 @@
                 arts, find your guide here.
             </p>
         </header>
- 
+
         <section class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
 
             <div class="lg:col-span-1 bg-surface-container-low p-6 rounded-2xl">
@@ -170,7 +133,7 @@
                         class="px-4 py-2 bg-secondary-fixed text-on-secondary-fixed text-xs font-medium rounded-full hover:bg-secondary-fixed-dim transition-colors">Music</button>
                 </div>
             </div>
-  
+
             <div class="lg:col-span-1 bg-surface-container-low p-6 rounded-2xl">
                 <h3 class="font-headline font-bold text-sm uppercase tracking-widest text-outline mb-6">Experience Level
                 </h3>
@@ -197,94 +160,61 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-2 bg-primary-container p-8 rounded-2xl relative overflow-hidden group">
-                <div class="relative z-10 h-full flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-on-primary-container font-headline text-2xl font-bold mb-2">Active Instructors
-                        </h3>
-                        <p class="text-on-primary-container/80 text-sm max-w-xs">Join 1,200+ world-class mentors sharing
-                            knowledge across 45 unique domains.</p>
-                    </div>
-                    <div class="flex items-end justify-between">
-                        <div class="flex -space-x-3">
-                            <img alt="Instructor thumbnail"
-                                class="w-10 h-10 rounded-full border-2 border-primary-container"
-                                data-alt="professional headshot of a smiling young woman with dark hair against a soft studio background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6U5EPObmdGftUoyCe3BhDzZojHTqCiIISGPIJSYF11dF15RAVxvtEvTm_7T398R0_SNfvzfMw7k3d2T5zJf-x8Ii-oykxArnZ-BWAsTkuxb-adQQK77cjoYyNUeq90hnd4uJLRBkk_32jBJP1H0Nf7r6EzwFNmNpdmIr8JSNIdTc_Bw2TK-P9ZxNyj_TIdqrTlFhoA-D9RFyBP0gNK8zC1Wb-_oMvCg3uIs5jrHvHSuerQcZatxlgHlWJ0gQcfMCCfq4_5TGmbpI" />
-                            <img alt="Instructor thumbnail"
-                                class="w-10 h-10 rounded-full border-2 border-primary-container"
-                                data-alt="close-up portrait of a man with glasses and a friendly expression in a modern office setting"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdzyp1kuupWzrhEudjxsc6D1BMN9BPGrrfuD708iZWiFjKIqdVQeTXuwowV6DUQqVxcH4xF39kKm0Lb0bH7N9hJolkl2bB2iuvjV-2Vg4WlJu8yCupH_wFdTWibUDoZHBFihlRe8F0yvsOndwzJ9Ur3IcxtamxtSBRSpkgi9yMYqCkbntTy0Rn2_3r4MtPr8MuLkpaErNH3OLn0f_TCqGw5XzspzBAdgVrbV14ihNJFf1aGrMyra58NHlfS6BL40tQXdrmfmAp7kg" />
-                            <img alt="Instructor thumbnail"
-                                class="w-10 h-10 rounded-full border-2 border-primary-container"
-                                data-alt="vibrant portrait of an artist with colorful clothing in a brightly lit creative studio"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeg35AFeyoXx7l5zy-pUylcrDsHi10Xi5eGTWwg6D_iA17ZRiLq45315oaxl0zMMlcd4TvCZ9-nZrdP9WbVVNQPKDvpaT4odBy5hEmgzboQUtXckU-jrc4-Di7VbAoCc4ctrCAPmTYzlKjxxYs_TZYKs-TNOOmLuabTAUxsZSCGnErp1ieWWKSv4qcRW8Z78DY1DOzjLRXM7tvQlPbZgBuO24EJNyb9_L3mb6HxVOgLlxg2NP-5WobXRxIc845fWKsusLpmlTDa9w" />
-                            <div
-                                class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-xs font-bold text-white border-2 border-primary-container">
-                                +42</div>
-                        </div>
-                        <button
-                            class="bg-surface-container-lowest text-primary px-6 py-3 rounded-xl font-bold text-sm shadow-sm hover:translate-y-[-2px] transition-transform">Become
-                            a Mentor</button>
-                    </div>
-                </div>
            
-                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-                <div class="absolute bottom-0 left-0 w-32 h-32 bg-tertiary/20 rounded-full -ml-10 -mb-10 blur-2xl">
-                </div>
-            </div>
         </section>
 
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-        @foreach($skills as $skill)
-            <div
-                class="bg-surface-container-lowest rounded-2xl overflow-hidden group hover:shadow-[0_20px_50px_rgba(25,28,30,0.06)] transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img alt="Marcus Vane"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        data-alt="creative designer sketching ideas on a tablet in a studio filled with vibrant art and inspiration boards"
-                        src="{{$skill->icon_url}}" />
-                    <div
-                        class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
-                        <span class="material-symbols-outlined text-yellow-500 text-sm"
-                            style="font-variation-settings: 'FILL' 1;">star</span>
-                        <span class="text-xs font-bold text-on-surface">4.8</span>
+            @foreach ($skills as $skill)
+                <div
+                    class="bg-surface-container-lowest rounded-2xl overflow-hidden group hover:shadow-[0_20px_50px_rgba(25,28,30,0.06)] transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img alt="Marcus Vane"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="creative designer sketching ideas on a tablet in a studio filled with vibrant art and inspiration boards"
+                            src="{{ $skill->icon_url }}" />
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                            <span class="material-symbols-outlined text-yellow-500 text-sm"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="text-xs font-bold text-on-surface">4.8</span>
+                        </div>
+                        <div class="absolute bottom-4 left-4 flex gap-2">
+                            <span
+                                class="px-3 py-1 bg-primary/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">{{ $skill->category }}</span>
+                        </div>
                     </div>
-                    <div class="absolute bottom-4 left-4 flex gap-2">
-                        <span
-                            class="px-3 py-1 bg-primary/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider rounded-lg">{{$skill->category}}</span>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="font-headline text-xl font-bold text-on-surface">{{ $skill->name }}</h3>
+                                <p class="text-sm text-outline font-medium"><span class="text-black font-bold">Teacher
+                                        :</span> {{ $skill->firstname }} {{ $skill->lastname }}</p>
+                            </div>
+                            <div class="text-right">
+                                <span
+                                    class="block text-xs font-bold text-tertiary uppercase">{{ $skill->level }}</span>
+                                <span class="text-sm font-bold text-on-surface">{{ $skill->xp }} XP</span>
+                            </div>
+                        </div>
+                        <p class="text-on-surface-variant text-sm line-clamp-2 mb-6 leading-relaxed">
+                            {{ $skill->description }}
+                        </p>
+                        <div class="mb-6">
+                            <div class="flex justify-between text-[10px] font-bold text-outline uppercase mb-2">
+                                <span>Experience</span>
+                                <span>{{ $skill->years }} Years</span>
+                            </div>
+                        </div>
+                        <button data-skill-id="{{ $skill->teacherskillid }}"
+                            class="learningbtn w-full py-3 bg-surface-container-low hover:bg-primary hover:text-white text-primary font-bold rounded-xl transition-all flex items-center justify-center gap-2 group/btn">
+                            Request Learning
+                            <span
+                                class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
                     </div>
                 </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="font-headline text-xl font-bold text-on-surface">{{$skill->name}}</h3>
-                            <p class="text-sm text-outline font-medium"><span class="text-black font-bold">Teacher :</span> {{$skill->firstname}} {{$skill->lastname}}</p>
-                        </div>
-                        <div class="text-right">
-                            <span class="block text-xs font-bold text-tertiary uppercase">{{$skill->level}}</span>
-                            <span class="text-sm font-bold text-on-surface">{{$skill->xp}} XP</span>
-                        </div>
-                    </div>
-                    <p class="text-on-surface-variant text-sm line-clamp-2 mb-6 leading-relaxed">
-                        {{$skill->description}}
-                    </p>
-                    <div class="mb-6">
-                        <div class="flex justify-between text-[10px] font-bold text-outline uppercase mb-2">
-                            <span>Experience</span>
-                            <span>{{$skill->years}} Years</span>
-                        </div>
-                    </div>
-                    <button data-skill-id="{{$skill->teacherskillid}}"
-                        class="learningbtn w-full py-3 bg-surface-container-low hover:bg-primary hover:text-white text-primary font-bold rounded-xl transition-all flex items-center justify-center gap-2 group/btn">
-                        Request Learning
-                        <span
-                            class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
-                    </button>
-                </div>
-            </div>
-        @endforeach
-        
+            @endforeach
+
             <div
                 class="bg-surface-container-low rounded-2xl border-2 border-dashed border-outline-variant flex flex-col items-center justify-center p-8 text-center min-h-[400px]">
                 <div
@@ -295,9 +225,9 @@
                 <p class="text-sm text-on-surface-variant max-w-[240px] mb-8">
                     We are Working on It
                 </p>
-                
+
             </div>
-        
+
         </div>
 
         <div class="mt-16 flex items-center justify-between py-8 border-t border-surface-container-high">
@@ -353,7 +283,7 @@
                 class="space-y-4">
                 @csrf
                 <input type="hidden" name="skill_id" id="skill_id">
-                
+
                 <div>
                     <label class="block text-sm font-medium text-on-surface mb-1">Description</label>
                     <textarea name="description" required
@@ -382,9 +312,9 @@
         </div>
     </div>
 
-@if(session('success'))
-<div id="success-popup"
-    class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
+    @if (session('success'))
+        <div id="success-popup"
+            class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
            glass-card bg-surface-container-lowest 
            px-6 py-4 rounded-2xl 
            shadow-[0_16px_40px_-8px_rgba(0,74,198,0.2)] 
@@ -392,56 +322,55 @@
            opacity-0 translate-y-[-10px] 
            transition-all duration-500">
 
-    <span class="material-symbols-outlined text-primary text-[22px]">
-        check_circle
-    </span>
+            <span class="material-symbols-outlined text-primary text-[22px]">
+                check_circle
+            </span>
 
-    <p class="text-sm font-semibold text-on-surface">
-        {{ session('success') }}
-    </p>
-</div>
-<script>
- window.addEventListener('DOMContentLoaded', () => {
-      const popup = document.getElementById('success-popup');
+            <p class="text-sm font-semibold text-on-surface">
+                {{ session('success') }}
+            </p>
+        </div>
+        <script>
+            window.addEventListener('DOMContentLoaded', () => {
+                const popup = document.getElementById('success-popup');
 
-      // Show the popup
-      popup.classList.remove('opacity-0');
-      popup.classList.add('opacity-100');
+                // Show the popup
+                popup.classList.remove('opacity-0');
+                popup.classList.add('opacity-100');
 
-      // Hide after 10 seconds
-      setTimeout(() => {
-        popup.classList.remove('opacity-100');
-        popup.classList.add('opacity-0');
-      }, 10000);
-    });
-</script>
-@endif
+                // Hide after 10 seconds
+                setTimeout(() => {
+                    popup.classList.remove('opacity-100');
+                    popup.classList.add('opacity-0');
+                }, 10000);
+            });
+        </script>
+    @endif
 
 
 
-<script>
+    <script>
+        const learningpopup = document.getElementById('learningpopup');
+        const learningbtn = document.querySelectorAll('.learningbtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
 
-const learningpopup = document.getElementById('learningpopup');
-const learningbtn = document.querySelectorAll('.learningbtn');
-const closeModalBtn = document.getElementById('closeModalBtn');
+        learningbtn.forEach((u) => {
 
-learningbtn.forEach( (u)=>{
+            u.addEventListener('click', () => {
 
-    u.addEventListener('click', ()=>{
-  
-    let skillId = u.dataset.skillId;
-    
-    document.getElementById('skill_id').value = skillId;
+                let skillId = u.dataset.skillId;
 
-    learningpopup.classList.remove('hidden');
-    })
-})
+                document.getElementById('skill_id').value = skillId;
 
-closeModalBtn.addEventListener('click', ()=> {
-    
-    learningpopup.classList.add('hidden');
-})
-</script>
+                learningpopup.classList.remove('hidden');
+            })
+        })
+
+        closeModalBtn.addEventListener('click', () => {
+
+            learningpopup.classList.add('hidden');
+        })
+    </script>
 
 </body>
 
