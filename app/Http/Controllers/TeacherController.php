@@ -59,7 +59,6 @@ class TeacherController extends Controller
                             'r.rating'
                         )->get();
                         
-        $categories = Categories::get();
-        return View('teacher.Dashboard', compact('categories','requests', 'ActiveSessions', 'reviews'));
+        return View('teacher.Dashboard', compact('requests', 'ActiveSessions', 'reviews'));
     }
 }
