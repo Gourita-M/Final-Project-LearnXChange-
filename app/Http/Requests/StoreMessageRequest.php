@@ -23,7 +23,6 @@ class StoreMessageRequest extends FormRequest
     {
         return [
             'content' => 'required|string',
-            'sent_at' => 'required|date',
             'connect_sessions_id' => 'required|integer',
             'sender_id' => 'required|integer',
         ];
