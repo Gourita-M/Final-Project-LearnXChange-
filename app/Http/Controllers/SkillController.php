@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Skill;
 use App\Models\TeacherSkill;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
@@ -50,6 +51,18 @@ class SkillController extends Controller
          'years_experience' => $validated['years'],
       ]);
 
-      return redirect('/teacher')->with('success','You Have Successsfully Added a New Skill');
+      return redirect('/profile')->with('success','You Have Successsfully Added a New Skill');
+   }
+
+   public function removeSkill(Request $request)
+   {
+
+      $data = $request->validate([ 'skillid' => 'integer|required']);
+    
+
+      Skill::Where('id', $data['skillid'])->delete();
+      TeacherSkill::Where('skills_id', $data['skillid'])->delete();
+    
+      return redirect('/profile')->with('success','You Have Removed Skill');
    }
 }
