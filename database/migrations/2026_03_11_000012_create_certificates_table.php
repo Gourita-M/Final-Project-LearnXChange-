@@ -24,9 +24,6 @@ return new class extends Migration
             $table->foreignId('skills_id')
             ->constrained()
             ->cascadeOnDelete();
-            $table->foreignId('approved_by')
-            ->constrained('users')
-            ->cascadeOnDelete();
         });
     }
 
