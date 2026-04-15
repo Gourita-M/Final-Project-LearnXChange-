@@ -11,6 +11,8 @@ use App\Http\Controllers\LearningRequestController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,7 +33,7 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::get('/learner', [LearnerController::class, 'index'])->middleware(['role:learner', 'auth']);
 Route::post('/request-Learning', [LearningRequestController::class, 'create'])->name('request.learning')->middleware('auth');
 
-Route::get('/skills', [SkillController::class, 'index'])->middleware('auth');
+
 
 Route::get('/teacher', [TeacherController::class, 'index'])->middleware(['role:teacher', 'auth']);
 
@@ -46,3 +48,9 @@ Route::get('/messages/{id}', [MessageController::class, 'index'])->middleware('a
 Route::post('/remove.skill', [SkillController::class, 'removeSkill'])->name('remove.skill')->middleware('auth');
 
 Route::post('/edit.info', [ProfileController::class, 'editInfo'])->name('edit.info')->middleware('auth');
+
+Route::post('/submit.review', [ReviewController::class, 'submitReview'])->name('submit.review')->middleware('auth');
+
+Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
+
+Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
