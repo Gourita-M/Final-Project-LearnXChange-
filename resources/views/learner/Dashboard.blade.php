@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Luminary | Learner Dashboard</title>
+    <title>LearnXChange | Learner Dashboard</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -105,6 +105,8 @@
 
 <body class="bg-surface text-on-surface antialiased">
     @include('layouts.navbar')
+
+    
     <main class="md:ml-64 pt-24 px-8 pb-12 min-h-screen">
         <div class="max-w-7xl mx-auto space-y-12">
 
@@ -157,13 +159,33 @@
                         </div>
                     </div>
                 </section>
+                
                 <section class="lg:col-span-12 space-y-6">
                     <div class="flex items-center justify-between">
                         <h2 class="text-2xl font-bold tracking-tight">Active Sessions</h2>
-                        <button class="text-on-surface-variant font-semibold hover:text-primary transition-colors">See
-                            Calendar</button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                        @if ($ActiveSessions->isEmpty())
+                            <div class="flex flex-col items-center justify-center text-center py-16 px-6 bg-surface-container-lowest rounded-3xl border border-outline-variant/10 shadow-sm">
+
+                                <div class="w-20 h-20 flex items-center justify-center rounded-2xl bg-primary/10 text-primary mb-4">
+                                    <span class="material-symbols-outlined text-4xl">event_busy</span>
+                                </div>
+
+                                <h2 class="text-xl font-bold text-on-surface mb-2">
+                                    No Active Sessions
+                                </h2>
+
+                                <p class="text-sm text-on-surface-variant max-w-md mb-6">
+                                    You don’t have any active sessions right now. Wait for Teachers To Accept Your Requests.
+                                </p>
+                                <a href="skills"
+                                class="px-6 py-3 rounded-xl bg-primary text-on-primary font-semibold hover:opacity-90 transition">
+                                    Request Learning
+                                </a>
+
+                            </div>
+                        @else
                         @foreach ($ActiveSessions as $ActiveSession)
                             <div
                                 class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
@@ -195,7 +217,7 @@
                                 </a>
                             </div>
                         @endforeach
-
+                        @endif                    
                     </div>
                 </section>
 
@@ -206,68 +228,28 @@
                             <p class="text-on-surface-variant text-sm">Based on your interest in <span
                                     class="text-primary font-bold">Product Design</span></p>
                         </div>
-                        <button
+                        <a href="skills"
                             class="px-6 py-2 rounded-full border border-outline-variant/40 text-sm font-bold hover:bg-surface-container-low transition-colors">Explore
-                            All</button>
+                            All</a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="group relative overflow-hidden rounded-3xl h-64 bg-slate-900 cursor-pointer">
+                        @foreach($recommended as $recommend)
+                        <a href="skills" class="group relative overflow-hidden rounded-3xl h-64 bg-slate-900 cursor-pointer">
                             <img alt="Skill 1"
                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
                                 data-alt="Vibrant abstract representation of digital design concepts with flowing lines and glowing nodes on a dark background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5jMn6SuiX_wlS4LIpieeYKOFsWmn36LnwgfOLBFlTBEKbIpzEAfctVuVB6NUzffRxdhVqzhFHfTR_L4rfiSBtid_LD6f5WzifeI6AeU0GXfew2xRas_zm0The6HxpMdVjBa1IB2bK3lwXrGkLSDepf7MVKfk7rBKZIM_OF5dAfwehN6aMNQW9P6QzmnJ5NK64N6k0RnWB1wMBFwr4ISMhOfP15dfPEsnIQug6yw_lRwrHxRSxhP66rXdhY_SBf1CoYPOG6pO9uJ8" />
+                                src="{{$recommend->icon_url}}" />
                             <div
                                 class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
                             </div>
                             <div class="absolute bottom-6 left-6 right-6">
                                 <span
-                                    class="bg-primary/90 text-on-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block">Design</span>
-                                <h4 class="text-white text-xl font-bold leading-tight">Interaction Prototyping</h4>
+                                    class="bg-primary/90 text-on-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block">{{$recommend->category_name}}</span>
+                                <h4 class="text-white text-xl font-bold leading-tight">{{$recommend->name}}</h4>
                             </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-3xl h-64 bg-slate-900 cursor-pointer">
-                            <img alt="Skill 2"
-                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                data-alt="Sleek analytical dashboard on a high-resolution screen with neon accent colors in a dimly lit studio"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtfqYvhsittAI2X5OBkujR1dNy6IbRNZrzyJFr7LS6vVfA4x15zcOT-Io2zmT30fFuVU3jqpyYEqeIoB7JI5o39hEctXj4_3d_tPboqKAfJ9PfpdNGVawSkzMrqlO9S2ImLWUVeIY0grDX8sPs0f8t_DGR5gde7EnA2DHc-9Ce4Ix9kIbTduEY1si2k7I5N26jChUZJ1u2undSf6K8EbtxIr7_-ZeRZnsY8QEGSnq3iu6l5xg7qyShso72yETlDr0zXdYZQCEFD60" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-6 left-6 right-6">
-                                <span
-                                    class="bg-tertiary/90 text-on-tertiary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block">Business</span>
-                                <h4 class="text-white text-xl font-bold leading-tight">Data Storytelling</h4>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-3xl h-64 bg-slate-900 cursor-pointer">
-                            <img alt="Skill 3"
-                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                data-alt="A person's hands typing on a glowing laptop keyboard in a dark room with blurred light reflections"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGzVeYBSqKeh1j8pFUT5E_bPLNb0xdrqGKZDnmTQ-eURMdkGE4ETykRnl9H9B9zUvjie-QR4pNQpNXY2Y_Z_4BbQZioY6nnW3B7G4m5DvqMFmAz-A5vU8RjPGCAntNp704Tf4rLYKHtVa9-5suLW2BISs9BsqqPLhDVaCFuQdw6MahTQn0qN5J2MNwWnbSSNjfZtlZM5U1x-XMxoX4iFqLLX4huLLWh-fShpZLvE8ACa8qRHx_GGP1mnvYJpiqDU0tojAOACiXgKw" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-6 left-6 right-6">
-                                <span
-                                    class="bg-amber-500/90 text-white px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block">Code</span>
-                                <h4 class="text-white text-xl font-bold leading-tight">Modern CSS Layouts</h4>
-                            </div>
-                        </div>
-                        <div class="group relative overflow-hidden rounded-3xl h-64 bg-slate-900 cursor-pointer">
-                            <img alt="Skill 4"
-                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
-                                data-alt="Abstract imagery of people silhouettes around a circular glowing table representing collaboration and leadership"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-P57_zITC8GXj1ol0Y09aBvwA33K8fyWHmHVUYcFnQZcMP3zDDGNV625OThlbVorVvPt35sZ34hc3CNyqvZc-x6Ri9k9WUzwAyR7XK9YeT6aeSFvenSqRfd6XGZEfBvPuqP3mE08HaeQP7Kb6F8-Ly909-mVQY-LbSB9i-LZgmu_B6z7iu72pueEa6De131rOFT-AUszPYbelaCI7-_fPhImGPePV3S4_m1f51_NyWGPjQCkSa-jHKrH5vbkXXpD8e3in5zrAd4E" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                            </div>
-                            <div class="absolute bottom-6 left-6 right-6">
-                                <span
-                                    class="bg-rose-500/90 text-white px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block">Soft
-                                    Skills</span>
-                                <h4 class="text-white text-xl font-bold leading-tight">Effective Feedback</h4>
-                            </div>
-                        </div>
+                        </a>
+                        @endforeach
+                        
                     </div>
                 </section>
             </div>

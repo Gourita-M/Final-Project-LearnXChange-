@@ -106,30 +106,7 @@
 
 <body class="bg-surface text-on-surface antialiased overflow-hidden">
 
-    <nav
-        class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl shadow-sm flex justify-between items-center px-8 h-20">
-        <div class="flex items-center gap-8">
-            <span class="text-2xl font-extrabold tracking-tighter text-blue-700">Luminary</span>
-            <div class="hidden md:flex gap-6 font-manrope text-sm font-medium tracking-tight">
-                <a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Home</a>
-                <a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Marketplace</a>
-                <a class="text-blue-600 font-bold border-b-2 border-blue-600 pb-1" href="#">Dashboard</a>
-                <a class="text-slate-600 hover:text-blue-500 transition-colors" href="#">Profile</a>
-            </div>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="flex items-center gap-2 px-4 py-2 bg-tertiary-container/10 text-tertiary rounded-full">
-                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">timer</span>
-                <span class="font-headline font-bold text-sm">42:15</span>
-            </div>
-            <button
-                class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full transition-all">notifications</button>
-            <button
-                class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full transition-all">settings</button>
-            <img alt="User profile avatar" class="w-10 h-10 rounded-full object-cover ring-2 ring-white"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA98tlBCwaL1FGVw_5eEobyt05R_IPz78sFtAXQC4P9Jb3U-8evqJM2soRjxE4Sh0serbZdpAKyRSBMa6LHjPg18S2-Ilx26oLQGIqYCo_Nxf7JGTw9fz-V7uwttrceoz2g2GsDrPGtm3MEOTjax4k1ZeqlmOoQeCFalIlixlIrwyGudQ57KlAELV1JoTPVPWNDpa00rN0bjER0FHOMekmqJ9XByDsW4fgtzS0aLUPytecuMHM_S1t5D_jMzLg0GOV5xO5eL6ZrJmw" />
-        </div>
-    </nav>
+    @include('layouts.navbar')
     <main class="pt-20 h-screen flex">
 
         <div class="flex-1 flex flex-col p-6 gap-6 bg-surface-container-low border-r border-outline-variant/10">
@@ -145,17 +122,24 @@
                         <span class="material-symbols-outlined">screen_share</span>
                         Report
                     </button>
-                    <button
+                    @role('learner')
+                    <button id="review"
                         class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
                         End Session
                     </button>
+                    @endrole
+                    @role('teacher')
+                    <button id="Leave"
+                        class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                        End Session
+                    </button>
+                    @endrole
                 </div>
             </div>
 
             <div
                 class="flex-1 bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant/10 flex flex-col overflow-hidden">
 
-                <!-- HEADER -->
                 <div class="p-4 border-b border-outline-variant/10 flex justify-between items-center">
                     <h2 class="font-headline font-bold text-lg text-on-surface">Session Chat</h2>
                     <div class="flex gap-2">
@@ -166,13 +150,11 @@
                     </div>
                 </div>
 
-                <!-- MESSAGES -->
                 <div id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-6">
 
 
                 </div>
 
-                <!-- INPUT -->
                 <div class="p-6 bg-white border-t border-outline-variant/10">
 
                     <div class="relative flex items-center">
@@ -200,41 +182,43 @@
             </div>
         </div>
 
+<div id="reviewPopup" class="fixed inset-0 bg-black/40 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
+        
+        <button id="closeReview" class="absolute top-2 right-3 text-xl">✕</button>
+
+        <h2 class="text-xl font-bold mb-4">Leave a Review</h2>
+
+        <form method="POST" action="{{Route('submit.review')}}" class="space-y-4">
+            @csrf
+            <input type="hidden" value="{{ $sessionid }}" name="connectsessionid">
+            
+            <input type="hidden" value="{{ $participants->teacherid }}" name="teacherid">
+            <select name="revieew" class="w-full border p-2 rounded-lg" required>
+                <option value="">Select Rating</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+
+            <textarea 
+                name="comment"
+                placeholder="Write your review..." 
+                class="w-full border p-2 rounded-lg"
+                required
+            ></textarea>
+
+            <button type="submit" class="bg-primary text-white w-full py-2 rounded-lg">
+                Submit Review
+            </button>
+        </form>
+    </div>
+</div>
         <aside class="w-96 bg-surface flex flex-col">
 
-            <div class="p-6 border-b border-outline-variant/10">
-                <div class="flex gap-2">
-                    <button
-                        class="flex-1 py-2 text-xs font-bold bg-primary text-on-primary rounded-lg">Resources</button>
-                    <button
-                        class="flex-1 py-2 text-xs font-bold text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors">Participants</button>
-                </div>
-            </div>
-
             <div class="flex-1 overflow-y-auto p-6 space-y-6">
-                <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Shared Resources</h3>
-                <div class="space-y-3">
-                    <div
-                        class="flex items-center gap-3 p-4 bg-surface-container-low rounded-lg border border-outline-variant/10 group cursor-pointer hover:border-primary/50 transition-colors">
-                        <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">link</span>
-                        <div class="flex-1 overflow-hidden">
-                            <span class="block font-bold text-sm text-on-surface truncate">React Context Docs</span>
-                            <span
-                                class="text-xs text-on-surface-variant truncate block">react.dev/learn/passing-data...</span>
-                        </div>
-                    </div>
-                    <div
-                        class="flex items-center gap-3 p-4 bg-surface-container-low rounded-lg border border-outline-variant/10 group cursor-pointer hover:border-primary/50 transition-colors">
-                        <span
-                            class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">description</span>
-                        <div class="flex-1 overflow-hidden">
-                            <span class="block font-bold text-sm text-on-surface truncate">Architecture
-                                Diagram.pdf</span>
-                            <span class="text-xs text-on-surface-variant truncate block">2.4 MB • Shared by Sarah
-                                J.</span>
-                        </div>
-                    </div>
-                </div>
                 <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest pt-4">Participants (2)
                 </h3>
                 <div class="space-y-4">
@@ -242,35 +226,46 @@
                         <div class="flex items-center gap-3">
                             <div class="relative">
                                 <img alt="Sarah J." class="w-10 h-10 rounded-full"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1XqqC5loizzJ3uY22atLgXSzJwzA_sMAySNFGWOz_2KnnhUHrlcqtRhGzpwjtqXuA6-jH2ddGntU64lPN7uHgX8pJmMLY8njU6xl_9v9Ab3mYskmM-S3G6Gv8YWz43RtGpH0Buu02MHxdspNQVtI37lv_gJUpCB9r62_zbWxDrxAprL7vAX_7tbr9gWME_-wSz_BOWW6op5mxaVjq8k7NYktJnVuUFeaFQqU3w0eP4-6sZ8fPB8DrVuK7HHHSuG_T3WFKHkXIPgY" />
+                                    src="{{$participants->teacherprofile}}" />
                                 <div
                                     class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full">
                                 </div>
                             </div>
                             <div>
-                                <p class="text-sm font-bold">Sarah J.</p>
-                                <p class="text-[10px] text-on-surface-variant">Mentor • Presenting</p>
+                                <p class="text-sm font-bold">{{$participants->teachername}}</p>
+                                <p class="text-[10px] text-on-surface-variant">Teacher</p>
                             </div>
                         </div>
-                        <span class="material-symbols-outlined text-on-surface-variant text-lg">mic</span>
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="relative">
                                 <img alt="You" class="w-10 h-10 rounded-full"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA98tlBCwaL1FGVw_5eEobyt05R_IPz78sFtAXQC4P9Jb3U-8evqJM2soRjxE4Sh0serbZdpAKyRSBMa6LHjPg18S2-Ilx26oLQGIqYCo_Nxf7JGTw9fz-V7uwttrceoz2g2GsDrPGtm3MEOTjax4k1ZeqlmOoQeCFalIlixlIrwyGudQ57KlAELV1JoTPVPWNDpa00rN0bjER0FHOMekmqJ9XByDsW4fgtzS0aLUPytecuMHM_S1t5D_jMzLg0GOV5xO5eL6ZrJmw" />
+                                    src="{{$participants->teacherprofile}}" />
                                 <div
                                     class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full">
                                 </div>
                             </div>
                             <div>
-                                <p class="text-sm font-bold">You</p>
+                                <p class="text-sm font-bold">{{$participants->learnername}}</p>
                                 <p class="text-[10px] text-on-surface-variant">Student</p>
                             </div>
                         </div>
-                        <span class="material-symbols-outlined text-on-surface-variant text-lg">mic</span>
                     </div>
                 </div>
+
+                <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Shared Resources</h3>
+                <div class="space-y-3">
+                    <div
+                        class="flex items-center gap-3 p-4 bg-surface-container-low rounded-lg border border-outline-variant/10 group cursor-pointer hover:border-primary/50 transition-colors">
+                        <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">link</span>
+                        <div class="flex-1 overflow-hidden">
+                            <a href="#">Link here</a>
+                        </div>
+                    </div>
+                </div>
+                
+                
             </div>
 
             <div class="p-6 bg-surface-container-low border-t border-outline-variant/10">
@@ -283,7 +278,22 @@
         </aside>
     </main>
     <input id="sessionid" type="hidden" value="{{ $sessionid }}">
+
+    
     <script>
+
+        const reviewPopup = document.getElementById('reviewPopup');
+        const review = document.getElementById('review');
+        const closeReview = document.getElementById('closeReview');
+        
+        review.addEventListener('click', ()=> {
+            reviewPopup.classList.remove('hidden');
+        })
+
+        closeReview.addEventListener('click', ()=> {
+            reviewPopup.classList.add('hidden');
+        })
+
         const sessionid = document.getElementById('sessionid').value;
 
         //     document.getElementById('sendBtn').onclick = () => {
@@ -308,9 +318,7 @@
         let lastMessageId = 0;
         const chatBox = document.getElementById("chat-box");
 
-        // -----------------------------
-        // INITIAL LOAD
-        // -----------------------------
+
         async function loadMessages() {
             const res = await fetch(`/api/sessions/${sessionid}/messages`);
             const data = await res.json();
@@ -325,9 +333,6 @@
             scrollToBottom();
         }
 
-        // -----------------------------
-        // POLLING (ONLY NEW MESSAGES)
-        // -----------------------------
         async function refreshMessages() {
             const res = await fetch(`/api/sessions/${sessionid}/messages`);
             const data = await res.json();
@@ -347,9 +352,6 @@
             }
         }
 
-        // -----------------------------
-        // RENDER MESSAGE
-        // -----------------------------
         function renderMessage(message) {
             const isMine = message.sender_id === {{ auth()->id() }};
 
@@ -379,16 +381,10 @@
             chatBox.appendChild(div);
         }
 
-        // -----------------------------
-        // SCROLL
-        // -----------------------------
         function scrollToBottom() {
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // -----------------------------
-        // SEND MESSAGE
-        // -----------------------------
         async function sendMessage() {
 
             const senderid = {{ auth()->id() }};
@@ -414,13 +410,8 @@
 
             input.value = "";
 
-            // DO NOT reload everything → just fetch updates
             refreshMessages();
         }
-
-        // -----------------------------
-        // EVENTS
-        // -----------------------------
         document.querySelector("button.bg-primary").addEventListener("click", sendMessage);
 
         document.querySelector("input").addEventListener("keypress", function(e) {

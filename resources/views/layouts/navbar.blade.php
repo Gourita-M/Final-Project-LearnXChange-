@@ -42,7 +42,7 @@
                     <button onclick="toggleMenu()"
                         class="flex items-center gap-3 pl-3 border-l border-slate-200 dark:border-slate-700">
                         <img class="w-9 h-9 rounded-full object-cover"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKVuK58toQHnq39AaKz_NbYtQC8ZcNqSdUM5BPouTP6qit72mt3WD6qB4YTWNvbIKf-w-eM-1Uib70lSH2P4istxlgY5Ty2OLMIgf9jiQNuF-JxwbGuxzsqG5RTq-GsWZ_3aMN9iH00-ffXPXud1zTh8DpeTiSXMgn6gTfLJKwdN7K49M96rrTUYHZy0XF2aXwelkWwTLHJkkL9XfNbpd7e3GVJeDWJanlFywXTNZGmAU_xr9Abr_CF46XSwY22oD_yIkKRIvqN-c"
+                            src="{{auth()->user()->profilepic}}"
                             alt="Profile" />
                     </button>
                     <div id="profileMenu"
