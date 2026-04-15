@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\MessageSent;
 use App\Models\Connect_sessions;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use DateTime;
 
 class MessageController extends Controller
@@ -23,8 +25,20 @@ class MessageController extends Controller
         $user = auth::user();
         $connectSession = Connect_sessions::Where('id', $sessionid)
                                 ->Where('status', 'active')->first();
+
+        $participants = DB::table('connect_sessions as cs')
+                        ->join('users as learner','learner.id','=','cs.learner_id')
+                        ->join('users as teacher', 'teacher.id','=','cs.teacher_id')
+                        ->select(
+                            'learner.profilepic as learnerprofile',
+                            'teacher.profilepic as teacherprofile',
+                            'learner.firstname as learnername',
+                            'teacher.firstname as teachername',
+                            'teacher.id as teacherid'
+                        )
+                        ->first();
         if($connectSession->learner_id === auth::user()->id || $connectSession->teacher_id === auth::user()->id){
-            return view('Messages.index', compact('sessionid'));
+            return view('Messages.index', compact('participants','sessionid'));
         }
         
         if ($user->hasRole('teacher')) {

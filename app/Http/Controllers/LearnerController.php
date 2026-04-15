@@ -33,6 +33,12 @@ class LearnerController extends Controller
             )
             ->get();
 
-        return View('learner.Dashboard', compact('totalHours', 'totalsessions', 'ActiveSessions', 'learner'));
+            $recommended = DB::table('skills as s')
+                            ->join('categories as c','c.id','=','s.categories_id')
+                            ->inRandomOrder()
+                            ->limit(5)
+                            ->get();
+
+        return View('learner.Dashboard', compact('recommended','totalHours', 'totalsessions', 'ActiveSessions', 'learner'));
     }
 }
