@@ -105,6 +105,8 @@
 <body class="bg-surface text-on-background min-h-screen">
 
     @include('layouts.navbar')
+    @include('layouts.notification')
+
     <main class="ml-64 pt-28 px-10 pb-20">
 
         <header class="mb-12">
@@ -163,19 +165,37 @@
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-on-surface">
-                                            Certificate: Title
+                                            Certificate For : {{ $certificate->skillname }}
                                         </h4>
+
                                         <p class="text-sm text-on-surface-variant">
-                                            Teacher:  •
-                                            Submitted:
+                                            Teacher: {{ $certificate->firstname }} {{ $certificate->lastname }} •
+                                            Submitted: {{ $certificate->date }}
                                         </p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <button
-                                        class="px-4 py-2 text-sm font-bold bg-primary text-on-primary rounded-lg shadow-sm hover:bg-primary-container transition-all">
-                                        Approve
-                                    </button>
+                                <div class="flex items-center gap-3">
+                                    <form method="POST" action="{{ route('aprove.certificate') }}">
+                                        @csrf
+                                        <input type="hidden" name="certifid" value="{{ $certificate->certifid }}">
+                                        <input type="hidden" name="action" value="approve">
+
+                                        <button type="submit" onclick="return confirm('Approve this certificate?')"
+                                            class="px-4 py-2 text-sm font-semibold bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+                                            Approve
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="{{ route('decline.certificate')}}">
+                                        @csrf
+                                        <input type="hidden" name="certifid" value="{{ $certificate->certifid }}">
+                                        <input type="hidden" name="action" value="decline">
+
+                                        <button type="submit" onclick="return confirm('Decline this certificate?')"
+                                            class="px-4 py-2 text-sm font-semibold bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
+                                            Decline
+                                        </button>
+                                    </form>
+
                                 </div>
                             </div>
                         @empty
