@@ -31,6 +31,30 @@ class AdminController extends Controller
                             )
                         ->get();
 
-        return View('admin', compact('certificates','totalReports','totalCertificates','totalUsers'));
+        $users = User::get();
+
+        return View('admin', compact('users','certificates','totalReports','totalCertificates','totalUsers'));
+    }
+
+    public function banUser($id)
+    {
+
+        $user = User::findOrFail($id);
+
+        if($user){
+            if($user->Banned === True){
+                User::Where('id', $id)->update([ 'Banned' => False ]);
+
+                return Redirect('/admin')->with('success', "User {$user->firstname} {$user->lastname} successfully unbanned");
+            }else{
+                User::Where('id', $id)->update([ 'Banned' => True ]);
+
+                return Redirect('/admin')->with('success', "User {$user->firstname} {$user->lastname} successfully banned");
+            }
+            
+        }
+        
+        return Redirect('/admin')->with('success', "User is not found");
+        
     }
 }
