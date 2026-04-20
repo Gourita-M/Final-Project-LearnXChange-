@@ -7,6 +7,7 @@ use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Connect_sessions;
+use App\Models\Badges;
 
 class TeacherController extends Controller
 {
@@ -16,7 +17,6 @@ class TeacherController extends Controller
                     ->join('learning_requests as l', 'l.learner_id', '=', 'u.id')
                     ->join('teacher_skills as ts', 'l.teacher_skills_id', '=','ts.id')
                     ->join('skills as s', 's.id','=','ts.skills_id')
-                    ->Where('u.role', 'learner')
                     ->Where('ts.users_id', auth::user()->id)
                     ->Where('l.status', 'pending')
                     ->Select(
@@ -58,7 +58,12 @@ class TeacherController extends Controller
                             'r.comment',
                             'r.rating'
                         )->get();
+        
+        $badge = DB::table('users as u')
+                    ->join('badges as b','b.id','=','u.badges_id')
+                    ->Where('u.id', auth::user()->id)
+                    ->first();
                         
-        return View('teacher.Dashboard', compact('requests', 'ActiveSessions', 'reviews'));
+        return View('teacher.Dashboard', compact('badge','requests', 'ActiveSessions', 'reviews'));
     }
 }
