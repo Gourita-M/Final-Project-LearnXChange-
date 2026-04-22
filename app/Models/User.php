@@ -27,7 +27,6 @@ class User extends Authenticatable
         'profilepic',
         'xp',
         'current_level',
-        'role',
         'badges_id'
     ];
 
