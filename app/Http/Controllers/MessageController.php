@@ -16,15 +16,34 @@ use DateTime;
 
 class MessageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+    public function leaveSeason(Request $request)
+    {
+    
+        Connect_sessions::Where('id', $request->sessionid)
+                            ->update([
+                                'status' => 'Finished',
+                            ]);
+        
+        return Redirect('/teacher')->with('success','Your Session if Finished');
+    }
+
     public function index($id)
     {
         $sessionid = $id;
         $user = auth::user();
         $connectSession = Connect_sessions::Where('id', $sessionid)
                                 ->Where('status', 'active')->first();
+        
+        if(!$connectSession){
+            if ($user->hasRole('teacher')) {
+            return redirect('/teacher');
+            }
+
+            if ($user->hasRole('learner')) {
+                return redirect('/learner');
+            }
+        }
 
         $participants = DB::table('connect_sessions as cs')
                         ->join('users as learner','learner.id','=','cs.learner_id')
@@ -43,11 +62,11 @@ class MessageController extends Controller
         
         if ($user->hasRole('teacher')) {
             return redirect('/teacher');
-            }
+        }
 
-            if ($user->hasRole('learner')) {
-                return redirect('/learner');
-            }
+        if ($user->hasRole('learner')) {
+            return redirect('/learner');
+        }
     }
 
     public function getAll($id)
@@ -61,9 +80,7 @@ class MessageController extends Controller
             'messages' => $messages
         ]);
     }
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(StoreMessageRequest $request)
     {
 
@@ -87,8 +104,6 @@ class MessageController extends Controller
             'connect_sessions_id' => $request['connect_sessions_id'],
             'sender_id' => auth::user()->id,
         ]);
-
-        //broadcast(new MessageSent($message))->toOthers();
 
         return response()->json($message);
     }
