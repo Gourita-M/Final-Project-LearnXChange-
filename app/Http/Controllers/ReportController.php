@@ -23,7 +23,7 @@ class ReportController extends Controller
                                 'u.firstname',
                                 'm.content',
                             )->first();
-
+        
         Report::Create([
             'reason' => $reportedinfo->content,
             'status' => 'Active',
@@ -31,19 +31,8 @@ class ReportController extends Controller
             'reported_id' => $reportedinfo->id,
         ]);
 
-        return Redirect('/messages/{$request->sessionid}')->with('success','You Have Reported {$reportedinfo->firstname}');
-    }
-
-    public function store(StoreReportRequest $request)
-    {
-        Report::Create([
-            'reason' => $request['reason'],
-            'status' => 'Active',
-            'resolution' => $request['resolution'],
-            'reporter_id' => $request['reporter_id'],
-            'reported_id' => $request['reported_id'],
-            'resolved_by' => $request['resolved_by'],
-        ]);
+        return Redirect('/messages/' . $request->sessionid)
+            ->with('success','You Have Reported ' . $reportedinfo->firstname);
     }
 
 }
