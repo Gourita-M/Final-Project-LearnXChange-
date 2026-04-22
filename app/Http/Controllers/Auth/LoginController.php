@@ -26,18 +26,18 @@ class LoginController extends Controller
             $user = Auth::user();
 
             if ($user->hasRole('teacher')) {
-            return redirect('/teacher');
+            return redirect('/teacher')->with('success',"Welcome Back " . Auth::user()->firstname);
             }
 
             if ($user->hasRole('learner')) {
-                return redirect('/learner');
+                return redirect('/learner')->with('success',"Welcome Back " . Auth::user()->firstname);
             }
 
-            return redirect('/');
+            if ($user->hasRole('admin')) {
+                return redirect('/admin')->with('success',"Welcome Back " . Auth::user()->firstname);
+            }
             }
 
-            return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+            return Redirect('/login')->with('error','Your Email or Password in Not Correct');
     }
 }
