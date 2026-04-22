@@ -5,20 +5,35 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReportRequest;
 use App\Http\Requests\UpdateReportRequest;
 use App\Models\Report;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function reportMessage(Request $request)
     {
-        //
+   
+        $reportedinfo = DB::table('users as u')
+                            ->join('messages as m', 'm.sender_id','=','u.id')
+                            ->Where('m.id', $request->message_id)
+                            ->select(
+                                'u.id',
+                                'u.firstname',
+                                'm.content',
+                            )->first();
+
+        Report::Create([
+            'reason' => $reportedinfo->content,
+            'status' => 'Active',
+            'reporter_id' => auth::user()->id,
+            'reported_id' => $reportedinfo->id,
+        ]);
+
+        return Redirect('/messages/{$request->sessionid}')->with('success','You Have Reported {$reportedinfo->firstname}');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreReportRequest $request)
     {
         Report::Create([
@@ -31,27 +46,4 @@ class ReportController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Report $report)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateReportRequest $request, Report $report)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Report $report)
-    {
-        //
-    }
 }
