@@ -44,4 +44,20 @@ class ProfileController extends Controller
         
         return Redirect('/profile')->with('success','Your Profile Info is Updated');
     }
+
+    public function changeProfilePic(Request $request)
+    {
+
+        $data = $request->validate([
+            'profilepic' => 'required',
+        ]);
+
+        User::Where('id', auth::user()->id)
+                ->update([
+                    'profilepic' => $data['profilepic'],
+                ]);
+        
+                return Redirect('profile')->with('success','Profile Picture is Changed');
+    }
+
 }
