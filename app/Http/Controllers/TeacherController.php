@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Connect_sessions;
 use App\Models\Badges;
+use Carbon\Carbon;
 
 class TeacherController extends Controller
 {
@@ -63,6 +64,15 @@ class TeacherController extends Controller
                     ->join('badges as b','b.id','=','u.badges_id')
                     ->Where('u.id', auth::user()->id)
                     ->first();
+
+        foreach ($ActiveSessions as $session) {
+
+            $startTime = Carbon::parse($session->start_time);
+
+            $session->canJoin = now()->greaterThanOrEqualTo(
+                $startTime->copy()->subMinutes(10)
+            );
+        }
                         
         return View('teacher.Dashboard', compact('badge','requests', 'ActiveSessions', 'reviews'));
     }
