@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('reason');
             $table->string('status')->default('pending');
             $table->text('resolution')->nullable();
-            $table->timestamps(); // includes created_at and updated_at
+            $table->timestamps();
 
             $table->foreignId('reporter_id')
                 ->constrained('users')
