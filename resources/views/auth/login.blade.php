@@ -103,6 +103,9 @@
 
 <body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col">
 
+    @include('layouts.notification')
+    @include('layouts.notificationError')
+
     <main class="flex-grow flex items-center justify-center px-6 py-12 relative overflow-hidden">
 
         <div class="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
@@ -126,27 +129,11 @@
                         <p class="text-sm text-on-surface-variant mt-1">Please enter your details to sign in.</p>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
-                        <button
-                            class="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors text-sm font-semibold text-on-surface">
-                            <img alt="" class="w-5 h-5"
-                                data-alt="Official Google G logo in bright primary colors isolated on white background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVM1Lwi1qB8Ewn6NV1hzU28M4omyloESbexm7c4UGbWNL7kMfu9MmgTd_UG69EWMC105y-yxJhWLLM65D9nu-PUH5Bto0EFsATsnG-rC4QExQEXfdV7K3c_pepWQDcwHQ33d0GKvJgg5Wq2EkycnoZDA3V3CD6xVPKlBPhOCoWYYublbZb2CszG5bHIh4ci3ORkxS1sLzdEcGOCWTrCls1dpWZxC4q5pGKOTWJCqaRr4NOmMvsKe59O7PpFXJ1j_-5dzLATia3yhg" />
-                            Google
-                        </button>
-                        <button
-                            class="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest transition-colors text-sm font-semibold text-on-surface">
-                            <img alt="" class="w-5 h-5"
-                                data-alt="Official Microsoft four-pane window logo with corporate brand colors"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjFkFBC8L_EdeA4W0Rp7U2aKAVipdyTGwhQbjYKglkMxDjwDgcm4JP4BWE5sx7lRxo_NTsY5KFH14zXgArma8lI88SypPacGg98WNCqlrmAI7rJN9kqnIPsiEYluVFux-VlgHAK1PjPPfvlmx85OTFqatpAoh0vBRdmq2Gir0h397pAeicYryxgCShH01-iPlN5gUObNBXKfnH0O5RXQ1-URBhbgmd3z_Usd18cAc8oJ2rg6yxzBMp82bGHou1wg-TfRhYbSaselU" />
-                            Microsoft
-                        </button>
-                    </div>
                     <div class="relative flex items-center justify-center py-2">
                         <div class="w-full border-t border-outline-variant/30"></div>
                         <span
-                            class="absolute bg-surface-container-lowest px-4 text-xs font-medium text-outline uppercase tracking-widest">Or
-                            email</span>
+                            class="absolute bg-surface-container-lowest px-4 text-xs font-medium text-outline uppercase tracking-widest">
+                            </span>
                     </div>
 
                     <form class="space-y-4" method="POST" action="{{ route('login') }}">
@@ -165,8 +152,6 @@
                         <div class="space-y-1.5">
                             <div class="flex justify-between items-center ml-1">
                                 <label class="text-sm font-semibold text-on-surface" for="password">Password</label>
-                                <a class="text-xs font-semibold text-primary hover:text-primary-container transition-colors"
-                                    href="#">Forgot Password?</a>
                             </div>
                             <div class="relative">
                                 <span
@@ -223,39 +208,6 @@
             </div>
         </div>
     </footer>
-
-    @if (session('success'))
-        <div id="success-popup"
-            class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
-           glass-card bg-surface-container-lowest 
-           px-6 py-4 rounded-2xl 
-           shadow-[0_16px_40px_-8px_rgba(0,74,198,0.2)] 
-           flex items-center gap-3 
-           opacity-0 translate-y-[-10px] 
-           transition-all duration-500">
-
-            <span class="material-symbols-outlined text-primary text-[22px]">
-                check_circle
-            </span>
-
-            <p class="text-sm font-semibold text-on-surface">
-                {{ session('success') }}
-            </p>
-        </div>
-        <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                const popup = document.getElementById('success-popup');
-
-                popup.classList.remove('opacity-0');
-                popup.classList.add('opacity-100');
-
-                setTimeout(() => {
-                    popup.classList.remove('opacity-100');
-                    popup.classList.add('opacity-0');
-                }, 10000);
-            });
-        </script>
-    @endif
 
     <script>
         const showpassword = document.getElementById('showpassword');
