@@ -50,14 +50,14 @@ class SkillController extends Controller
         if ($request->filled('levels')) {
             $levels = $request->input('levels');
             if (is_array($levels) && !empty($levels)) {
-                $query->whereIn('ts.level', $levels);
+                $query->where('ts.level', $levels);
             }
         }
  
         $query->orderByDesc('u.xp')->orderBy('s.name');
  
         $skills = $query->paginate(9)->appends($request->query());
- 
+
         $totalCount = $query->count();
 
         $categories = Categories::get();
