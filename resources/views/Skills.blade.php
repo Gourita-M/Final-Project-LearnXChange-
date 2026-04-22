@@ -99,10 +99,10 @@
     </style>
 </head>
 
-<body class="bg-surface font-body text-on-surface antialiased">
+<body class="bg-surface mt-16 font-body text-on-surface antialiased">
 
     @include('layouts.navbar')
-    
+
     <main class="pt-28 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
 
         <header class="mb-16">
@@ -233,8 +233,6 @@
             <span class="text-sm font-medium text-outline">
                 @if($skills->count() > 0)
                     Showing {{ $skills->firstItem() }} to {{ $skills->lastItem() }} of {{ $skills->total() }} instructors
-                @else
-                    <span class="text-on-surface-variant">No instructors found. Try adjusting your filters.</span>
                 @endif
             </span>
         </div>
