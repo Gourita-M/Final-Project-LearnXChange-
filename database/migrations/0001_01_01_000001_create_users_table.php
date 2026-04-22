@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('profilepic')->nullable();
             $table->integer('xp')->default(0);
+            $table->boolean('Banned')->default(0);
             $table->integer('current_level')->default(1);
-            $table->enum('role', ['learner','teacher','admin']);
             $table->text('Bio')->nullable();
             $table->foreignId('badges_id')
             ->constrained()
