@@ -8,6 +8,7 @@ use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Connect_sessions;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -22,6 +23,12 @@ class ReviewController extends Controller
             'reviewer_id' => auth::user()->id,
             'reviewee_id' => $request->teacherid,
         ]);
+
+        $user = User::Where('id', $request->teacherid)->first();
+
+        User::Where('id', $request->teacherid)->update([
+                'xp' => $user->xp + $request->revieew * 10,
+            ]);
 
         Connect_sessions::Where('id', $request->connectsessionid)
                         ->update([
