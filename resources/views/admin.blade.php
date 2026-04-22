@@ -106,6 +106,7 @@
 
     @include('layouts.navbar')
     @include('layouts.notification')
+    @include('layouts.notificationError')
 
     <main class="ml-64 pt-28 px-10 pb-20">
 
@@ -185,7 +186,7 @@
                                             Approve
                                         </button>
                                     </form>
-                                    <form method="POST" action="{{ route('decline.certificate')}}">
+                                    <form method="POST" action="{{ route('decline.certificate') }}">
                                         @csrf
                                         <input type="hidden" name="certifid" value="{{ $certificate->certifid }}">
                                         <input type="hidden" name="action" value="decline">
@@ -212,22 +213,12 @@
                 <div>
                     <h2 class="text-2xl font-bold text-on-surface mb-6">Moderation Tools</h2>
                     <div class="bg-surface-container-low p-6 rounded-xl space-y-4">
-                        <button
+                        <button id="usersopen"
                             class="w-full flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg hover:shadow-md transition-all group">
                             <div class="flex items-center gap-3">
                                 <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary"
                                     data-icon="search">search</span>
-                                <span class="font-medium">Lookup User</span>
-                            </div>
-                            <span class="material-symbols-outlined text-sm opacity-50"
-                                data-icon="chevron_right">chevron_right</span>
-                        </button>
-                        <button
-                            class="w-full flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg hover:shadow-md transition-all group">
-                            <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-on-surface-variant group-hover:text-error"
-                                    data-icon="block">block</span>
-                                <span class="font-medium">Restrict Access</span>
+                                <span class="font-medium">Manage User</span>
                             </div>
                             <span class="material-symbols-outlined text-sm opacity-50"
                                 data-icon="chevron_right">chevron_right</span>
@@ -238,7 +229,7 @@
                                 <span
                                     class="material-symbols-outlined text-on-surface-variant group-hover:text-tertiary"
                                     data-icon="flag">flag</span>
-                                <span class="font-medium">Review Content Flags</span>
+                                <span class="font-medium">Review Reports</span>
                             </div>
                             <span class="material-symbols-outlined text-sm opacity-50"
                                 data-icon="chevron_right">chevron_right</span>
@@ -350,6 +341,86 @@
             </div>
         </section>
     </main>
+
+    <div id="userpopup" class="fixed inset-0 hidden bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
+
+        <div class="bg-white w-full max-w-3xl rounded-2xl shadow-2xl p-6 relative">
+
+            <button id="closeuser"
+                class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl">
+                ✕
+            </button>
+
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                Platform Users
+            </h2>
+
+            <div class="mb-5">
+                <input id="search" type="text" placeholder="Search users..."
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div id="userscontainer" class="max-h-[400px] overflow-y-auto space-y-3">
+                {{-- Container --}}
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const usersopen = document.getElementById('usersopen');
+        const userpopup = document.getElementById('userpopup');
+        const closeuser = document.getElementById('closeuser');
+        const users = @json($users);
+        const userscontainer = document.getElementById('userscontainer');
+        const search = document.getElementById('search');
+
+        usersopen.addEventListener('click',()=>{
+            userpopup.classList.remove('hidden');
+        })
+
+        closeuser.addEventListener('click',()=>{
+            userpopup.classList.add('hidden');
+        })
+
+        search.addEventListener('keyup', () => {
+
+        let value = search.value.toLowerCase();
+
+        let searchresult = users.filter(user => {
+
+            let fullname = (user.firstname + " " + user.lastname).toLowerCase();
+            let email = user.email.toLowerCase();
+
+            return fullname.includes(value) || email.includes(value);
+        });
+            userscontainer.innerHTML = '';
+            showUsers(searchresult);
+        });
+
+        showUsers(users);
+
+        function showUsers(users){
+        users.forEach( user => {
+            userscontainer.innerHTML += `
+                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:shadow transition">
+                    <div>
+                        <p class="font-semibold text-gray-800">${user.firstname} ${user.lastname}</p>
+                        <p class="text-sm text-gray-500">${user.email}</p>
+                    </div>
+                    <div>
+                    <form method="GET" action="ban.user/${user.id}">
+                    <button
+                        class="px-4 py-2 text-sm font-semibold rounded-lg bg-${user.Banned ? 'green' : 'red'}-500 text-white hover:bg-${user.Banned ? 'green' : 'red'}-600 transition">
+                        ${user.Banned ? 'Unban' : 'Ban'}
+                    </button>
+                    </div>
+                    </form>
+                </div>
+            `
+        })
+        }
+        console.log(users);
+    </script>
 </body>
 
 </html>
