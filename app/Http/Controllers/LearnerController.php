@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Connect_sessions;
+use Carbon\Carbon;
 
 class LearnerController extends Controller
 {
@@ -39,6 +40,19 @@ class LearnerController extends Controller
                             ->limit(5)
                             ->get();
 
-        return View('learner.Dashboard', compact('recommended','totalHours', 'totalsessions', 'ActiveSessions', 'learner'));
+            foreach ($ActiveSessions as $session) {
+
+                $startTime = Carbon::parse($session->start_time);
+
+                $session->canJoin = now()->greaterThanOrEqualTo(
+                    $startTime->copy()->subMinutes(10)
+                );
+            }
+        $badge = DB::table('users as u')
+                    ->join('badges as b','b.id','=','u.badges_id')
+                    ->Where('u.id', auth::user()->id)
+                    ->first();
+                
+        return View('learner.Dashboard', compact('badge','recommended','totalHours', 'totalsessions', 'ActiveSessions', 'learner'));
     }
 }
