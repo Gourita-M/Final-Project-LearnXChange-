@@ -10,7 +10,39 @@ use App\Models\Certificates;
 
 class CertificatesController extends Controller
 {
-    
+    public function requestCertificate(Request $request)
+    {
+        $request->validate([
+            'skill_id' => 'required|integer',
+        ]);
+
+        $teacherSkill = DB::table('teacher_skills')
+            ->where('id', $request->skill_id)
+            ->where('users_id', auth()->id())
+            ->first();
+
+        if (! $teacherSkill) {
+            return redirect()->back()->with('error', 'Skill not found or not owned by you.');
+        }
+
+        $existing = Certificates::where('users_id', auth()->id())
+            ->where('skills_id', $teacherSkill->skills_id)
+            ->where('status', 'pending')
+            ->exists();
+
+        if ($existing) {
+            return redirect()->back()->with('error', 'You already have a pending certificate request for this skill.');
+        }
+
+        Certificates::create([
+            'users_id' => auth()->id(),
+            'skills_id' => $teacherSkill->skills_id,
+            'status' => 'pending',
+        ]);
+
+        return redirect()->back()->with('success', 'Certificate request submitted successfully.');
+    }
+
     public function approve(Request $request)
     {
 
