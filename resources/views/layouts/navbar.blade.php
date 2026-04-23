@@ -17,7 +17,7 @@
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-sm">
                     search
                 </span>
-                <input type="text" placeholder="Search..."
+                <input id="searchbar" type="text" placeholder="Search..."
                     class="w-full pl-10 pr-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 transition" />
             </div>
         </div>
@@ -28,9 +28,7 @@
                     <a href="skills" class="text-slate-500 hover:text-primary text-sm transition">
                         Skills
                     </a>
-                    <a href="#" class="text-slate-500 hover:text-primary text-sm transition">
-                        Earnings
-                    </a>
+                    
                 </nav>
 
                 <div class="flex items-center gap-2">
@@ -109,4 +107,12 @@
     function toggleMenu() {
         document.getElementById('profileMenu').classList.toggle('hidden');
     }
+
+    const searchbar = document.getElementById('searchbar');
+
+    searchbar.addEventListener('keydown', (u)=> {
+        if (u.key === 'Enter') {
+            window.location.href = '/skills?search=' + searchbar.value;
+        }
+    })
 </script>
