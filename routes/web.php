@@ -40,6 +40,8 @@ Route::post('/request-Learning', [LearningRequestController::class, 'create'])->
 
 Route::get('/teacher', [TeacherController::class, 'index'])->middleware(['role:teacher', 'auth']);
 
+Route::post('/request-certificate', [CertificatesController::class, 'requestCertificate'])->name('request.certificate')->middleware(['role:teacher', 'auth']);
+
 Route::post('/Skill-Create', [SkillController::class, 'create'])->name('create.skill')->middleware('auth');
 
 Route::post('/connect-session', [ConnectSessionsController::class, 'acceptRequest'])->name('connect.session');
@@ -56,10 +58,12 @@ Route::post('/submit.review', [ReviewController::class, 'submitReview'])->name('
 
 Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
 
-Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->middleware(['role:admin', 'auth']);
 
-Route::post('/aprove.certificate', [CertificatesController::class, 'approve'])->name('aprove.certificate');
-Route::post('/decline.certificate', [CertificatesController::class, 'decline'])->name('decline.certificate');
+Route::post('/admin/report/resolve', [AdminController::class, 'resolveReport'])->name('admin.report.resolve')->middleware(['role:admin', 'auth']);
+
+Route::post('/aprove.certificate', [CertificatesController::class, 'approve'])->name('aprove.certificate')->middleware(['role:admin', 'auth']);
+Route::post('/decline.certificate', [CertificatesController::class, 'decline'])->name('decline.certificate')->middleware(['role:admin', 'auth']);
 
 Route::get('/ban.user/{id}', [AdminController::class, 'banUser'])->middleware(['role:admin', 'auth']);;
 
