@@ -30,12 +30,6 @@
                     </a>
                     
                 </nav>
-
-                <div class="flex items-center gap-2">
-                    <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition">
-                        <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
-                    </button>
-                </div>
                 <div class="relative">
                     <button onclick="toggleMenu()"
                         class="flex items-center gap-3 pl-3 border-l border-slate-200 dark:border-slate-700">
@@ -68,6 +62,14 @@
 
                         @role('teacher')
                             <a href="/teacher"
+                                class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                                <span class="material-symbols-outlined text-[18px]">dashboard</span>
+                                Dashboard
+                            </a>
+                        @endrole
+
+                        @role('admin')
+                            <a href="/admin"
                                 class="flex items-center gap-2 px-4 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition">
                                 <span class="material-symbols-outlined text-[18px]">dashboard</span>
                                 Dashboard
