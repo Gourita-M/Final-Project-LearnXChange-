@@ -150,10 +150,10 @@
 
             <section class="lg:col-span-2 space-y-6">
                 <div class="flex items-center justify-between">
-                    <h2 class="text-2xl font-bold text-on-surface">Ceftificates Requests</h2>
+                    <h2 class="text-2xl font-bold text-on-surface">Certificates Requests</h2>
 
                 </div>
-                <div class="bg-surface-container-low rounded-xl overflow-hidden">
+                <div class="bg-surface-container-low rounded-xl overflow-hidden ">
                     <div class="divide-y divide-surface-container-high max-h-96 overflow-y-auto">
                         @forelse($certificates as $certificate)
                             <div
@@ -207,6 +207,62 @@
                         @endforelse
                     </div>
                 </div>
+            </section>
+
+            <section class="bg-surface-container-lowest rounded-3xl p-8 lg:col-span-2">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-on-surface">Review Reports</h2>
+                        <p class="text-sm text-on-surface-variant">Inspect reported messages and resolve them when appropriate.</p>
+                    </div>
+                    <span class="text-sm text-tertiary font-semibold">{{ $reports->count() }} active</span>
+                </div>
+
+                @if($reports->isEmpty())
+                    <div class="p-6 text-center text-on-surface-variant">
+                        <p class="text-lg font-semibold">No active reports</p>
+                        <p class="text-sm">All reports have been reviewed or there are no new reports.</p>
+                    </div>
+                @else
+                    <div class="space-y-4 max-h-[500px] overflow-y-auto">
+                        @foreach($reports as $report)
+                            <div class="p-5 rounded-3xl bg-white border border-slate-200 shadow-sm">
+                                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                    <div>
+                                        <p class="text-sm font-semibold text-on-surface">{{ $report->reason }}</p>
+                                        <p class="text-xs text-on-surface-variant mt-1">
+                                            Reported by {{ $report->reporter_firstname }} {{ $report->reporter_lastname }}
+                                            against {{ $report->reported_firstname }} {{ $report->reported_lastname }} •
+                                            {{ \Carbon\Carbon::parse($report->date)->format('M d, Y') }}
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-col gap-2 w-full md:w-auto">
+                                        <div class="flex flex-wrap gap-2 items-center">
+                    
+                                            <button type="button" data-report-id="{{ $report->reportid }}" class="report-manage-btn inline-flex items-center gap-2 rounded-xl bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-200 transition">
+                                                Manage
+                                            </button>
+                                        </div>
+                                        <div id="report-actions-{{ $report->reportid }}" class="hidden flex flex-wrap gap-2 items-center mt-2">
+                                            <form method="POST" action="{{ route('admin.report.resolve') }}" class="w-full md:w-auto">
+                                                @csrf
+                                                <input type="hidden" name="report_id" value="{{ $report->reportid }}" />
+                                                <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition">
+                                                    Resolve
+                                                </button>
+                                            </form>
+                                            <a href="/ban.user/{{ $report->reported_id }}"
+                                                onclick="return confirm('Ban reported user {{ $report->reported_firstname }} {{ $report->reported_lastname }}?')"
+                                                class="inline-flex items-center gap-2 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700 transition">
+                                                Ban User
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </section>
 
             <aside class="space-y-8">
@@ -345,6 +401,18 @@
             `
         })
         }
+
+        const reportManageButtons = document.querySelectorAll('.report-manage-btn');
+
+        reportManageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const target = document.getElementById(`report-actions-${button.dataset.reportId}`);
+                if (!target) return;
+                const isHidden = target.classList.toggle('hidden');
+                button.textContent = isHidden ? 'Manage' : 'Hide';
+            });
+        });
+
         console.log(users);
     </script>
 </body>
