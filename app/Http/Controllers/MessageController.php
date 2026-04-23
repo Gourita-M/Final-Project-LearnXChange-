@@ -27,7 +27,7 @@ class MessageController extends Controller
 
         User::where('id', auth::user()->id)->increment('xp', 50);
         
-        return Redirect('/teacher')->with('success','Your Session if Finished');
+        return Redirect('/teacher')->with('success','Your Session is Finished');
     }
 
     public function index($id)
