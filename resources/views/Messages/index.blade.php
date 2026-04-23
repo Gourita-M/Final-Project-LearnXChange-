@@ -107,6 +107,9 @@
 <body class="bg-surface text-on-surface antialiased overflow-hidden">
 
     @include('layouts.navbar')
+    @include('layouts.notification')
+    @include('layouts.notificationError')
+    
     <main class="pt-20 h-screen flex">
 
         <div class="flex-1 flex flex-col p-6 gap-6 bg-surface-container-low border-r border-outline-variant/10">
@@ -114,23 +117,27 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-2xl font-extrabold tracking-tight text-on-surface">Advanced UI Architecture</h1>
-                    <p class="text-on-surface-variant text-sm">Mentoring Session with Sarah J.</p>
+                    <p class="text-on-surface-variant text-sm">Mentoring Session with {{$participants->teachername}}</p>
                 </div>
                 <div class="flex gap-3">
-                    <button
-                        class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-white transition-all shadow-sm border border-outline-variant/10">
-                        <span class="material-symbols-outlined">screen_share</span>
-                        Report
-                    </button>
                     @role('learner')
                     <button id="review"
                         class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
                         End Session
                     </button>
+                    
                     @endrole
                     @role('teacher')
-                    <button id="Leave"
-                        class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                    <form method="POST" action="{{Route('leave.season')}}">
+                        @csrf
+                        <input name="sessionid" type="hidden" value="{{ $sessionid }}">
+                        <button type="submit"
+                            class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                            End Session
+                        </button>
+                    </form>
+                    <button id="review"
+                        class="flex hidden items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
                         End Session
                     </button>
                     @endrole
@@ -241,7 +248,7 @@
                         <div class="flex items-center gap-3">
                             <div class="relative">
                                 <img alt="You" class="w-10 h-10 rounded-full"
-                                    src="{{$participants->teacherprofile}}" />
+                                    src="{{$participants->learnerprofile}}" />
                                 <div
                                     class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full">
                                 </div>
@@ -253,35 +260,14 @@
                         </div>
                     </div>
                 </div>
-
-                <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Shared Resources</h3>
-                <div class="space-y-3">
-                    <div
-                        class="flex items-center gap-3 p-4 bg-surface-container-low rounded-lg border border-outline-variant/10 group cursor-pointer hover:border-primary/50 transition-colors">
-                        <span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">link</span>
-                        <div class="flex-1 overflow-hidden">
-                            <a href="#">Link here</a>
-                        </div>
-                    </div>
-                </div>
-                
-                
-            </div>
-
-            <div class="p-6 bg-surface-container-low border-t border-outline-variant/10">
-                <button
-                    class="w-full flex items-center justify-center gap-2 py-3 bg-surface-container-lowest text-primary font-bold rounded-lg border border-primary/20 hover:bg-primary/5 transition-colors">
-                    <span class="material-symbols-outlined">add</span>
-                    Add Resource
-                </button>
             </div>
         </aside>
     </main>
     <input id="sessionid" type="hidden" value="{{ $sessionid }}">
 
-    
     <script>
 
+        // logic dyal Messages i may add Something new or edit it
         const reviewPopup = document.getElementById('reviewPopup');
         const review = document.getElementById('review');
         const closeReview = document.getElementById('closeReview');
@@ -362,21 +348,40 @@
                 "flex gap-3";
 
             div.innerHTML = `
-        <div class="space-y-1 ${isMine ? 'text-right' : ''}">
-            <div class="flex ${isMine ? 'flex-row-reverse' : ''} items-center gap-2">
-                <span class="text-xs font-bold">
-                    ${isMine ? 'You' : (message.sender?.name ?? 'User')}
-                </span>
-            </div>
+    <div class="space-y-1 ${isMine ? 'text-right' : ''}">
+        
+        <div class="flex ${isMine ? 'flex-row-reverse' : ''} items-center gap-2">
+            <span class="text-xs font-bold">
+                ${isMine ? 'You' : (message.sender?.name ?? 'User')}
+            </span>
 
-            <div class="${isMine 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-200 text-black'
-            } p-4 rounded-lg max-w-xl">
-                ${message.content}
-            </div>
+            ${
+                !isMine 
+                ? `
+                <form method="POST" action="{{ Route('report.message')}}">
+                    <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+                    <input type="hidden" name="message_id" value="${message.id}">
+                    <input type="hidden" name="sessionid" value="{{ $sessionid }}">
+
+                    <button type="submit"
+                        class="text-red-500 text-xs hover:underline">
+                        Report
+                    </button>
+                </form>
+                `
+                : ''
+            }
         </div>
-    `;
+
+        <div class="${isMine 
+            ? 'bg-blue-500 text-white' 
+            : 'bg-gray-200 text-black'
+        } p-4 rounded-lg max-w-xl">
+            ${message.content}
+        </div>
+
+    </div>
+`;
 
             chatBox.appendChild(div);
         }
@@ -389,9 +394,7 @@
 
             const senderid = {{ auth()->id() }};
             const input = document.querySelector("input[type=text]");
-            const message = input.value;
-
-            console.log(senderid)
+            const message = document.getElementById('messageInput').value;
 
             if (!message.trim()) return;
 
@@ -407,14 +410,14 @@
                     "sender_id": senderid
                 })
             });
-
-            input.value = "";
+            
+            document.getElementById('messageInput').value = '';
 
             refreshMessages();
         }
         document.querySelector("button.bg-primary").addEventListener("click", sendMessage);
 
-        document.querySelector("input").addEventListener("keypress", function(e) {
+        document.getElementById('messageInput').addEventListener("keypress", function(e) {
             if (e.key === "Enter") sendMessage();
         });
 
