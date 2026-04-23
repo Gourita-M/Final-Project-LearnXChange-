@@ -24,6 +24,8 @@ class MessageController extends Controller
                             ->update([
                                 'status' => 'Finished',
                             ]);
+
+        User::where('id', auth::user()->id)->increment('xp', 50);
         
         return Redirect('/teacher')->with('success','Your Session if Finished');
     }
