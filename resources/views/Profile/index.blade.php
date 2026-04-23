@@ -67,7 +67,7 @@
 </head>
 
 <body class="bg-background mt-16 font-body text-on-background antialiased">
-    
+
     @include('layouts.navbar')
     @include('layouts.notification')
     @include('layouts.notificationError')
@@ -98,15 +98,6 @@
                     <h1 class="text-3xl font-extrabold font-headline tracking-tight text-on-surface">
                         {{ $user->firstname }} {{ $user->lastname }}
                     </h1>
-                    <p class="text-on-surface-variant font-medium">Senior UI Designer &amp; Mentor</p>
-                    <div class="flex gap-2 mt-3">
-                        <span
-                            class="px-3 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wider rounded-full">Pro
-                            Member</span>
-                        <span
-                            class="px-3 py-1 bg-cyan-100 text-cyan-700 text-[10px] font-bold uppercase tracking-wider rounded-full">Top
-                            Instructor</span>
-                    </div>
                 </div>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -347,115 +338,111 @@
         </div>
     </div>
 
-<div id="passwordPopup"
-    class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
+    <div id="passwordPopup"
+        class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
 
-    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
+        <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
-        <button class="closePasswordPopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
-            ✕
-        </button>
+            <button class="closePasswordPopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
+                ✕
+            </button>
 
-        <h2 class="text-2xl font-extrabold font-headline mb-2">
-            Change Password
-        </h2>
-        <p class="text-sm text-slate-500 mb-6">
-            Update your account password securely
-        </p>
+            <h2 class="text-2xl font-extrabold font-headline mb-2">
+                Change Password
+            </h2>
+            <p class="text-sm text-slate-500 mb-6">
+                Update your account password securely
+            </p>
 
-        <form method="POST" action="{{ route('password.change') }}" class="space-y-5">
-            @csrf
-            <div>
-                <label class="block text-sm font-medium mb-1">Current Password</label>
-                <input name="current_password" type="password" required
-                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
-            </div>
+            <form method="POST" action="{{ route('password.change') }}" class="space-y-5">
+                @csrf
+                <div>
+                    <label class="block text-sm font-medium mb-1">Current Password</label>
+                    <input name="current_password" type="password" required
+                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                </div>
 
-            <div>
-                <label class="block text-sm font-medium mb-1">New Password</label>
-                <input name="new_password" type="password" required
-                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
-            </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">New Password</label>
+                    <input name="new_password" type="password" required
+                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                </div>
 
-            <div>
-                <label class="block text-sm font-medium mb-1">Confirm Password</label>
-                <input name="new_password_confirmation" type="password" required
-                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
-            </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Confirm Password</label>
+                    <input name="new_password_confirmation" type="password" required
+                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                </div>
 
-            <div class="flex gap-3 pt-4">
-                <button type="button"
-                    class="closePasswordPopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
-                    Cancel
-                </button>
-                <button type="submit"
-                    class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
-                    Update
-                </button>
-            </div>
-        </form>
+                <div class="flex gap-3 pt-4">
+                    <button type="button"
+                        class="closePasswordPopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div id="profilePicPopup"
-    class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
+    <div id="profilePicPopup"
+        class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
 
-    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
+        <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
-        <button class="closeProfilePopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
-            ✕
-        </button>
+            <button class="closeProfilePopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
+                ✕
+            </button>
 
-        <h2 class="text-2xl font-extrabold font-headline mb-2">
-            Update Profile Picture
-        </h2>
-        <p class="text-sm text-slate-500 mb-6">
-            Paste your image URL below
-        </p>
+            <h2 class="text-2xl font-extrabold font-headline mb-2">
+                Update Profile Picture
+            </h2>
+            <p class="text-sm text-slate-500 mb-6">
+                Paste your image URL below
+            </p>
 
-        <form method="POST" action="{{ route('change.profilepic') }}" class="space-y-5">
-            @csrf
+            <form method="POST" action="{{ route('change.profilepic') }}" class="space-y-5">
+                @csrf
 
-            <div>
-                <label class="block text-sm font-medium mb-1">Image URL</label>
-                <input name="profilepic" type="text"
-                    placeholder="https://example.com/avatar.jpg"
-                    value="{{ $user->profilepic }}"
-                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
-            </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Image URL</label>
+                    <input name="profilepic" type="text" placeholder="https://example.com/avatar.jpg"
+                        value="{{ $user->profilepic }}"
+                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                </div>
 
-            <div class="flex gap-3 pt-4">
-                <button type="button"
-                    class="closeProfilePopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
-                    Cancel
-                </button>
-                <button type="submit"
-                    class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
-                    Save
-                </button>
-            </div>
-        </form>
+                <div class="flex gap-3 pt-4">
+                    <button type="button"
+                        class="closeProfilePopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
     <script>
-
         //profilepic js
 
         const profilePicPopup = document.getElementById('profilePicPopup');
         const closeProfilePopup = document.querySelectorAll('.closeProfilePopup');
         const profilepicbtn = document.getElementById('profilepicbtn');
 
-        profilepicbtn.addEventListener('click', ()=> {
+        profilepicbtn.addEventListener('click', () => {
             profilePicPopup.classList.remove('hidden');
         })
 
-        closeProfilePopup.forEach( (u)=> {
-            u.addEventListener('click', ()=> {
+        closeProfilePopup.forEach((u) => {
+            u.addEventListener('click', () => {
                 profilePicPopup.classList.add('hidden');
             })
         })
-        
+
         //
         const skillpopup = document.getElementById('skillpopup');
         const popupbtn = document.getElementById('popupbtn');
@@ -464,15 +451,15 @@
         const managepass = document.getElementById('managepass');
         const closePasswordPopup = document.querySelectorAll('.closePasswordPopup');
 
-        managepass.addEventListener('click', ()=> {
+        managepass.addEventListener('click', () => {
             passwordPopup.classList.remove('hidden');
         })
 
-        closePasswordPopup.forEach( u => {
-            u.addEventListener('click', ()=> {
+        closePasswordPopup.forEach(u => {
+            u.addEventListener('click', () => {
                 passwordPopup.classList.add('hidden');
             })
-            
+
         })
         popupbtn.addEventListener('click', () => {
             skillpopup.classList.remove('hidden');
