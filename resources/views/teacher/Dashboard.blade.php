@@ -299,6 +299,42 @@
                             </div>
                         </div>
                     </section>
+                    <section class="bg-surface-container-lowest rounded-3xl p-8">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h3 class="text-xl font-extrabold font-headline">My Teaching Skills</h3>
+                                <p class="text-sm text-on-surface-variant">List of your active teaching skills with certificate request actions.</p>
+                            </div>
+                            <span class="text-sm text-on-surface-variant">{{ $teacherSkills->count() }} skills</span>
+                        </div>
+                        <div class="space-y-4">
+                            @forelse ($teacherSkills as $skill)
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 bg-white rounded-3xl border border-slate-200">
+                                    <div>
+                                        <p class="font-semibold text-on-surface">{{ $skill->name }}</p>
+                                        <p class="text-sm text-on-surface-variant">Level {{ $skill->level }} · {{ $skill->years_experience ?? 0 }} years experience</p>
+                                    </div>
+                                    <button type="button"
+                                        class="request-certificate-btn inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold transition-colors bg-primary text-white hover:bg-blue-700 disabled:bg-slate-300 disabled:text-slate-600"
+                                        data-skill-id="{{ $skill->teacherskillid }}"
+                                        data-skill-name="{{ $skill->name }}"
+                                        data-skill-key="{{ $skill->skill_id }}"
+                                        @if(in_array($skill->skill_id, $pendingCertificates)) disabled @endif>
+                                        @if(in_array($skill->skill_id, $pendingCertificates))
+                                            Pending Request
+                                        @else
+                                            Request Certificate
+                                        @endif
+                                    </button>
+                                </div>
+                            @empty
+                                <div class="text-center py-8 text-on-surface-variant">
+                                    <p class="font-medium">No teaching skills found yet.</p>
+                                    <p class="text-sm">Add skills from your profile page to request certificates.</p>
+                                </div>
+                            @endforelse
+                        </div>
+                    </section>
                 </div>
                 <div class="space-y-8">
                     <section class="bg-surface-container-lowest rounded-3xl p-8">
@@ -437,6 +473,44 @@
         </div>
     </div>
 
+    <div id="certificatePopup" class="fixed inset-0 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white p-8 rounded-lg w-full max-w-[440px] relative shadow-xl border border-slate-200">
+            <button
+                class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-lg transition-colors"
+                id="closeCertificatePopup">
+                <span class="material-symbols-outlined block text-xl">close</span>
+            </button>
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-900">Request Certificate</h2>
+                <p class="text-sm text-slate-500 mt-1">Submit a certificate request for the selected teaching skill.</p>
+            </div>
+            <form id="certificateForm" method="POST" action="{{ route('request.certificate') }}">
+                @csrf
+                <input type="hidden" name="skill_id" id="certificate_skill_id" />
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Selected Skill</label>
+                    <p id="certificate_skill_name" class="text-sm text-slate-900 font-semibold"></p>
+                </div>
+                <div class="mb-5">
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Comments (optional)</label>
+                    <textarea name="comments" rows="4"
+                        class="w-full border border-slate-200 rounded-lg p-3 text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400"
+                        placeholder="Any note for the admin..."></textarea>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-lg transition-all shadow-md active:scale-[0.98]">
+                        Submit Certificate Request
+                    </button>
+                    <button type="button"
+                        class="closeCertificatePopup w-full bg-white hover:bg-slate-50 text-slate-600 font-semibold px-6 py-3 rounded-lg transition-colors border border-transparent">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         const acceptBtn = document.getElementById('acceptbtn');
         const learningPopup = document.getElementById('learningpopup');
@@ -450,6 +524,10 @@
         const declname = document.getElementById('declname');
         const declid = document.getElementById('decline_request_id');
         const closeDecline = document.querySelectorAll('.closeDecline');
+        const certificatePopup = document.getElementById('certificatePopup');
+        const closeCertificatePopup = document.querySelectorAll('.closeCertificatePopup');
+        const certificateSkillId = document.getElementById('certificate_skill_id');
+        const certificateSkillName = document.getElementById('certificate_skill_name');
 
         closeDecline.forEach(u => {
             u.addEventListener('click', () => {
@@ -466,6 +544,22 @@
                 declid.value = id;
                 console.log(name);
             })
+        })
+
+        document.querySelectorAll('.request-certificate-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const teacherskill = this.dataset.skillId;
+                const skillName = this.dataset.skillName;
+                certificateSkillId.value = teacherskill;
+                certificateSkillName.innerText = skillName;
+                certificatePopup.classList.remove('hidden');
+            });
+        });
+
+        closeCertificatePopup.forEach(btn => {
+            btn.addEventListener('click', () => {
+                certificatePopup.classList.add('hidden');
+            });
         })
 
         document.querySelectorAll('.accept-btn').forEach(btn => {
