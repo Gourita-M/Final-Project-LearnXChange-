@@ -105,7 +105,8 @@
 
 <body class="bg-surface text-on-surface antialiased">
     @include('layouts.navbar')
-
+    @include('layouts.notification')
+    @include('layouts.notificationError')
     
     <main class="md:ml-64 pt-24 px-8 pb-12 min-h-screen">
         <div class="max-w-7xl mx-auto space-y-12">
@@ -123,27 +124,13 @@
 
                                 <h2 class="text-2xl font-bold">Progress Overview</h2>
                                 <span
-                                    class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Intermediate
-                                    Explorer</span>
+                                    class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                                    {{ $badge->name }}</span>
                             </div>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-4xl font-extrabold text-primary">{{ $learner->xp }}</span>
-                            <span class="text-on-surface-variant font-medium ml-1">XP Total</span>
                         </div>
                     </div>
                     <div class="space-y-6">
-                        <div class="flex justify-between items-end mb-2">
-                            <span class="text-sm font-semibold text-on-surface-variant">Level
-                                {{ $learner->current_level }}</span>
-                            <span class="text-sm font-semibold text-primary">850 XP to Level 15</span>
-                        </div>
-                        <div class="h-4 bg-primary-fixed rounded-full overflow-hidden">
-                            <div
-                                class="h-full w-[78%] bg-gradient-to-r from-primary to-tertiary rounded-full shadow-[0_0_12px_rgba(0,74,198,0.3)]">
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-3 gap-4 pt-6">
+                        <div class="grid grid-cols-2 gap-4 pt-6">
                             <div class="bg-surface-container-low p-4 rounded-2xl text-center">
                                 <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Sessions</p>
                                 <p class="text-xl font-bold">{{ $totalsessions }}</p>
@@ -151,10 +138,6 @@
                             <div class="bg-surface-container-low p-4 rounded-2xl text-center">
                                 <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Hours</p>
                                 <p class="text-xl font-bold">{{ $totalHours }}</p>
-                            </div>
-                            <div class="bg-surface-container-low p-4 rounded-2xl text-center">
-                                <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Rank</p>
-                                <p class="text-xl font-bold">#12</p>
                             </div>
                         </div>
                     </div>
@@ -211,10 +194,17 @@
                                         <span class="text-xs font-medium">{{ $ActiveSession->session_type }}</span>
                                     </div>
                                 </div>
-                                <a href="messages/{{ $ActiveSession->id }}"
-                                    class="block w-full mt-4 py-3 text-center bg-surface-container-high text-on-surface font-bold rounded-xl hover:bg-primary hover:text-on-primary transition-all">
-                                    Join Room
-                                </a>
+                                @if($ActiveSession->canJoin)
+                                    <a href="messages/{{ $ActiveSession->id }}"
+                                        class="block w-full mt-4 py-3 text-center bg-primary text-on-primary font-bold rounded-xl hover:opacity-90 transition-all">
+                                        Join Room
+                                    </a>
+                                @else
+                                    <button disabled
+                                        class="block w-full mt-4 py-3 text-center bg-gray-300 text-gray-600 font-bold rounded-xl cursor-not-allowed">
+                                        Available 10 min before
+                                    </button>
+                                @endif
                             </div>
                         @endforeach
                         @endif                    
@@ -225,8 +215,7 @@
                     <div class="flex items-center justify-between mb-8">
                         <div>
                             <h2 class="text-2xl font-bold tracking-tight">Recommended for You</h2>
-                            <p class="text-on-surface-variant text-sm">Based on your interest in <span
-                                    class="text-primary font-bold">Product Design</span></p>
+                            <p class="text-on-surface-variant text-sm">Based on your interests</p>
                         </div>
                         <a href="skills"
                             class="px-6 py-2 rounded-full border border-outline-variant/40 text-sm font-bold hover:bg-surface-container-low transition-colors">Explore
