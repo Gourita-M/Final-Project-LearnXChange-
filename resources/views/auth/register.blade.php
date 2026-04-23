@@ -163,7 +163,7 @@
                             class="w-full pl-11 pr-10 py-3.5 bg-surface-container-high border-none rounded-xl 
                                 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest 
                                 transition-all duration-200 text-on-surface appearance-none">
-                            <option value="learner" disabled selected>Select Your Role</option>
+                            <option value="" disabled selected>Select Your Role</option>
                             <option value="learner">Learner</option>
                             <option value="teacher">Teacher</option>
 
