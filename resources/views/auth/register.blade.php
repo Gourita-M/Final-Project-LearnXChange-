@@ -104,23 +104,8 @@
 
 <body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col">
 
-    <nav
-        class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-center items-center h-16 px-6 w-full">
-        <div class="max-w-7xl w-full flex justify-between items-center">
-            <span
-                class="text-2xl font-extrabold tracking-tight text-blue-700 dark:text-blue-500 font-headline">LearnXChange</span>
-            <div class="hidden md:flex gap-8">
-                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors font-medium"
-                    href="#">Courses</a>
-                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors font-medium"
-                    href="#">Mentors</a>
-                <a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors font-medium"
-                    href="#">Enterprise</a>
-            </div>
-            <a class="text-blue-700 dark:text-blue-400 font-bold hover:text-blue-600 transition-colors"
-                href="/login">Log in</a>
-        </div>
-    </nav>
+    @include('layouts.notification')
+    @include('layouts.notificationError')
 
     <main class="flex-grow flex items-center justify-center pt-24 pb-12 px-4 tonal-shift">
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -142,24 +127,9 @@
                     <p class="text-on-surface-variant font-medium">Start your journey toward mastery today.</p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                    <button
-                        class="flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-surface-container-high hover:bg-surface-container-highest transition-all duration-200 group">
-                        <img alt="Google Logo" class="w-5 h-5"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_rOW5n3jIMBlQoUlHKQfLgHNzQnEXwwy2xQT-WFG6YZ-8avi3VdfMGtzqaOvjfCofDOn8Lk0g_AW-gSFawqJds2uIQK-fFNl0FkvKfiYjQlN9TfObqd3DAuVf8vg_0nZikUR7myxkT39CXrV-nLlBQSYX5lm4BIkDMHZgqWK1GrXwHst6eYAfWixH3uHTH2QxxoJByvLX6cD9uyCT-iE7w1NxqxGFGOvBDDMvxQ4QAzELv9rP5ipuXpfBC8-wU-pfVqjISRFO8RE" />
-                        <span class="text-sm font-semibold text-on-surface">Google</span>
-                    </button>
-                    <button
-                        class="flex items-center justify-center gap-3 py-3 px-4 rounded-xl bg-surface-container-high hover:bg-surface-container-highest transition-all duration-200 group">
-                        <img alt="Microsoft Logo" class="w-5 h-5"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm-EjC_ScZ8o4eOG_kw6Y_C_k5ogPFVgUqljoBVF3VdfzvKoYcJBzoOWE-5WDqC32Pg7uMCIzBGniAWTcCjaMEMyxsOy530uP-fYL-VgSjXvktOAIj_9XldHlaO4N_IUT_r9PYQ9eipK8DdX_m64dAxlqZHbL0AjvhV6yLjMdu_9_UbSisnyrXPgGB5QVvyS-XIqsXpRxAhG0HgTxNXbynL-UZStdQ1TvYDINg_8ybtrrSdjTVsA9AGdfRNXQxYvi5V48KW9-ttxY" />
-                        <span class="text-sm font-semibold text-on-surface">Microsoft</span>
-                    </button>
-                </div>
-
                 <div class="flex items-center gap-4 mb-8">
                     <div class="h-[1px] flex-grow bg-outline-variant/30"></div>
-                    <span class="text-xs font-bold text-outline uppercase tracking-widest">Or with email</span>
+                    <span class="text-xs font-bold text-outline uppercase tracking-widest"></span>
                     <div class="h-[1px] flex-grow bg-outline-variant/30"></div>
                 </div>
                 <form class="space-y-5" method="POST" action="{{ route('register') }}">
@@ -168,7 +138,7 @@
                         <label class="block text-sm font-bold text-on-surface-variant ml-1" for="name">First
                             Name</label>
                         <div class="relative">
-                            <input name="firstname"
+                            <input name="firstname" required
                                 class="w-full pl-11 pr-4 py-3.5 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all duration-200 text-on-surface placeholder:text-outline/60"
                                 id="name" placeholder="3alal" type="text" />
                             <span
@@ -180,7 +150,7 @@
                         <label class="block text-sm font-bold text-on-surface-variant ml-1" for="name">Last
                             Name</label>
                         <div class="relative">
-                            <input name="lastname"
+                            <input name="lastname" required
                                 class="w-full pl-11 pr-4 py-3.5 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all duration-200 text-on-surface placeholder:text-outline/60"
                                 id="name" placeholder="Soba" type="text" />
                             <span
@@ -189,11 +159,11 @@
                     </div>
 
                     <div class="relative">
-                        <select name="role"
+                        <select name="role" required
                             class="w-full pl-11 pr-10 py-3.5 bg-surface-container-high border-none rounded-xl 
                                 focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest 
                                 transition-all duration-200 text-on-surface appearance-none">
-
+                            <option value="learner" disabled selected>Select Your Role</option>
                             <option value="learner">Learner</option>
                             <option value="teacher">Teacher</option>
 
@@ -215,7 +185,7 @@
                         <label class="block text-sm font-bold text-on-surface-variant ml-1" for="email">Email
                             Address</label>
                         <div class="relative">
-                            <input name="email"
+                            <input name="email" required
                                 class="w-full pl-11 pr-4 py-3.5 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all duration-200 text-on-surface placeholder:text-outline/60"
                                 id="email" placeholder="name@gmail.com" type="email" />
                             <span
@@ -227,7 +197,7 @@
                         <label class="block text-sm font-bold text-on-surface-variant ml-1"
                             for="password">Password</label>
                         <div class="relative">
-                            <input name="password"
+                            <input name="password" required
                                 class="w-full pl-11 pr-12 py-3.5 bg-surface-container-high border-none rounded-xl focus:ring-2 focus:ring-primary/40 focus:bg-surface-container-lowest transition-all duration-200 text-on-surface placeholder:text-outline/60"
                                 id="password" placeholder="••••••••" type="password" />
                             <span
