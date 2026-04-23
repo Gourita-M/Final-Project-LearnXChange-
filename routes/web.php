@@ -13,6 +13,9 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\CertificatesController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,3 +57,16 @@ Route::post('/submit.review', [ReviewController::class, 'submitReview'])->name('
 Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware('auth');
+
+Route::post('/aprove.certificate', [CertificatesController::class, 'approve'])->name('aprove.certificate');
+Route::post('/decline.certificate', [CertificatesController::class, 'decline'])->name('decline.certificate');
+
+Route::get('/ban.user/{id}', [AdminController::class, 'banUser'])->middleware(['role:admin', 'auth']);;
+
+Route::post('/password.change', [ChangePasswordController::class, 'changePassword'])->name('password.change');
+
+Route::post('/profile-pic', [ProfileController::class, 'changeProfilePic'])->name('change.profilepic');
+
+Route::post('/report-message', [ReportController::class, 'reportMessage'])->name('report.message');
+
+Route::post('/leave-season', [MessageController::class, 'leaveSeason'])->name('leave.season');
