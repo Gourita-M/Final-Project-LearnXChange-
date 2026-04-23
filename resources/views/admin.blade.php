@@ -279,17 +279,6 @@
                             <span class="material-symbols-outlined text-sm opacity-50"
                                 data-icon="chevron_right">chevron_right</span>
                         </button>
-                        <button
-                            class="w-full flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg hover:shadow-md transition-all group">
-                            <div class="flex items-center gap-3">
-                                <span
-                                    class="material-symbols-outlined text-on-surface-variant group-hover:text-tertiary"
-                                    data-icon="flag">flag</span>
-                                <span class="font-medium">Review Reports</span>
-                            </div>
-                            <span class="material-symbols-outlined text-sm opacity-50"
-                                data-icon="chevron_right">chevron_right</span>
-                        </button>
                     </div>
                 </div>
                 <div>
