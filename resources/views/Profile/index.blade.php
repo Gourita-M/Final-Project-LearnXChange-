@@ -1,6 +1,3 @@
-<?php
-print_r($user);
-?>
 <!DOCTYPE html>
 
 <html class="light" lang="en">
@@ -69,9 +66,13 @@ print_r($user);
     </style>
 </head>
 
-<body class="bg-background font-body text-on-background antialiased">
+<body class="bg-background mt-16 font-body text-on-background antialiased">
+    
     @include('layouts.navbar')
-    <main class="flex-1 md:ml-64 bg-background p-6 md:p-10 lg:p-12">
+    @include('layouts.notification')
+    @include('layouts.notificationError')
+
+    <main class="flex-1 md:ml-40 bg-background p-6 md:p-10 lg:p-12">
         <div class="max-w-4xl mx-auto space-y-8">
 
             <div class="flex flex-col md:flex-row items-start md:items-center gap-6 pb-8 border-b border-slate-200">
@@ -88,7 +89,7 @@ print_r($user);
                         @endif
 
                     </div>
-                    <button
+                    <button id="profilepicbtn"
                         class="absolute bottom-0 right-0 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:bg-blue-700 transition-all active:scale-90 flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm" data-icon="photo_camera">photo_camera</span>
                     </button>
@@ -145,7 +146,6 @@ print_r($user);
 
                             </div>
 
-                            <!-- 🔥 Edit Button -->
                             <div class="mt-6 flex justify-end">
                                 <button type="submit"
                                     class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg shadow-sm hover:opacity-90 transition-all">
@@ -174,28 +174,8 @@ print_r($user);
                                         <p class="text-[11px] text-slate-500">Update your security credentials</p>
                                     </div>
                                 </div>
-                                <button
+                                <button id="managepass"
                                     class="text-primary font-bold text-xs hover:underline uppercase tracking-wider">Manage</button>
-                            </div>
-                            <div
-                                class="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100">
-                                <div class="flex items-center gap-4">
-                                    <div
-                                        class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600">
-                                        <span class="material-symbols-outlined"
-                                            data-icon="verified_user">verified_user</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-sm text-on-surface">Two-Factor Authentication</p>
-                                        <p class="text-[11px] text-slate-500">Add an extra layer of security</p>
-                                    </div>
-                                </div>
-                                <div class="relative inline-flex items-center cursor-pointer">
-                                    <input checked="" class="sr-only peer" type="checkbox" />
-                                    <div
-                                        class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </section>
@@ -367,45 +347,133 @@ print_r($user);
         </div>
     </div>
 
-    @if (session('success'))
-        <div id="success-popup"
-            class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
-           glass-card bg-surface-container-lowest 
-           px-6 py-4 rounded-2xl 
-           shadow-[0_16px_40px_-8px_rgba(0,74,198,0.2)] 
-           flex items-center gap-3 
-           opacity-0 translate-y-[-10px] 
-           transition-all duration-500">
+<div id="passwordPopup"
+    class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
 
-            <span class="material-symbols-outlined text-primary text-[22px]">
-                check_circle
-            </span>
+    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
-            <p class="text-sm font-semibold text-on-surface">
-                {{ session('success') }}
-            </p>
-        </div>
+        <button class="closePasswordPopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
+            ✕
+        </button>
 
-        <script>
-            window.addEventListener('DOMContentLoaded', () => {
-                const popup = document.getElementById('success-popup');
+        <h2 class="text-2xl font-extrabold font-headline mb-2">
+            Change Password
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Update your account password securely
+        </p>
 
-                popup.classList.remove('opacity-0');
-                popup.classList.add('opacity-100');
+        <form method="POST" action="{{ route('password.change') }}" class="space-y-5">
+            @csrf
+            <div>
+                <label class="block text-sm font-medium mb-1">Current Password</label>
+                <input name="current_password" type="password" required
+                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+            </div>
 
-                setTimeout(() => {
-                    popup.classList.remove('opacity-100');
-                    popup.classList.add('opacity-0');
-                }, 10000);
-            });
-        </script>
-    @endif
+            <div>
+                <label class="block text-sm font-medium mb-1">New Password</label>
+                <input name="new_password" type="password" required
+                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Confirm Password</label>
+                <input name="new_password_confirmation" type="password" required
+                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+            </div>
+
+            <div class="flex gap-3 pt-4">
+                <button type="button"
+                    class="closePasswordPopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
+                    Cancel
+                </button>
+                <button type="submit"
+                    class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
+                    Update
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="profilePicPopup"
+    class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
+
+    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
+
+        <button class="closeProfilePopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
+            ✕
+        </button>
+
+        <h2 class="text-2xl font-extrabold font-headline mb-2">
+            Update Profile Picture
+        </h2>
+        <p class="text-sm text-slate-500 mb-6">
+            Paste your image URL below
+        </p>
+
+        <form method="POST" action="{{ route('change.profilepic') }}" class="space-y-5">
+            @csrf
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Image URL</label>
+                <input name="profilepic" type="text"
+                    placeholder="https://example.com/avatar.jpg"
+                    value="{{ $user->profilepic }}"
+                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+            </div>
+
+            <div class="flex gap-3 pt-4">
+                <button type="button"
+                    class="closeProfilePopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
+                    Cancel
+                </button>
+                <button type="submit"
+                    class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 
     <script>
+
+        //profilepic js
+
+        const profilePicPopup = document.getElementById('profilePicPopup');
+        const closeProfilePopup = document.querySelectorAll('.closeProfilePopup');
+        const profilepicbtn = document.getElementById('profilepicbtn');
+
+        profilepicbtn.addEventListener('click', ()=> {
+            profilePicPopup.classList.remove('hidden');
+        })
+
+        closeProfilePopup.forEach( (u)=> {
+            u.addEventListener('click', ()=> {
+                profilePicPopup.classList.add('hidden');
+            })
+        })
+        
+        //
         const skillpopup = document.getElementById('skillpopup');
         const popupbtn = document.getElementById('popupbtn');
         const closepopup = document.querySelectorAll('.closepopup');
+        const passwordPopup = document.getElementById('passwordPopup');
+        const managepass = document.getElementById('managepass');
+        const closePasswordPopup = document.querySelectorAll('.closePasswordPopup');
 
+        managepass.addEventListener('click', ()=> {
+            passwordPopup.classList.remove('hidden');
+        })
+
+        closePasswordPopup.forEach( u => {
+            u.addEventListener('click', ()=> {
+                passwordPopup.classList.add('hidden');
+            })
+            
+        })
         popupbtn.addEventListener('click', () => {
             skillpopup.classList.remove('hidden');
         })
