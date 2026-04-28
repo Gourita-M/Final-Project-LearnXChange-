@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('role');
             $table->string('profilepic')->nullable();
             $table->integer('xp')->default(0);
             $table->boolean('Banned')->default(0);
