@@ -114,7 +114,7 @@
     @include('layouts.notification')
     @include('layouts.notificationError')
 
-    <main class="ml-64 p-8 min-h-screen">
+    <main class="ml-10 p-8 min-h-screen">
 
         <div class="mt-20 space-y-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -307,7 +307,7 @@
                             </div>
                             <span class="text-sm text-on-surface-variant">{{ $teacherSkills->count() }} skills</span>
                         </div>
-                        <div class="space-y-4">
+                        <div class="space-y-4 max-h-[400px] overflow-y-auto">
                             @forelse ($teacherSkills as $skill)
                                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 bg-white rounded-3xl border border-slate-200">
                                     <div>
