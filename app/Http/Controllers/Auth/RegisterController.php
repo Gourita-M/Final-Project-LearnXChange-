@@ -31,6 +31,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
             'profilepic' => 'https://i.pinimg.com/736x/96/8f/14/968f14e1e60d0819dd356adfa5d614ec.jpg',
             'badges_id' => 1,
+            'role' => $request->role
         ]);
 
         $user->assignRole($request->role);
