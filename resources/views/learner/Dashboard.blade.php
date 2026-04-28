@@ -13,76 +13,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "surface-bright": "#f7f9fb",
-                        "background": "#f7f9fb",
-                        "tertiary-fixed-dim": "#89ceff",
-                        "secondary-fixed-dim": "#b9c7df",
-                        "tertiary-fixed": "#c9e6ff",
-                        "tertiary-container": "#0074a6",
-                        "surface-container-high": "#e6e8ea",
-                        "on-tertiary-container": "#e4f2ff",
-                        "tertiary": "#005a82",
-                        "error-container": "#ffdad6",
-                        "on-primary-fixed": "#00174b",
-                        "surface": "#f7f9fb",
-                        "surface-container-low": "#f2f4f6",
-                        "on-secondary-fixed-variant": "#3a485b",
-                        "on-secondary-container": "#57657a",
-                        "inverse-on-surface": "#eff1f3",
-                        "outline": "#737686",
-                        "secondary-fixed": "#d5e3fc",
-                        "on-tertiary-fixed": "#001e2f",
-                        "on-surface": "#191c1e",
-                        "on-surface-variant": "#434655",
-                        "on-background": "#191c1e",
-                        "on-primary-fixed-variant": "#003ea8",
-                        "surface-container-highest": "#e0e3e5",
-                        "primary-container": "#2563eb",
-                        "primary-fixed-dim": "#b4c5ff",
-                        "on-tertiary-fixed-variant": "#004c6e",
-                        "secondary": "#515f74",
-                        "surface-variant": "#e0e3e5",
-                        "surface-container": "#eceef0",
-                        "on-tertiary": "#ffffff",
-                        "inverse-primary": "#b4c5ff",
-                        "surface-dim": "#d8dadc",
-                        "on-error": "#ffffff",
-                        "on-error-container": "#93000a",
-                        "secondary-container": "#d5e3fc",
-                        "primary": "#004ac6",
-                        "error": "#ba1a1a",
-                        "outline-variant": "#c3c6d7",
-                        "on-primary": "#ffffff",
-                        "surface-tint": "#0053db",
-                        "primary-fixed": "#dbe1ff",
-                        "inverse-surface": "#2d3133",
-                        "on-secondary": "#ffffff",
-                        "on-secondary-fixed": "#0d1c2e",
-                        "surface-container-lowest": "#ffffff",
-                        "on-primary-container": "#eeefff"
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "label": ["Inter"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
         }
     </script>
     <style>
@@ -100,10 +33,27 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
+        /* Brand color */
+        .bg-primary-brand {
+            background-color: #004ac6;
+        }
+
+        .text-primary-brand {
+            color: #004ac6;
+        }
+
+        .hover-primary-brand:hover {
+            color: #004ac6;
+        }
+
+        .text-white {
+            color: #ffffff;
+        }
     </style>
 </head>
 
-<body class="bg-surface text-on-surface antialiased">
+<body class="bg-slate-50 text-gray-900 antialiased">
     @include('layouts.navbar')
     @include('layouts.notification')
     @include('layouts.notificationError')
@@ -112,91 +62,88 @@
         <div class="max-w-7xl mx-auto space-y-12">
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <section
-                    class="lg:col-span-8 bg-surface-container-lowest rounded-3xl p-8 shadow-[0_20px_50px_rgba(25,28,30,0.04)]">
+                <!-- Progress Overview Section -->
+                <section class="lg:col-span-8 bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                         <div class="flex items-center gap-4">
-                            <div class="w-16 h-16 bg-tertiary-fixed flex items-center justify-center rounded-2xl">
-                                <span class="material-symbols-outlined text-tertiary text-3xl"
+                            <div class="w-16 h-16 bg-blue-100 flex items-center justify-center rounded-2xl">
+                                <span class="material-symbols-outlined text-teal-600 text-3xl"
                                     style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
                             </div>
                             <div>
-
                                 <h2 class="text-2xl font-bold">Progress Overview</h2>
-                                <span
-                                    class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                                <span class="bg-blue-50 text-blue-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                                     {{ $badge->name }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="space-y-6">
                         <div class="grid grid-cols-2 gap-4 pt-6">
-                            <div class="bg-surface-container-low p-4 rounded-2xl text-center">
-                                <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Sessions</p>
+                            <div class="bg-gray-50 p-4 rounded-2xl text-center border border-gray-100">
+                                <p class="text-xs font-semibold text-gray-600 uppercase mb-1">Sessions</p>
                                 <p class="text-xl font-bold">{{ $totalsessions }}</p>
                             </div>
-                            <div class="bg-surface-container-low p-4 rounded-2xl text-center">
-                                <p class="text-xs font-semibold text-on-surface-variant uppercase mb-1">Hours</p>
+                            <div class="bg-gray-50 p-4 rounded-2xl text-center border border-gray-100">
+                                <p class="text-xs font-semibold text-gray-600 uppercase mb-1">Hours</p>
                                 <p class="text-xl font-bold">{{ $totalHours }}</p>
                             </div>
                         </div>
                     </div>
                 </section>
                 
+                <!-- Active Sessions Section -->
                 <section class="lg:col-span-12 space-y-6">
                     <div class="flex items-center justify-between">
                         <h2 class="text-2xl font-bold tracking-tight">Active Sessions</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         @if ($ActiveSessions->isEmpty())
-                            <div class="flex flex-col items-center justify-center text-center py-16 px-6 bg-surface-container-lowest rounded-3xl border border-outline-variant/10 shadow-sm">
+                            <div class="flex flex-col items-center justify-center text-center py-16 px-6 bg-white rounded-3xl border border-gray-200 shadow-sm">
 
-                                <div class="w-20 h-20 flex items-center justify-center rounded-2xl bg-primary/10 text-primary mb-4">
+                                <div class="w-20 h-20 flex items-center justify-center rounded-2xl mb-4" style="background-color: rgba(0, 74, 198, 0.1); color: #004ac6;">
                                     <span class="material-symbols-outlined text-4xl">event_busy</span>
                                 </div>
 
-                                <h2 class="text-xl font-bold text-on-surface mb-2">
+                                <h2 class="text-xl font-bold text-gray-900 mb-2">
                                     No Active Sessions
                                 </h2>
 
-                                <p class="text-sm text-on-surface-variant max-w-md mb-6">
-                                    You don’t have any active sessions right now. Wait for Teachers To Accept Your Requests.
+                                <p class="text-sm text-gray-600 max-w-md mb-6">
+                                    You don't have any active sessions right now. Wait for Teachers To Accept Your Requests.
                                 </p>
                                 <a href="skills"
-                                class="px-6 py-3 rounded-xl bg-primary text-on-primary font-semibold hover:opacity-90 transition">
+                                    class="px-6 py-3 rounded-xl bg-primary-brand text-white font-semibold hover:opacity-90 transition">
                                     Request Learning
                                 </a>
 
                             </div>
                         @else
                         @foreach ($ActiveSessions as $ActiveSession)
-                            <div
-                                class="bg-surface-container-lowest p-6 rounded-3xl shadow-[0_15px_40px_rgba(25,28,30,0.03)] group hover:shadow-lg transition-all">
+                            <div class="bg-white p-6 rounded-3xl shadow-sm border border-gray-200 group hover:shadow-md transition-all">
                                 <div class="flex justify-between items-start mb-6">
                                     <img alt="Instructor Sarah"
-                                        class="w-14 h-14 rounded-2xl object-cover ring-4 ring-surface-container-low"
+                                        class="w-14 h-14 rounded-2xl object-cover ring-4 ring-gray-100"
                                         data-alt="Close up of a professional woman with glasses and dark hair, smiling confidently against a soft blurred background"
                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeLD5Kc5awsOkq0sUEuK_4cJmCfHQfOHdTZyE32s_i3oRZV_PQSa9J-u_kg6a248lyaDrSwJ7VWeLO7nN8K1gDngzWgIZdzbP6mSkPKQpMlK0uZ6pkKRngdb6yCYMzsorXfpqAWYoEkL3IV-grE2Q2K9Ui0tpo_XXk351BtA_GR15SzbYPrb9szrIWibyMC0lW4OOYqeKa2lSaGADxFwqukfMzIy3uWxeKmfKApZ8idi2BtLRlddIYCT9hOVxvfRU9vCvitaKFPZg" />
-                                    <span
-                                        class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
+                                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest">
                                         {{ $ActiveSession->start_time }}</span>
                                 </div>
                                 <h3 class="text-lg font-bold mb-1">{{ $ActiveSession->name }}</h3>
-                                <p class="text-on-surface-variant text-sm mb-6">with {{ $ActiveSession->firstname }}
+                                <p class="text-gray-600 text-sm mb-6">with {{ $ActiveSession->firstname }}
                                     {{ $ActiveSession->lastname }}</p>
-                                <div class="flex items-center gap-4 py-4 border-t border-outline-variant/10">
-                                    <div class="flex items-center gap-2 text-on-surface-variant">
+                                <div class="flex items-center gap-4 py-4 border-t border-gray-100">
+                                    <div class="flex items-center gap-2 text-gray-600">
                                         <span class="material-symbols-outlined text-sm">schedule</span>
                                         <span class="text-xs font-medium">{{ $ActiveSession->duration }} Hours</span>
                                     </div>
-                                    <div class="flex items-center gap-2 text-on-surface-variant">
+                                    <div class="flex items-center gap-2 text-gray-600">
                                         <span class="material-symbols-outlined text-sm">videocam</span>
                                         <span class="text-xs font-medium">{{ $ActiveSession->session_type }}</span>
                                     </div>
                                 </div>
                                 @if($ActiveSession->canJoin)
                                     <a href="messages/{{ $ActiveSession->id }}"
-                                        class="block w-full mt-4 py-3 text-center bg-primary text-on-primary font-bold rounded-xl hover:opacity-90 transition-all">
+                                        class="block w-full mt-4 py-3 text-center bg-primary-brand text-white font-bold rounded-xl hover:opacity-90 transition-all">
                                         Join Room
                                     </a>
                                 @else
@@ -211,15 +158,15 @@
                     </div>
                 </section>
 
+                <!-- Recommended Section -->
                 <section class="lg:col-span-12">
                     <div class="flex items-center justify-between mb-8">
                         <div>
                             <h2 class="text-2xl font-bold tracking-tight">Recommended for You</h2>
-                            <p class="text-on-surface-variant text-sm">Based on your interests</p>
+                            <p class="text-gray-600 text-sm">Based on your interests</p>
                         </div>
                         <a href="skills"
-                            class="px-6 py-2 rounded-full border border-outline-variant/40 text-sm font-bold hover:bg-surface-container-low transition-colors">Explore
-                            All</a>
+                            class="px-6 py-2 rounded-full border border-gray-300 text-sm font-bold hover:bg-gray-50 transition-colors">Explore All</a>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach($recommended as $recommend)
@@ -228,17 +175,14 @@
                                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
                                 data-alt="Vibrant abstract representation of digital design concepts with flowing lines and glowing nodes on a dark background"
                                 src="{{$recommend->icon_url}}" />
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
                             </div>
                             <div class="absolute bottom-6 left-6 right-6">
-                                <span
-                                    class="bg-primary/90 text-on-primary px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block">{{$recommend->category_name}}</span>
+                                <span class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase mb-3 inline-block text-white" style="background-color: rgba(0, 74, 198, 0.9);">{{$recommend->category_name}}</span>
                                 <h4 class="text-white text-xl font-bold leading-tight">{{$recommend->name}}</h4>
                             </div>
                         </a>
                         @endforeach
-                        
                     </div>
                 </section>
             </div>
