@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Certificates;
 use App\Models\Report;
@@ -66,7 +67,7 @@ class AdminController extends Controller
               ->update([
                   'status' => 'resolved',
                   'resolution' => $request->resolution ?: 'Reviewed by admin',
-                  'resolved_by' => auth()->id(),
+                  'resolved_by' => auth::user()->id,
               ]);
 
         return Redirect('/admin')->with('success', 'Report marked as reviewed.');

@@ -26,7 +26,7 @@ class CertificatesController extends Controller
             return redirect()->back()->with('error', 'Skill not found or not owned by you.');
         }
 
-        $existing = Certificates::where('users_id', auth()->id())
+        $existing = Certificates::where('users_id', auth::user()->id)
             ->where('skills_id', $teacherSkill->skills_id)
             ->where('status', 'pending')
             ->exists();

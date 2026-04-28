@@ -38,6 +38,7 @@ class MessageController extends Controller
                                 ->Where('status', 'active')->first();
         
         if(!$connectSession){
+            
             if ($user->hasRole('teacher')) {
             return redirect('/teacher');
             }
