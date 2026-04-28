@@ -1,6 +1,6 @@
 @if (session('error'))
 <div id="error-popup"
-    class="fixed top-6 left-1/2 -translate-x-1/2 z-50 
+    class="fixed top-28 left-1/2 -translate-x-1/2 z-50 
     glass-card bg-error-container 
     px-6 py-4 rounded-2xl 
     shadow-[0_16px_40px_-8px_rgba(186,26,26,0.2)] 
