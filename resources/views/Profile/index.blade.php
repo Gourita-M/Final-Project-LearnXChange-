@@ -16,43 +16,6 @@
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#2563EB",
-                        "on-primary": "#ffffff",
-                        "primary-container": "#dbe1ff",
-                        "on-primary-container": "#00174b",
-                        "secondary": "#515f74",
-                        "on-secondary": "#ffffff",
-                        "tertiary": "#005a82",
-                        "on-tertiary": "#ffffff",
-                        "background": "#f8fafc",
-                        "on-background": "#0f172a",
-                        "surface": "#ffffff",
-                        "on-surface": "#0f172a",
-                        "surface-variant": "#e2e8f0",
-                        "on-surface-variant": "#475569",
-                        "outline": "#cbd5e1",
-                        "outline-variant": "#e2e8f0",
-                        "surface-container-low": "#f1f5f9",
-                        "surface-container": "#f8fafc",
-                        "surface-container-high": "#e2e8f0",
-                        "surface-container-highest": "#cbd5e1",
-                    },
-                    fontFamily: {
-                        "headline": ["Manrope"],
-                        "body": ["Inter"],
-                        "manrope": ["Manrope"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "0.75rem",
-                        "xl": "1rem",
-                        "full": "9999px"
-                    },
-                },
-            },
         }
     </script>
     <style>
@@ -60,78 +23,120 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Manrope', sans-serif;
+        }
+
         .tonal-layering {
             background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+        }
+
+        /* Brand colors */
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .text-primary {
+            color: #2563eb;
+        }
+
+        .ring-primary {
+            --tw-ring-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .border-top-cyan {
+            border-top: 4px solid #06b6d4;
+        }
+
+        .skill-tag-cyan {
+            background-color: #ecf9fd;
+            color: #0891b2;
+            border-color: #cffafe;
+        }
+
+        .skill-tag-cyan:hover {
+            color: #164e63;
         }
     </style>
 </head>
 
-<body class="bg-background mt-16 font-body text-on-background antialiased">
+<body class="bg-slate-50 mt-16 font-body text-gray-900 antialiased">
 
     @include('layouts.navbar')
     @include('layouts.notification')
     @include('layouts.notificationError')
 
-    <main class="flex-1 md:ml-40 bg-background p-6 md:p-10 lg:p-12">
+    <main class="flex-1 md:ml-40 bg-slate-50 p-6 md:p-10 lg:p-12">
         <div class="max-w-4xl mx-auto space-y-8">
 
-            <div class="flex flex-col md:flex-row items-start md:items-center gap-6 pb-8 border-b border-slate-200">
+            <!-- Profile Header -->
+            <div class="flex flex-col md:flex-row items-start md:items-center gap-6 pb-8 border-b border-gray-200">
                 <div class="relative">
-                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                    <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-gray-100">
 
                         @if ($user->profilepic)
-                            <img src="{{ $user->profilepic }}" alt="profile">
-                            <img alt="" class="w-full h-full object-cover" src="{{ $user->profilepic }}" />
+                            <img src="{{ $user->profilepic }}" alt="profile" class="w-full h-full object-cover" />
                         @else
-                            <div class="avatar">
+                            <div class="w-full h-full flex items-center justify-center bg-blue-100 text-blue-600 text-3xl font-bold">
                                 {{ strtoupper(substr($user->firstname, 0, 1)) }}
                             </div>
                         @endif
 
                     </div>
                     <button id="profilepicbtn"
-                        class="absolute bottom-0 right-0 bg-primary text-on-primary p-2 rounded-full shadow-lg hover:bg-blue-700 transition-all active:scale-90 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-sm" data-icon="photo_camera">photo_camera</span>
+                        class="absolute bottom-0 right-0 btn-primary p-2 rounded-full shadow-lg hover:opacity-90 transition-all active:scale-90 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-sm">photo_camera</span>
                     </button>
                 </div>
                 <div class="space-y-1">
-                    <h1 class="text-3xl font-extrabold font-headline tracking-tight text-on-surface">
+                    <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
                         {{ $user->firstname }} {{ $user->lastname }}
                     </h1>
                 </div>
             </div>
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
+                <!-- Main Content -->
                 <div class="lg:col-span-2 space-y-8">
 
-                    <section class="bg-surface p-6 rounded-xl shadow-sm border border-slate-200 space-y-6">
+                    <!-- Personal Information Section -->
+                    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary" data-icon="badge">badge</span>
-                            <h3 class="text-xl font-bold font-headline text-on-surface">Personal Information</h3>
+                            <span class="material-symbols-outlined text-primary">badge</span>
+                            <h3 class="text-xl font-bold text-gray-900">Personal Information</h3>
                         </div>
                         <form method="POST" action="{{ Route('edit.info') }}">
                             @csrf
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                                 <div class="flex flex-col gap-1.5">
-                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">First
-                                        Name</label>
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">First Name</label>
                                     <input name="firstname"
-                                        class="w-full bg-slate-50 border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                        class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                         type="text" value="{{ $user->firstname }}" />
                                 </div>
+
                                 <div class="flex flex-col gap-1.5">
-                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Last
-                                        Name</label>
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Last Name</label>
                                     <input name="lastname"
-                                        class="w-full bg-slate-50 border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                        class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                         type="text" value="{{ $user->lastname }}" />
                                 </div>
 
                                 <div class="flex flex-col gap-1.5 md:col-span-2">
-                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wide">Bio</label>
+                                    <label class="text-xs font-bold text-gray-500 uppercase tracking-wide">Bio</label>
                                     <textarea name="bio"
-                                        class="w-full bg-slate-50 border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                                        class="w-full bg-gray-50 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                                         rows="4">{{ $user->Bio }}</textarea>
                                 </div>
 
@@ -139,30 +144,28 @@
 
                             <div class="mt-6 flex justify-end">
                                 <button type="submit"
-                                    class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-lg shadow-sm hover:opacity-90 transition-all">
+                                    class="px-6 py-2.5 btn-primary text-sm font-bold rounded-lg shadow-sm hover:opacity-90 transition-all">
                                     Edit Profile
                                 </button>
                             </div>
                         </form>
                     </section>
 
-                    <section class="bg-surface p-6 rounded-xl shadow-sm border border-slate-200 space-y-6">
+                    <!-- Account Settings Section -->
+                    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
                         <div class="flex items-center gap-2 mb-2">
-                            <span class="material-symbols-outlined text-primary"
-                                data-icon="settings_account_box">settings_account_box</span>
-                            <h3 class="text-xl font-bold font-headline text-on-surface">Account Settings</h3>
+                            <span class="material-symbols-outlined text-primary">settings_account_box</span>
+                            <h3 class="text-xl font-bold text-gray-900">Account Settings</h3>
                         </div>
                         <div class="space-y-4">
-                            <div
-                                class="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100">
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100">
                                 <div class="flex items-center gap-4">
-                                    <div
-                                        class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
-                                        <span class="material-symbols-outlined" data-icon="lock_reset">lock_reset</span>
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-primary">
+                                        <span class="material-symbols-outlined">lock_reset</span>
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-on-surface">Change Password</p>
-                                        <p class="text-[11px] text-slate-500">Update your security credentials</p>
+                                        <p class="font-bold text-sm text-gray-900">Change Password</p>
+                                        <p class="text-[11px] text-gray-500">Update your security credentials</p>
                                     </div>
                                 </div>
                                 <button id="managepass"
@@ -172,48 +175,42 @@
                     </section>
                 </div>
 
+                <!-- Sidebar -->
                 <div class="space-y-8">
                     @role('learner')
-                        <div class="bg-surface p-6 rounded-xl shadow-sm border border-slate-200 space-y-4">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
                             <div class="flex items-center justify-between">
-                                <h4 class="font-bold font-headline text-on-surface text-sm uppercase tracking-wide">
-                                    Skills Learning</h4>
+                                <h4 class="font-bold text-gray-900 text-sm uppercase tracking-wide">Skills Learning</h4>
                                 <a href="skills"
-                                    class="text-primary hover:bg-primary/10 p-1 rounded-full transition-colors">
-                                    <span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                                    class="text-primary hover:bg-blue-50 p-1 rounded-full transition-colors">
+                                    <span class="material-symbols-outlined text-sm">add</span>
                                 </a>
                             </div>
                             <div class="flex flex-wrap gap-2">
-                                <span
-                                    class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
                                     UI Design
-                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800"
-                                        data-icon="close">close</span>
+                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800">close</span>
                                 </span>
-                                <span
-                                    class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
                                     React
-                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800"
-                                        data-icon="close">close</span>
+                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800">close</span>
                                 </span>
-                                <span
-                                    class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
                                     Framer
-                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800"
-                                        data-icon="close">close</span>
+                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800">close</span>
                                 </span>
                             </div>
                         </div>
+                        <input id="popupbtn" type="hidden">
                     @endrole
+
                     @role('teacher')
-                        <div
-                            class="bg-surface p-6 rounded-xl shadow-sm border-t-4 border-t-cyan-500 border-x border-b border-slate-200 space-y-4">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border-top-cyan border border-gray-200 space-y-4">
                             <div class="flex items-center justify-between">
-                                <h4 class="font-bold font-headline text-on-surface text-sm uppercase tracking-wide">
-                                    Skills Teaching</h4>
+                                <h4 class="font-bold text-gray-900 text-sm uppercase tracking-wide">Skills Teaching</h4>
                                 <button id="popupbtn"
                                     class="text-cyan-600 hover:bg-cyan-50 p-1 rounded-full transition-colors">
-                                    <span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                                    <span class="material-symbols-outlined text-sm">add</span>
                                 </button>
                             </div>
                             <div class="flex flex-wrap gap-2">
@@ -221,14 +218,10 @@
                                     <form method="POST" action="{{ Route('remove.skill') }}">
                                         @csrf
                                         <input name="skillid" type="hidden" value="{{ $userskill->skillid }}">
-                                        <span
-                                            class="px-3 py-1 bg-cyan-50 text-cyan-700 rounded-full text-[11px] font-bold flex items-center gap-2 border border-cyan-100">
+                                        <span class="px-3 py-1 skill-tag-cyan rounded-full text-[11px] font-bold flex items-center gap-2 border border-cyan-100">
                                             {{ $userskill->name }}
-
                                             <button type="submit"
-                                                class="material-symbols-outlined text-[14px] cursor-pointer hover:text-cyan-900"
-                                                data-icon="close">close</button>
-
+                                                class="material-symbols-outlined text-[14px] cursor-pointer hover:text-cyan-900">close</button>
                                         </span>
                                     </form>
                                 @endforeach
@@ -241,54 +234,32 @@
 
         </div>
     </main>
-    </div>
-    <div
-        class="md:hidden fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-xl flex justify-around items-center py-3 px-6 z-50 border-t border-slate-200">
-        <button class="flex flex-col items-center gap-1 text-slate-400">
-            <span class="material-symbols-outlined" data-icon="home">home</span>
-            <span class="text-[9px] font-bold uppercase tracking-tight">Home</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-slate-400">
-            <span class="material-symbols-outlined" data-icon="explore">explore</span>
-            <span class="text-[9px] font-bold uppercase tracking-tight">Explore</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-blue-600">
-            <span class="material-symbols-outlined" data-icon="person">person</span>
-            <span class="text-[9px] font-bold uppercase tracking-tight">Profile</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-slate-400">
-            <span class="material-symbols-outlined" data-icon="school">school</span>
-            <span class="text-[9px] font-bold uppercase tracking-tight">Learning</span>
-        </button>
-    </div>
-
-    <div id="skillpopup"
-        class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
-
+    <!-- Add Skill Popup -->
+    <div id="skillpopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
         <div class="bg-white w-full max-w-lg rounded-3xl p-8 shadow-xl relative">
-            <button class="closepopup absolute top-4 right-4 text-outline hover:text-error cursor-pointer">
+            <button class="closepopup absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl cursor-pointer">
                 ✕
             </button>
 
-            <h2 class="text-2xl font-extrabold font-headline mb-2">
+            <h2 class="text-2xl font-extrabold mb-2 text-gray-900">
                 Add New Skill
             </h2>
-            <p class="text-sm text-on-surface-variant mb-6">
+            <p class="text-sm text-gray-500 mb-6">
                 Let learners discover what you can teach
             </p>
 
             <form method="POST" action="{{ Route('create.skill') }}" class="space-y-5">
                 @csrf
                 <div>
-                    <label class="block text-sm font-medium mb-1">Skill Name</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Skill Name</label>
                     <input name="name" type="text"
-                        class="w-full rounded-xl border border-outline-variant bg-surface px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Category</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Category</label>
                     <select name="categories_id" required
-                        class="w-full rounded-xl border border-outline-variant bg-surface px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                         <option value="" disabled selected>Select</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -297,9 +268,9 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Level</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Level</label>
                     <select name="level"
-                        class="w-full rounded-xl border border-outline-variant bg-surface px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                         <option value="Beginner">Beginner</option>
                         <option value="Intermediate">Intermediate</option>
                         <option value="Advanced">Advanced</option>
@@ -307,29 +278,29 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Years of Experiance</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Years of Experience</label>
                     <input name="years" type="number"
-                        class="w-full rounded-xl border border-outline-variant bg-surface px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Description</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Description</label>
                     <textarea name="description" rows="3"
-                        class="w-full rounded-xl border border-outline-variant bg-surface px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none"></textarea>
+                        class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Skill Icon</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Skill Icon</label>
                     <input name="icon_url" type="text"
-                        class="w-full rounded-xl border border-outline-variant bg-surface px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div class="flex gap-3 pt-4">
                     <button type="button"
-                        class="closepopup flex-1 py-3 rounded-xl bg-surface-container-high text-on-surface-variant font-bold text-center cursor-pointer">
+                        class="closepopup flex-1 py-3 rounded-xl bg-gray-100 text-gray-600 font-bold hover:bg-gray-200 cursor-pointer transition-colors">
                         Cancel
                     </button>
-                    <button type="submit" class="flex-1 py-3 rounded-xl bg-primary text-on-primary font-bold">
+                    <button type="submit" class="flex-1 py-3 rounded-xl btn-primary font-bold hover:opacity-90 transition-all">
                         Save Skill
                     </button>
                 </div>
@@ -338,48 +309,47 @@
         </div>
     </div>
 
-    <div id="passwordPopup"
-        class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
-
+    <!-- Change Password Popup -->
+    <div id="passwordPopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
-            <button class="closePasswordPopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
+            <button class="closePasswordPopup absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl cursor-pointer">
                 ✕
             </button>
 
-            <h2 class="text-2xl font-extrabold font-headline mb-2">
+            <h2 class="text-2xl font-extrabold mb-2 text-gray-900">
                 Change Password
             </h2>
-            <p class="text-sm text-slate-500 mb-6">
+            <p class="text-sm text-gray-500 mb-6">
                 Update your account password securely
             </p>
 
             <form method="POST" action="{{ route('password.change') }}" class="space-y-5">
                 @csrf
                 <div>
-                    <label class="block text-sm font-medium mb-1">Current Password</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Current Password</label>
                     <input name="current_password" type="password" required
-                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">New Password</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">New Password</label>
                     <input name="new_password" type="password" required
-                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Confirm Password</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Confirm Password</label>
                     <input name="new_password_confirmation" type="password" required
-                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div class="flex gap-3 pt-4">
                     <button type="button"
-                        class="closePasswordPopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
+                        class="closePasswordPopup flex-1 py-3 rounded-xl bg-gray-100 text-gray-600 font-bold hover:bg-gray-200 cursor-pointer transition-colors">
                         Cancel
                     </button>
-                    <button type="submit" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
+                    <button type="submit" class="flex-1 py-3 rounded-xl btn-primary font-bold hover:opacity-90 transition-all">
                         Update
                     </button>
                 </div>
@@ -387,19 +357,18 @@
         </div>
     </div>
 
-    <div id="profilePicPopup"
-        class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
-
+    <!-- Update Profile Picture Popup -->
+    <div id="profilePicPopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
-            <button class="closeProfilePopup absolute top-4 right-4 text-slate-400 hover:text-red-500">
+            <button class="closeProfilePopup absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl cursor-pointer">
                 ✕
             </button>
 
-            <h2 class="text-2xl font-extrabold font-headline mb-2">
+            <h2 class="text-2xl font-extrabold mb-2 text-gray-900">
                 Update Profile Picture
             </h2>
-            <p class="text-sm text-slate-500 mb-6">
+            <p class="text-sm text-gray-500 mb-6">
                 Paste your image URL below
             </p>
 
@@ -407,18 +376,18 @@
                 @csrf
 
                 <div>
-                    <label class="block text-sm font-medium mb-1">Image URL</label>
+                    <label class="block text-sm font-medium text-gray-900 mb-1">Image URL</label>
                     <input name="profilepic" type="text" placeholder="https://example.com/avatar.jpg"
                         value="{{ $user->profilepic }}"
-                        class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 focus:ring-2 focus:ring-primary/40 outline-none">
+                        class="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
                 </div>
 
                 <div class="flex gap-3 pt-4">
                     <button type="button"
-                        class="closeProfilePopup flex-1 py-3 rounded-xl bg-slate-100 text-slate-600 font-bold">
+                        class="closeProfilePopup flex-1 py-3 rounded-xl bg-gray-100 text-gray-600 font-bold hover:bg-gray-200 cursor-pointer transition-colors">
                         Cancel
                     </button>
-                    <button type="submit" class="flex-1 py-3 rounded-xl bg-primary text-white font-bold">
+                    <button type="submit" class="flex-1 py-3 rounded-xl btn-primary font-bold hover:opacity-90 transition-all">
                         Save
                     </button>
                 </div>
@@ -427,8 +396,7 @@
     </div>
 
     <script>
-        //profilepic js
-
+        // Profile Picture Popup Logic
         const profilePicPopup = document.getElementById('profilePicPopup');
         const closeProfilePopup = document.querySelectorAll('.closeProfilePopup');
         const profilepicbtn = document.getElementById('profilepicbtn');
@@ -443,10 +411,22 @@
             })
         })
 
-        //
+        // Skill Popup Logic
         const skillpopup = document.getElementById('skillpopup');
         const popupbtn = document.getElementById('popupbtn');
         const closepopup = document.querySelectorAll('.closepopup');
+
+        popupbtn.addEventListener('click', () => {
+            skillpopup.classList.remove('hidden');
+        })
+
+        closepopup.forEach(btn => {
+            btn.addEventListener('click', () => {
+                skillpopup.classList.add('hidden');
+            })
+        })
+
+        // Password Popup Logic
         const passwordPopup = document.getElementById('passwordPopup');
         const managepass = document.getElementById('managepass');
         const closePasswordPopup = document.querySelectorAll('.closePasswordPopup');
@@ -458,16 +438,6 @@
         closePasswordPopup.forEach(u => {
             u.addEventListener('click', () => {
                 passwordPopup.classList.add('hidden');
-            })
-
-        })
-        popupbtn.addEventListener('click', () => {
-            skillpopup.classList.remove('hidden');
-        })
-
-        closepopup.forEach(btn => {
-            btn.addEventListener('click', () => {
-                skillpopup.classList.add('hidden');
             })
         })
     </script>
