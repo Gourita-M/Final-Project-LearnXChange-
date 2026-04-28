@@ -441,25 +441,6 @@
 
     </main>
 
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl flex justify-around items-center h-16 px-4 z-50">
-        <button class="flex flex-col items-center gap-1 text-outline">
-            <span class="material-symbols-outlined">home</span>
-            <span class="text-[10px] font-bold">Home</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-primary">
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
-            <span class="text-[10px] font-bold">Explore</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-outline">
-            <span class="material-symbols-outlined">dashboard</span>
-            <span class="text-[10px] font-bold">Learnings</span>
-        </button>
-        <button class="flex flex-col items-center gap-1 text-outline">
-            <span class="material-symbols-outlined">person</span>
-            <span class="text-[10px] font-bold">Profile</span>
-        </button>
-    </nav>
-
     <div 
         id="learningpopup"
         class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden z-50 flex items-center justify-center"
