@@ -6,6 +6,7 @@ use App\Http\Requests\StoreCertificatesRequest;
 use App\Http\Requests\UpdateCertificatesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Certificates;
 
 class CertificatesController extends Controller
@@ -18,7 +19,7 @@ class CertificatesController extends Controller
 
         $teacherSkill = DB::table('teacher_skills')
             ->where('id', $request->skill_id)
-            ->where('users_id', auth()->id())
+            ->where('users_id', auth::user()->id)
             ->first();
 
         if (! $teacherSkill) {
@@ -35,7 +36,7 @@ class CertificatesController extends Controller
         }
 
         Certificates::create([
-            'users_id' => auth()->id(),
+            'users_id' => auth::user()->id,
             'skills_id' => $teacherSkill->skills_id,
             'status' => 'pending',
         ]);
