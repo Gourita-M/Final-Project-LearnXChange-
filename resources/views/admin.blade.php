@@ -108,7 +108,7 @@
     @include('layouts.notification')
     @include('layouts.notificationError')
 
-    <main class="ml-64 pt-28 px-10 pb-20">
+    <main class="ml-10 pt-28 px-10 pb-20">
 
         <header class="mb-12">
             <h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Administrative Console</h1>
@@ -133,9 +133,7 @@
                 <span class="material-symbols-outlined text-tertiary mb-4" data-icon="verified">verified</span>
                 <p class="text-on-surface-variant text-sm font-medium mb-1">Certificates Pending</p>
                 <h3 class="text-3xl font-bold text-on-surface">{{ $totalCertificates }}</h3>
-                <div class="mt-6 h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
-                    <div class="h-full bg-tertiary w-3/4"></div>
-                </div>
+                
             </div>
             <div class="bg-surface-container-lowest p-8 rounded-xl shadow-sm">
                 <span class="material-symbols-outlined text-error mb-4" data-icon="report">report</span>
@@ -281,33 +279,7 @@
                         </button>
                     </div>
                 </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-on-surface mb-6">System Health</h2>
-                    <div
-                        class="relative bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20 overflow-hidden">
-                        <div class="relative z-10">
-                            <div class="flex items-center gap-2 text-tertiary mb-2">
-                                <span class="relative flex h-3 w-3">
-                                    <span
-                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-tertiary"></span>
-                                </span>
-                                <span class="text-sm font-bold uppercase tracking-widest">All Systems
-                                    Operational</span>
-                            </div>
-                            <p class="text-xs text-on-surface-variant">Last backup performed: 14 mins ago</p>
-                            <div class="mt-6 space-y-3">
-                                <div class="flex justify-between text-xs">
-                                    <span class="text-on-surface-variant">Server Load</span>
-                                    <span class="font-bold">24%</span>
-                                </div>
-                                <div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-                                    <div class="h-full bg-primary w-[24%]"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </aside>
         </div>
 
@@ -332,7 +304,7 @@
             </div>
 
             <div id="userscontainer" class="max-h-[400px] overflow-y-auto space-y-3">
-                {{-- Container --}}
+                
             </div>
 
         </div>
