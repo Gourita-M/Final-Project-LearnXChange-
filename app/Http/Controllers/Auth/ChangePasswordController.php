@@ -21,21 +21,18 @@ class ChangePasswordController extends Controller
         $user = User::Where('id', auth::user()->id)->first();
 
         if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors([
-                'current_password' => 'Current password is incorrect'
-            ]);
+            return redirect('profile')->with('error','You Current Password is not Correct');
         }
 
         if (Hash::check($request->new_password, $user->password)) {
-            return back()->withErrors([
-                'new_password' => 'New password cannot be the same as current password'
-            ]);
+            return redirect('profile')->with('error','New password cannot be the same as current password');
+            
         }
 
         User::Where('id', auth::user()->id)->update([
             'password' => Hash::make($request->new_password),
         ]);
 
-        return back()->with('success', 'Password changed successfully');
+        return redirect('profile')->with('success', 'Password changed successfully');
         }
 }
