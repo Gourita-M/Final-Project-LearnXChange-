@@ -77,8 +77,6 @@
 
     <main class="flex-1 md:ml-40 bg-slate-50 p-6 md:p-10 lg:p-12">
         <div class="max-w-4xl mx-auto space-y-8">
-
-            <!-- Profile Header -->
             <div class="flex flex-col md:flex-row items-start md:items-center gap-6 pb-8 border-b border-gray-200">
                 <div class="relative">
                     <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-white shadow-xl bg-gray-100">
@@ -105,11 +103,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                <!-- Main Content -->
                 <div class="lg:col-span-2 space-y-8">
-
-                    <!-- Personal Information Section -->
                     <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="material-symbols-outlined text-primary">badge</span>
@@ -150,8 +144,6 @@
                             </div>
                         </form>
                     </section>
-
-                    <!-- Account Settings Section -->
                     <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-6">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="material-symbols-outlined text-primary">settings_account_box</span>
@@ -174,8 +166,6 @@
                         </div>
                     </section>
                 </div>
-
-                <!-- Sidebar -->
                 <div class="space-y-8">
                     @role('learner')
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 space-y-4">
@@ -189,21 +179,23 @@
                             <div class="flex flex-wrap gap-2">
                                 <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
                                     UI Design
-                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800">close</span>
+                                    
                                 </span>
                                 <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
                                     React
-                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800">close</span>
+                                    
                                 </span>
                                 <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-bold flex items-center gap-2 border border-blue-100">
                                     Framer
-                                    <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-blue-800">close</span>
+                                    
                                 </span>
                             </div>
                         </div>
                         <input id="popupbtn" type="hidden">
                     @endrole
-
+                    @role('admin')
+                        <input id="popupbtn" type="hidden">
+                    @endrole
                     @role('teacher')
                         <div class="bg-white p-6 rounded-xl shadow-sm border-top-cyan border border-gray-200 space-y-4">
                             <div class="flex items-center justify-between">
@@ -234,7 +226,6 @@
 
         </div>
     </main>
-    <!-- Add Skill Popup -->
     <div id="skillpopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
         <div class="bg-white w-full max-w-lg rounded-3xl p-8 shadow-xl relative">
             <button class="closepopup absolute top-4 right-4 text-gray-400 hover:text-red-500 text-xl cursor-pointer">
@@ -308,8 +299,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Change Password Popup -->
     <div id="passwordPopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
@@ -356,8 +345,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Update Profile Picture Popup -->
     <div id="profilePicPopup" class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden flex items-center justify-center z-50">
         <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl relative">
 
@@ -396,7 +383,6 @@
     </div>
 
     <script>
-        // Profile Picture Popup Logic
         const profilePicPopup = document.getElementById('profilePicPopup');
         const closeProfilePopup = document.querySelectorAll('.closeProfilePopup');
         const profilepicbtn = document.getElementById('profilepicbtn');
@@ -411,7 +397,7 @@
             })
         })
 
-        // Skill Popup Logic
+        // Skill Popup
         const skillpopup = document.getElementById('skillpopup');
         const popupbtn = document.getElementById('popupbtn');
         const closepopup = document.querySelectorAll('.closepopup');
@@ -426,7 +412,7 @@
             })
         })
 
-        // Password Popup Logic
+        // Password Popup
         const passwordPopup = document.getElementById('passwordPopup');
         const managepass = document.getElementById('managepass');
         const closePasswordPopup = document.querySelectorAll('.closePasswordPopup');

@@ -56,13 +56,14 @@ Route::post('/edit.info', [ProfileController::class, 'editInfo'])->name('edit.in
 
 Route::post('/submit.review', [ReviewController::class, 'submitReview'])->name('submit.review')->middleware('auth');
 
-Route::get('/skills', [SkillController::class, 'index'])->name('skills.index');
+Route::get('/skills', [SkillController::class, 'index'])->name('skills.index')->middleware('auth');
 
 Route::get('/admin', [AdminController::class, 'index'])->middleware(['role:admin', 'auth']);
 
 Route::post('/admin/report/resolve', [AdminController::class, 'resolveReport'])->name('admin.report.resolve')->middleware(['role:admin', 'auth']);
 
 Route::post('/aprove.certificate', [CertificatesController::class, 'approve'])->name('aprove.certificate')->middleware(['role:admin', 'auth']);
+
 Route::post('/decline.certificate', [CertificatesController::class, 'decline'])->name('decline.certificate')->middleware(['role:admin', 'auth']);
 
 Route::get('/ban.user/{id}', [AdminController::class, 'banUser'])->middleware(['role:admin', 'auth']);;

@@ -62,7 +62,6 @@
         <div class="max-w-7xl mx-auto space-y-12">
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                <!-- Progress Overview Section -->
                 <section class="lg:col-span-8 bg-white rounded-3xl p-8 shadow-sm border border-gray-200">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                         <div class="flex items-center gap-4">
@@ -90,8 +89,6 @@
                         </div>
                     </div>
                 </section>
-                
-                <!-- Active Sessions Section -->
                 <section class="lg:col-span-12 space-y-6">
                     <div class="flex items-center justify-between">
                         <h2 class="text-2xl font-bold tracking-tight">Active Sessions</h2>
@@ -157,8 +154,6 @@
                         @endif                    
                     </div>
                 </section>
-
-                <!-- Recommended Section -->
                 <section class="lg:col-span-12">
                     <div class="flex items-center justify-between mb-8">
                         <div>

@@ -19,6 +19,71 @@
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed": "#0d1c2e",
+                        "surface-container-low": "#f2f4f6",
+                        "on-secondary-container": "#57657a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary-container": "#2563eb",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "surface-bright": "#f7f9fb",
+                        "surface": "#f7f9fb",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline-variant": "#c3c6d7",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-primary-fixed": "#00174b",
+                        "on-primary-container": "#eeefff",
+                        "secondary": "#515f74",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#001e2f",
+                        "on-background": "#191c1e",
+                        "secondary-container": "#d5e3fc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed": "#c9e6ff",
+                        "background": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "surface-tint": "#0053db",
+                        "primary": "#2563eb",
+                        "on-surface": "#191c1e",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-high": "#e6e8ea",
+                        "outline": "#737686",
+                        "tertiary-container": "#0074a6",
+                        "on-tertiary-container": "#e4f2ff",
+                        "tertiary": "#005a82",
+                        "surface-container": "#eceef0"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "0.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
         }
     </script>
     <style>
@@ -35,33 +100,10 @@
         h3 {
             font-family: 'Manrope', sans-serif;
         }
-
-        /* Brand primary color */
-        .btn-primary {
-            background-color: #2563eb;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-
-        .text-primary {
-            color: #2563eb;
-        }
-
-        .ring-primary {
-            --tw-ring-color: rgba(37, 99, 235, 0.2);
-        }
-
-        .bg-error-custom {
-            background-color: #ba1a1a;
-            color: white;
-        }
     </style>
 </head>
 
-<body class="bg-slate-50 text-gray-900 antialiased overflow-hidden">
+<body class="bg-surface text-on-surface antialiased overflow-hidden">
 
     @include('layouts.navbar')
     @include('layouts.notification')
@@ -69,16 +111,16 @@
     
     <main class="pt-20 h-screen flex">
 
-        <div class="flex-1 flex flex-col p-6 gap-6 bg-gray-100 border-r border-gray-200">
+        <div class="flex-1 flex flex-col p-6 gap-6 bg-surface-container-low border-r border-outline-variant/10">
 
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-2xl font-extrabold tracking-tight text-gray-900">Mentoring Session with {{$participants->teachername}}</h1>
+                    <h1 class="text-2xl font-extrabold tracking-tight text-on-surface">Mentoring Session with {{$participants->teachername}}</h1>
                 </div>
                 <div class="flex gap-3">
                     @role('learner')
                     <button id="review"
-                        class="flex items-center gap-2 bg-error-custom px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                        class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
                         End Session
                     </button>
                     
@@ -88,43 +130,47 @@
                         @csrf
                         <input name="sessionid" type="hidden" value="{{ $sessionid }}">
                         <button type="submit"
-                            class="flex items-center gap-2 bg-error-custom px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                            class="flex items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
                             End Session
                         </button>
                     </form>
                     <button id="review"
-                        class="flex hidden items-center gap-2 bg-error-custom px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
+                        class="flex hidden items-center gap-2 bg-error text-on-error px-6 py-2 rounded-lg font-bold hover:opacity-90 transition-all shadow-sm">
                         End Session
                     </button>
                     @endrole
                 </div>
             </div>
 
-            <div class="flex-1 bg-white rounded-lg shadow-sm border border-gray-200 flex flex-col overflow-hidden">
+            <div
+                class="flex-1 bg-surface-container-lowest rounded-lg shadow-sm border border-outline-variant/10 flex flex-col overflow-hidden">
 
-                <div class="p-4 border-b border-gray-200 flex justify-between items-center">
-                    <h2 class="font-bold text-lg text-gray-900">Session Chat</h2>
+                <div class="p-4 border-b border-outline-variant/10 flex justify-between items-center">
+                    <h2 class="font-headline font-bold text-lg text-on-surface">Session Chat</h2>
                     <div class="flex gap-2">
-                        <span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
                             Live
                         </span>
                     </div>
                 </div>
 
                 <div id="chat-box" class="flex-1 overflow-y-auto p-6 space-y-6">
+
+
                 </div>
 
-                <div class="p-6 bg-white border-t border-gray-200">
+                <div class="p-6 bg-white border-t border-outline-variant/10">
 
                     <div class="relative flex items-center">
 
                         <input id="messageInput"
-                            class="w-full bg-gray-50 border border-gray-300 rounded-lg py-4 pl-4 pr-24 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-500"
+                            class="w-full bg-surface-container-low border-none rounded-lg py-4 pl-4 pr-24 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-on-surface-variant"
                             placeholder="Type your message..." type="text" />
 
                         <div class="absolute right-2 flex gap-1">
                             <button id="sendBtn"
-                                class="p-2 btn-primary rounded-lg shadow-sm hover:opacity-90 transition-all">
+                                class="p-2 bg-primary text-on-primary rounded-lg shadow-sm hover:opacity-90 transition-all">
                                 <span class="material-symbols-outlined text-sm">send</span>
                             </button>
 
@@ -136,75 +182,67 @@
             </div>
         </div>
 
-        <!-- Review Popup Modal -->
-        <div id="reviewPopup" class="fixed inset-0 bg-black/40 hidden flex items-center justify-center z-50">
-            <div class="bg-white p-6 rounded-xl w-full max-w-md relative shadow-lg">
-                
-                <button id="closeReview" class="absolute top-2 right-3 text-xl text-gray-500 hover:text-gray-700">✕</button>
+<div id="reviewPopup" class="fixed inset-0 bg-black/40 hidden flex items-center justify-center">
+    <div class="bg-white p-6 rounded-xl w-full max-w-md relative">
+        
+        <button id="closeReview" class="absolute top-2 right-3 text-xl">✕</button>
 
-                <h2 class="text-xl font-bold mb-4 text-gray-900">Leave a Review</h2>
+        <h2 class="text-xl font-bold mb-4">Leave a Review</h2>
 
-                <form method="POST" action="{{Route('submit.review')}}" class="space-y-4">
-                    @csrf
-                    <input type="hidden" value="{{ $sessionid }}" name="connectsessionid">
-                    
-                    <input type="hidden" value="{{ $participants->teacherid }}" name="teacherid">
-                    <select name="revieew" class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                        <option value="">Select Rating</option>
-                        <option value="5">⭐⭐⭐⭐⭐</option>
-                        <option value="4">⭐⭐⭐⭐</option>
-                        <option value="3">⭐⭐⭐</option>
-                        <option value="2">⭐⭐</option>
-                        <option value="1">⭐</option>
-                    </select>
+        <form method="POST" action="{{Route('submit.review')}}" class="space-y-4">
+            @csrf
+            <input type="hidden" value="{{ $sessionid }}" name="connectsessionid">
+            
+            <input type="hidden" value="{{ $participants->teacherid }}" name="teacherid">
+            <select name="revieew" class="w-full border p-2 rounded-lg" required>
+                <option value="">Select Rating</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
 
-                    <textarea 
-                        name="comment"
-                        placeholder="Write your review..." 
-                        class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        required
-                    ></textarea>
+            <textarea 
+                name="comment"
+                placeholder="Write your review..." 
+                class="w-full border p-2 rounded-lg"
+                required
+            ></textarea>
 
-                    <button type="submit" class="btn-primary w-full py-2 rounded-lg font-semibold">
-                        Submit Review
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <!-- Participants Sidebar -->
-        <aside class="w-96 bg-slate-50 flex flex-col border-l border-gray-200">
+            <button type="submit" class="bg-primary text-white w-full py-2 rounded-lg">
+                Submit Review
+            </button>
+        </form>
+    </div>
+</div>
+        <aside class="w-96 bg-surface flex flex-col">
 
             <div class="flex-1 overflow-y-auto p-6 space-y-6">
-                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest pt-4">Participants (2)</h3>
+                <h3 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest pt-4">Participants (2)
+                </h3>
                 <div class="space-y-4">
-                    <!-- Teacher -->
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="relative">
-                                <img alt="Sarah J." class="w-10 h-10 rounded-full object-cover"
+                                <img alt="Sarah J." class="w-10 h-10 rounded-full"
                                     src="{{$participants->teacherprofile}}" />
-                                <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full">
-                                </div>
                             </div>
                             <div>
-                                <p class="text-sm font-bold text-gray-900">{{$participants->teachername}}</p>
-                                <p class="text-[10px] text-gray-500">Teacher</p>
+                                <p class="text-sm font-bold">{{$participants->teachername}}</p>
+                                <p class="text-[10px] text-on-surface-variant">Teacher</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Student -->
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="relative">
-                                <img alt="You" class="w-10 h-10 rounded-full object-cover"
+                                <img alt="You" class="w-10 h-10 rounded-full"
                                     src="{{$participants->learnerprofile}}" />
-                                <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full">
-                                </div>
                             </div>
                             <div>
-                                <p class="text-sm font-bold text-gray-900">{{$participants->learnername}}</p>
-                                <p class="text-[10px] text-gray-500">Student</p>
+                                <p class="text-sm font-bold">{{$participants->learnername}}</p>
+                                <p class="text-[10px] text-on-surface-variant">Student</p>
                             </div>
                         </div>
                     </div>
@@ -212,12 +250,10 @@
             </div>
         </aside>
     </main>
-
     <input id="sessionid" type="hidden" value="{{ $sessionid }}">
 
     <script>
 
-        // Review Popup Logic
         const reviewPopup = document.getElementById('reviewPopup');
         const review = document.getElementById('review');
         const closeReview = document.getElementById('closeReview');
@@ -232,10 +268,29 @@
 
         const sessionid = document.getElementById('sessionid').value;
 
+        //     document.getElementById('sendBtn').onclick = () => {
+        //     const message = document.getElementById('messageInput').value;
+
+        //     fetch('/api/send-message', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        //         },
+        //         body: JSON.stringify({
+        //             "content": message,
+        //             "connect_sessions_id": sessionid,
+        //             "sender_id": 3
+        //         })
+        //     });
+
+        //     document.getElementById('messageInput').value = '';
+        // };
+
         let lastMessageId = 0;
         const chatBox = document.getElementById("chat-box");
 
-        // Load all messages initially
+
         async function loadMessages() {
             const res = await fetch(`/api/sessions/${sessionid}/messages`);
             const data = await res.json();
@@ -250,7 +305,6 @@
             scrollToBottom();
         }
 
-        // Refresh and load new messages
         async function refreshMessages() {
             const res = await fetch(`/api/sessions/${sessionid}/messages`);
             const data = await res.json();
@@ -270,7 +324,6 @@
             }
         }
 
-        // Render individual message
         function renderMessage(message) {
             const isMine = message.sender_id === {{ auth()->id() }};
 
@@ -281,50 +334,48 @@
                 "flex gap-3";
 
             div.innerHTML = `
-                <div class="space-y-1 ${isMine ? 'text-right' : ''}">
-                    
-                    <div class="flex ${isMine ? 'flex-row-reverse' : ''} items-center gap-2">
-                        <span class="text-xs font-bold text-gray-900">
-                            ${isMine ? 'You' : (message.sender?.name ?? 'User')}
-                        </span>
+    <div class="space-y-1 ${isMine ? 'text-right' : ''}">
+        
+        <div class="flex ${isMine ? 'flex-row-reverse' : ''} items-center gap-2">
+            <span class="text-xs font-bold">
+                ${isMine ? 'You' : (message.sender?.name ?? 'User')}
+            </span>
 
-                        ${
-                            !isMine 
-                            ? \`
-                            <form method="POST" action="{{ Route('report.message')}}">
-                                <input type="hidden" name="_token" value="\${document.querySelector('meta[name="csrf-token"]').content}">
-                                <input type="hidden" name="message_id" value="\${message.id}">
-                                <input type="hidden" name="sessionid" value="{{ $sessionid }}">
+            ${
+                !isMine 
+                ? `
+                <form method="POST" action="{{ Route('report.message')}}">
+                    <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+                    <input type="hidden" name="message_id" value="${message.id}">
+                    <input type="hidden" name="sessionid" value="{{ $sessionid }}">
 
-                                <button type="submit"
-                                    class="text-red-500 text-xs hover:underline">
-                                    Report
-                                </button>
-                            </form>
-                            \`
-                            : ''
-                        }
-                    </div>
+                    <button type="submit"
+                        class="text-red-500 text-xs hover:underline">
+                        Report
+                    </button>
+                </form>
+                `
+                : ''
+            }
+        </div>
 
-                    <div class="\${isMine 
-                        ? 'bg-blue-500 text-white' 
-                        : 'bg-gray-200 text-gray-900'
-                    } p-4 rounded-lg max-w-xl">
-                        \${message.content}
-                    </div>
+        <div class="${isMine 
+            ? 'bg-blue-500 text-white' 
+            : 'bg-gray-200 text-black'
+        } p-4 rounded-lg max-w-xl">
+            ${message.content}
+        </div>
 
-                </div>
-            `;
+    </div>
+`;
 
             chatBox.appendChild(div);
         }
 
-        // Scroll to bottom of chat
         function scrollToBottom() {
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Send message
         async function sendMessage() {
 
             const senderid = {{ auth()->id() }};
@@ -350,19 +401,14 @@
 
             refreshMessages();
         }
+        document.querySelector("button.bg-primary").addEventListener("click", sendMessage);
 
-        // Send button click
-        document.querySelector("button.btn-primary").addEventListener("click", sendMessage);
-
-        // Enter key to send
         document.getElementById('messageInput').addEventListener("keypress", function(e) {
             if (e.key === "Enter") sendMessage();
         });
 
-        // Load messages on page load
         loadMessages();
 
-        // Refresh messages every 1 second
         setInterval(refreshMessages, 1000);
     </script>
 </body>

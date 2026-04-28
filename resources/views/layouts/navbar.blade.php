@@ -4,7 +4,7 @@
 
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-sm">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+               <img src="https://i.pinimg.com/1200x/bd/72/7f/bd727fed1b14978f69e93a56b1454bba.jpg" alt="LearnXChange Logo" class="w-full h-full object-cover" />
             </div>
             <div class="leading-tight">
                 <h1 class="text-sm font-bold text-slate-900 dark:text-white">LearnXChange</h1>
