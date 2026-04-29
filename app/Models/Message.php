@@ -11,9 +11,6 @@ class Message extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     */
     protected $fillable = [
         'content',
         'sender_id',
@@ -22,25 +19,16 @@ class Message extends Model
         'sent_at'
     ];
 
-    /**
-     * The attributes that should be cast.
-     */
     protected $casts = [
         'sent_at' => 'datetime',
         'is_read' => 'boolean'
     ];
 
-    /**
-     * Get the user that sent the message
-     */
     public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');
     }
 
-    /**
-     * Get the session this message belongs to
-     */
     public function session()
     {
         return $this->belongsTo(Connect_Sessions::class, 'connect_sessions_id');
