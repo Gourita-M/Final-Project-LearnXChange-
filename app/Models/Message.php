@@ -10,7 +10,7 @@ use App\Models\User;
 class Message extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         'content',
         'sender_id',

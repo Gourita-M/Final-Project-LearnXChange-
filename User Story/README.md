@@ -153,3 +153,19 @@ Résumé
 ✔ Un utilisateur = un seul rôle
 ✔ Chat = fonctionnalité principale
 ✔ Vidéo = bonus
+
+
+Dossier Principal :
+	|__ Dossier de Cahier de Charges
+		|__Fichier README.md
+
+	|__ Dossier de Conception  
+		|__Diagrammes UML (Use Case, Classes, Séquences ...)
+
+	|__ Dossier de Maquette  
+		|__Maquette Desktop
+		|__Maquette Mobile
+		|__Fichier Source de la maquette (AdobeXD) avec prototype ou Fichier texte contenant le lien vers une version en ligne (Figma, Framer...)
+
+	|__ Dossier de Présentation
+		|__Présentation.pptx ou Fichier texte contenant le lien vers une version en ligne (Canva...)

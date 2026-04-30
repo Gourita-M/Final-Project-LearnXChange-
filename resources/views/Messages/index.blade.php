@@ -338,7 +338,7 @@
         
         <div class="flex ${isMine ? 'flex-row-reverse' : ''} items-center gap-2">
             <span class="text-xs font-bold">
-                ${isMine ? 'You' : (message.sender?.name ?? 'User')}
+                ${isMine ? 'You' : (message.sender?.name ?? 'Learner')}
             </span>
 
             ${
