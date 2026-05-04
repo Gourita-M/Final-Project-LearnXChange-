@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
         ]);
-
+        
         $user = User::create([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
@@ -33,7 +33,7 @@ class RegisterController extends Controller
             'badges_id' => 1,
             'role' => $request->role
         ]);
-
+        
         $user->assignRole($request->role);
 
         return redirect('login')->with('success', 'Account created, Please login.');

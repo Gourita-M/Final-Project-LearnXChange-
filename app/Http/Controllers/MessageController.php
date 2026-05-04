@@ -57,7 +57,7 @@ class MessageController extends Controller
                             'learner.firstname as learnername',
                             'teacher.firstname as teachername',
                             'teacher.id as teacherid'
-                        )
+                        )->Where('cs.id', $id)
                         ->first();
         if($connectSession->learner_id === auth::user()->id || $connectSession->teacher_id === auth::user()->id){
             return view('Messages.index', compact('participants','sessionid'));
@@ -74,6 +74,7 @@ class MessageController extends Controller
 
     public function getAll($id)
     {
+        
         $messages = Message::with('sender')
             ->where('connect_sessions_id', $id)
             ->orderBy('sent_at', 'asc')
@@ -86,7 +87,7 @@ class MessageController extends Controller
    
     public function store(StoreMessageRequest $request)
     {
-
+        
         Message::Create([
             'content' => $request['content'],
             'is_read' => False,

@@ -15,7 +15,7 @@ class ReviewController extends Controller
    
     public function submitReview(Request $request)
     {
-        
+       
         Review::Create([
             'rating' => $request->revieew,
             'comment' => $request->comment,

@@ -13,7 +13,7 @@ class ConnectSessionsController extends Controller
 {
     public function acceptRequest(Storeconnect_sessionsRequest $request)
     {
-
+        
         $start = new DateTime($request['start_time']);
         $end = new DateTime($request['end_time']);
 

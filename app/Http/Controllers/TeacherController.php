@@ -59,7 +59,7 @@ class TeacherController extends Controller
                             'u.profilepic',
                             'r.comment',
                             'r.rating'
-                        )->get();
+                        )->Where('reviewee_id', auth::user()->id)->get();
         
         $badge = DB::table('users as u')
                     ->join('badges as b','b.id','=','u.badges_id')

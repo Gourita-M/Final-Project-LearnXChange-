@@ -19,6 +19,7 @@ class ProfileController extends Controller
                     ->join('teacher_skills as ts','ts.users_id','=','u.id')
                     ->join('skills as s','s.id','=','ts.skills_id')
                     ->select('s.name', 's.id as skillid')
+                    ->Where('ts.users_id', auth::user()->id)
                     ->get();
         $categories = Categories::get();
 

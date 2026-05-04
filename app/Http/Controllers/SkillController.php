@@ -76,14 +76,14 @@ class SkillController extends Controller
    public function create(StoreSkillRequest $request)
    {
       $validated = $request->validated();
-
+       
       $skill = Skill::create([
          'name' => $validated['name'],
          'description' => $validated['description'],
          'icon_url' => $validated['icon_url'],
          'categories_id' => $validated['categories_id'],
       ]);
-
+    
       TeacherSkill::Create([
          'users_id' => Auth::user()->id,
          'skills_id' => $skill->id,
