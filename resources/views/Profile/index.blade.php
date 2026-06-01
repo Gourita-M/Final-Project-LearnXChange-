@@ -382,6 +382,8 @@
         </div>
     </div>
 
+    @include('layouts.footer')
+
     <script>
         const profilePicPopup = document.getElementById('profilePicPopup');
         const closeProfilePopup = document.querySelectorAll('.closeProfilePopup');

@@ -34,7 +34,7 @@ class LoginController extends Controller
             $user = Auth::user();
 
             if ($user->hasRole('teacher')) {
-            return redirect('/teacher')->with('success',"Welcome Back " . Auth::user()->firstname);
+                return redirect('/teacher')->with('success',"Welcome Back " . Auth::user()->firstname);
             }
 
             if ($user->hasRole('learner')) {

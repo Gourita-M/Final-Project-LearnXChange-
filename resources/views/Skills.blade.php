@@ -471,6 +471,7 @@
         </div>
     </div>
 
+    @include('layouts.footer')
     <script>
 
         const learningModal = document.getElementById('learningpopup');

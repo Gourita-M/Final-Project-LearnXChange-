@@ -413,20 +413,7 @@
             </div>
         </section>
     </main>
-    <footer class="py-12 bg-white border-t border-surface-container">
-        <div class="max-w-6xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex flex-col items-center md:items-start">
-                <span class="text-xl font-extrabold tracking-tighter text-blue-700 mb-2">Luminary</span>
-                <p class="text-sm text-on-surface-variant">© 2024 Luminary Learning Inc. All rights reserved.</p>
-            </div>
-            <div class="flex gap-8 text-sm font-medium text-on-surface-variant">
-                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
-                <a class="hover:text-primary transition-colors" href="#">Help Center</a>
-                <a class="hover:text-primary transition-colors" href="#">Careers</a>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.footer')
 </body>
 
 </html>

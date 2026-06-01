@@ -31,7 +31,7 @@ class AdminController extends Controller
                             'c.id as certifid'
                             )
                         ->get();
-
+        
         $reports = DB::table('reports as r')
                     ->join('users as reporter', 'r.reporter_id', '=', 'reporter.id')
                     ->join('users as reported', 'r.reported_id', '=', 'reported.id')

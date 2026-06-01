@@ -255,6 +255,7 @@
 
         </div>
     </div>
+    @include('layouts.footer')
 
     <script>
         const usersopen = document.getElementById('usersopen');

@@ -441,6 +441,7 @@
             </form>
         </div>
     </div>
+    @include('layouts.footer')
 
     <script>
         const acceptBtn = document.getElementById('acceptbtn');

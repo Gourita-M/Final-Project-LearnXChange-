@@ -250,6 +250,7 @@
             </div>
         </aside>
     </main>
+    @include('layouts.footer')
     <input id="sessionid" type="hidden" value="{{ $sessionid }}">
 
     <script>
